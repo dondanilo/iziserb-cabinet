@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#1A7FD4">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="IziSerb">
+  <title>IziSerb — Сербский язык</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==================== AUTH LOADING ==================== -->
+  <div id="screen-auth-loading" class="screen active">
+    <div class="auth-loading-container">
+      <div class="auth-loading-flag">🇷🇸</div>
+      <div class="auth-loading-spinner"></div>
+      <div class="auth-loading-text">Загрузка...</div>
+    </div>
+  </div>
+
+  <!-- ==================== LOGIN ==================== -->
+  <div id="screen-login" class="screen">
+    <div class="login-container">
+      <div class="login-flag">🇷🇸</div>
+      <h1 class="app-title">IziSerb</h1>
+      <p class="login-subtitle">Войди через Google — прогресс сохранится на всех устройствах</p>
+      <button class="btn-google-login" onclick="signInWithGoogle()">
+        <svg class="google-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="22" height="22"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.6 32.9 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 7.9 3l5.7-5.7C34.1 6.6 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.6 15.9 18.9 12 24 12c3.1 0 5.8 1.1 7.9 3l5.7-5.7C34.1 6.6 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.3 26.7 36 24 36c-5.2 0-9.5-3.1-11.3-7.6l-6.5 5C9.7 39.6 16.3 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.9 2.4-2.5 4.5-4.5 5.9l.1-.1 6.2 5.2C36.9 40.7 44 35 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg>
+        Войти через Google
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== ONBOARDING ==================== -->
+  <div id="screen-onboarding" class="screen">
+    <div class="onboarding-container">
+      <div class="onboarding-logo">🇷🇸</div>
+      <h1 class="onboarding-title">Добро пожаловать в IziSerb</h1>
+      <p class="onboarding-subtitle">Сербский для жизни на Балканах</p>
+
+      <div class="onboarding-features">
+        <div class="onboarding-feature">
+          <div class="onboarding-feature-icon">🎯</div>
+          <div class="onboarding-feature-text">
+            <strong>Ключевые слова</strong>
+            <span>1000+ слов с транскрипцией на русском</span>
+          </div>
+        </div>
+        <div class="onboarding-feature">
+          <div class="onboarding-feature-icon">🎭</div>
+          <div class="onboarding-feature-text">
+            <strong>Сценарии</strong>
+            <span>МУП, банк, аптека, пијаца — реальные диалоги</span>
+          </div>
+        </div>
+        <div class="onboarding-feature">
+          <div class="onboarding-feature-icon">💬</div>
+          <div class="onboarding-feature-text">
+            <strong>Фразы</strong>
+            <span>Живой разговорный сербский — как говорят на улице</span>
+          </div>
+        </div>
+        <div class="onboarding-feature">
+          <div class="onboarding-feature-icon">📚</div>
+          <div class="onboarding-feature-text">
+            <strong>Словарь</strong>
+            <span>По темам: еда, места, документы, здоровье</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="onboarding-tip">
+        💡 10 минут в день — и через месяц ты заговоришь по-сербски
+      </div>
+
+      <button class="btn-primary onboarding-btn" onclick="finishOnboarding()">
+        Начать учить сербский 🚀
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== PAYWALL ==================== -->
+  <div id="screen-paywall" class="screen">
+    <div class="paywall-container">
+      <div class="paywall-icon">🇷🇸</div>
+      <h2 class="paywall-title">Оформите подписку</h2>
+      <p class="paywall-subtitle">Выберите план и получите полный доступ к IziSerb</p>
+
+      <div class="paywall-plans">
+        <div class="paywall-plan">
+          <div class="paywall-plan-name">Помесячно</div>
+          <div class="paywall-plan-price">€8.99 <span>/мес</span></div>
+          <a id="paywall-monthly-btn" href="https://iziserb.lemonsqueezy.com/checkout/buy/f3c32356-104a-49e4-bbdb-55259380b00b" target="_blank" class="paywall-btn-secondary">Начать — 7 дней бесплатно</a>
+        </div>
+        <div class="paywall-plan paywall-plan-popular">
+          <div class="paywall-plan-badge">Выгоднее на 45%</div>
+          <div class="paywall-plan-name">Годовая</div>
+          <div class="paywall-plan-price">€4.99 <span>/мес</span></div>
+          <div class="paywall-plan-billed">€59.88 в год</div>
+          <a id="paywall-annual-btn" href="https://iziserb.lemonsqueezy.com/checkout/buy/9a1d5e60-520e-4ad3-840a-1e00b82ab047" target="_blank" class="paywall-btn-primary">Начать — 7 дней бесплатно</a>
+        </div>
+      </div>
+
+      <p class="paywall-note">7 дней бесплатно · Отмена в любой момент</p>
+      <button class="paywall-signout" onclick="signOut()">Выйти из аккаунта</button>
+    </div>
+  </div>
+
+  <!-- ==================== HOME ==================== -->
+  <div id="screen-home" class="screen">
+    <div class="home-header">
+      <div class="home-top-row">
+        <div class="home-flag">🇷🇸</div>
+        <button class="btn-user-info" onclick="showUserMenu()" id="user-avatar-btn">
+          <img id="user-avatar" src="" alt="" style="display:none">
+          <span id="user-initials"></span>
+        </button>
+      </div>
+      <h1 class="app-title">IziSerb</h1>
+      <p class="app-subtitle" id="app-subtitle">Добродошли! Настављамо учење.</p>
+    </div>
+
+    <div class="user-menu" id="user-menu" style="display:none">
+      <div class="user-menu-name" id="user-menu-name"></div>
+      <div class="user-menu-email" id="user-menu-email"></div>
+      <button class="btn-settings-link" onclick="hideUserMenu(); showSettings()">⚙️ Настройки</button>
+      <button class="btn-signout" onclick="signOut()">Выйти</button>
+    </div>
+
+    <div class="streak-card" id="streak-card">
+      <div class="streak-icon">🔥</div>
+      <div class="streak-info">
+        <div class="streak-number" id="streak-number">0</div>
+        <div class="streak-label">дней подряд</div>
+      </div>
+    </div>
+
+    <div class="daily-goal-card">
+      <div class="goal-header">
+        <span>Цель на сегодня</span>
+        <div class="goal-right">
+          <span id="daily-xp-display">0 / 50 XP</span>
+          <button class="goal-edit-btn" onclick="showGoalModal()" title="Изменить цель">✏️</button>
+        </div>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="daily-progress"></div>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <button class="stat-item stat-item-btn" onclick="showProgress('xp')">
+        <div class="stat-value" id="total-xp">0</div>
+        <div class="stat-label">Всего XP</div>
+      </button>
+      <button class="stat-item stat-item-btn" onclick="showProgress('level')">
+        <div class="stat-value" id="level-display">1</div>
+        <div class="stat-label">Уровень</div>
+      </button>
+      <button class="stat-item stat-item-btn" onclick="showProgress('lessons')">
+        <div class="stat-value" id="lessons-done">0</div>
+        <div class="stat-label">Уроков</div>
+      </button>
+    </div>
+
+    <button class="btn-primary" onclick="startLesson()">Начать урок ▶</button>
+
+    <div class="nav-grid">
+      <button class="nav-btn" onclick="showScenarios()">
+        <span class="nav-icon">🎭</span>
+        <span class="nav-label">Сценарии</span>
+      </button>
+      <button class="nav-btn" onclick="showWordTable()">
+        <span class="nav-icon">📚</span>
+        <span class="nav-label">Слова</span>
+      </button>
+      <button class="nav-btn" onclick="showPlan()">
+        <span class="nav-icon">📅</span>
+        <span class="nav-label">30 дней</span>
+      </button>
+      <button class="nav-btn" onclick="showPhrases()">
+        <span class="nav-icon">💬</span>
+        <span class="nav-label">Фразы</span>
+      </button>
+      <button class="nav-btn" onclick="showProgress('xp')">
+        <span class="nav-icon">📊</span>
+        <span class="nav-label">Прогресс</span>
+      </button>
+      <button class="nav-btn" onclick="showVocab()">
+        <span class="nav-icon">🗂️</span>
+        <span class="nav-label">Словарь</span>
+      </button>
+      <button class="nav-btn" onclick="showQuiz()">
+        <span class="nav-icon">🧩</span>
+        <span class="nav-label">Квизы</span>
+      </button>
+      <button class="nav-btn" onclick="showAchievements()">
+        <span class="nav-icon">🏅</span>
+        <span class="nav-label">Достижения</span>
+        <span class="ach-nav-count" id="ach-nav-count">0/10</span>
+      </button>
+    </div>
+
+    <button class="srs-review-btn" id="srs-review-btn" onclick="startSrsLesson()" style="display:none">
+      <span class="weak-lesson-icon">🧠</span>
+      <div class="weak-lesson-text">
+        <div class="weak-lesson-title">Интервальное повторение</div>
+        <div class="weak-lesson-sub">Пора повторить: <span id="srs-due-count">0 слов</span></div>
+      </div>
+      <span class="weak-lesson-arrow">→</span>
+    </button>
+
+    <button class="support-btn" onclick="showSupportForm()">💬 Написать в поддержку</button>
+    <button class="support-btn" onclick="showPwaGuide()" style="margin-top:0">📲 Установить как приложение</button>
+  </div>
+
+  <!-- ==================== PWA GUIDE MODAL ==================== -->
+  <div id="pwa-modal" class="modal-overlay" onclick="hidePwaGuide()" style="display:none">
+    <div class="modal-box pwa-modal-box" onclick="event.stopPropagation()">
+      <div class="support-modal-header">
+        <div class="support-modal-title">📲 Установить приложение</div>
+        <button class="modal-close-btn" onclick="hidePwaGuide()">✕</button>
+      </div>
+      <div class="pwa-guide-body">
+        <p class="pwa-guide-intro">Установи IziSerb прямо на экран телефона — работает как полноценное приложение.</p>
+        <div class="pwa-os-block">
+          <div class="pwa-os-title">🍎 iPhone / iPad (Safari)</div>
+          <ol class="pwa-steps">
+            <li>Откройте <strong>cabinet.iziserb.com</strong> в Safari</li>
+            <li>Нажмите кнопку <strong>«Поделиться»</strong> ⬆</li>
+            <li>Выберите <strong>«На экран "Домой"»</strong></li>
+            <li>Нажмите <strong>«Добавить»</strong></li>
+          </ol>
+        </div>
+        <div class="pwa-os-block">
+          <div class="pwa-os-title">🤖 Android (Chrome)</div>
+          <ol class="pwa-steps">
+            <li>Откройте <strong>cabinet.iziserb.com</strong> в Chrome</li>
+            <li>Нажмите <strong>три точки ⋮</strong></li>
+            <li>Выберите <strong>«Добавить на главный экран»</strong></li>
+            <li>Нажмите <strong>«Установить»</strong></li>
+          </ol>
+        </div>
+        <div class="pwa-reason-box">
+          <div class="pwa-reason-icon">💡</div>
+          <div class="pwa-reason-text">IziSerb дешевле аналогов — нам не нужно платить комиссию App Store и Google Play (до 30%). Эту экономию мы передаём вам.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SUPPORT MODAL ==================== -->
+  <div id="support-modal" class="modal-overlay" onclick="hideSupportForm()" style="display:none">
+    <div class="modal-box support-modal-box" onclick="event.stopPropagation()">
+      <div class="support-modal-header">
+        <div class="support-modal-title">Написать в поддержку</div>
+        <button class="modal-close-btn" onclick="hideSupportForm()">✕</button>
+      </div>
+      <div id="support-form-wrap">
+        <textarea id="support-text" class="support-textarea" placeholder="Опишите проблему или задайте вопрос..."></textarea>
+        <button class="btn-primary" onclick="submitSupport()">Отправить</button>
+      </div>
+      <div id="support-success" style="display:none; text-align:center; padding:24px;">
+        <div style="font-size:48px">✅</div>
+        <p style="margin-top:12px; font-weight:700">Сообщение отправлено!</p>
+        <p style="color:#888; margin-top:8px">Ответим в течение 24 часов на ваш email.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== GOAL MODAL ==================== -->
+  <div id="goal-modal" class="modal-overlay" onclick="hideGoalModal()" style="display:none">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="support-modal-header">
+        <div class="support-modal-title">Дневная цель</div>
+        <button class="modal-close-btn" onclick="hideGoalModal()">✕</button>
+      </div>
+      <div style="padding:16px 24px 24px">
+        <div class="goal-options">
+          <button class="goal-option" onclick="setDailyGoal(20)">⚡ 20 XP<span>Лёгкий режим</span></button>
+          <button class="goal-option" onclick="setDailyGoal(50)">🎯 50 XP<span>Обычный</span></button>
+          <button class="goal-option" onclick="setDailyGoal(100)">🔥 100 XP<span>Интенсив</span></button>
+          <button class="goal-option" onclick="setDailyGoal(200)">🚀 200 XP<span>Марафон</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== LESSON ==================== -->
+  <div id="screen-lesson" class="screen">
+    <div class="lesson-header">
+      <button class="btn-back" onclick="exitLesson()">✕</button>
+      <div class="lesson-progress-bar-bg">
+        <div class="lesson-progress-bar-fill" id="lesson-progress-fill"></div>
+      </div>
+      <div class="lesson-hearts" id="lesson-hearts">❤️❤️❤️</div>
+    </div>
+    <div class="lesson-body" id="lesson-body"></div>
+  </div>
+
+  <!-- ==================== LESSON RESULT ==================== -->
+  <div id="screen-lesson-result" class="screen">
+    <div class="result-container">
+      <div class="result-icon" id="result-icon">🎉</div>
+      <h2 class="result-title" id="result-title">Урок завершён!</h2>
+      <p class="result-subtitle" id="result-subtitle"></p>
+      <div class="result-stats">
+        <div class="result-stat"><div class="result-stat-val" id="res-xp">+0</div><div class="result-stat-lbl">XP</div></div>
+        <div class="result-stat"><div class="result-stat-val" id="res-correct">0</div><div class="result-stat-lbl">Верных</div></div>
+        <div class="result-stat"><div class="result-stat-val" id="res-streak">0</div><div class="result-stat-lbl">Серия</div></div>
+      </div>
+      <button class="btn-primary" onclick="showScreen('screen-home')">На главную</button>
+      <button class="btn-secondary" style="margin-top:12px" onclick="startLesson()">Ещё урок</button>
+    </div>
+  </div>
+
+  <!-- ==================== SCENARIOS ==================== -->
+  <div id="screen-scenarios" class="screen">
+    <div class="screen-header">
+      <button class="btn-back" onclick="showScreen('screen-home')">←</button>
+      <h2>Сценарии</h2>
+    </div>
+    <div class="scenarios-list" id="scenarios-list"></div>
+  </div>
+
+  <!-- ==================== SCENARIO PLAY ==================== -->
+  <div id="screen-scenario-play" class="screen">
+    <div class="lesson-header">
+      <button class="btn-back" onclick="exitScenario()">✕</button>
+      <div class="lesson-progress-bar-bg">
+        <div class="lesson-progress-bar-fill" id="scenario-progress-fill"></div>
+      </div>
+      <div class="scenario-score-badge" id="scenario-score-badge">0 XP</div>
+    </div>
+    <div class="lesson-body" id="scenario-body"></div>
+  </div>
+
+  <!-- ==================== WORD TABLE ==================== -->
+  <div id="screen-word-table" class="screen">
+    <div class="screen-header">
+      <button class="btn-back" onclick="showScreen('screen-home')">←</button>
+      <h2>Слова</h2>
+    </div>
+    <div class="verb-search-wrap">
+      <input type="text" id="word-search" class="verb-search-input" placeholder="Поиск слова..." oninput="filterWords()">
+    </div>
+    <div class="verb-table-wrap" id="word-table-wrap"></div>
+  </div>
+
+  <!-- ==================== PHRASES ==================== -->
+  <div id="screen-phrases" class="screen">
+    <div class="screen-header">
+      <button class="btn-back" onclick="showScreen('screen-home')">←</button>
+      <h2>Фразы</h2>
+    </div>
+    <div id="phrases-tabs" class="phrases-tabs"></div>
+    <div id="phrases-list" class="phrases-list"></div>
+  </div>
+
+  <!-- ==================== VOCAB ==================== -->
+  <div id="screen-vocab" class="screen">
+    <div class="screen-header">
+      <button class="btn-back" onclick="showScreen('screen-home')">←</button>
+      <h2>Словарь</h2>
+    </div>
+    <div id="vocab-categories" class="vocab-categories"></div>
+    <div id="vocab-words" class="vocab-words" style="display:none"></div>
+  </div>
+
+  <!-- ==================== QUIZ ==================== -->
+  <div id="screen-quiz" class="screen">
+    <div class="screen-header">
+      <button class="btn-back" onclick="showScreen('screen-home')">←</button>
+      <h2>Квизы</h2>
+    </div>
+    <div id="quiz-menu" class="quiz-menu">
+      <button class="quiz-type-btn" onclick="startQuiz('translation')">
+        <span class="quiz-type-icon">🇷🇺→🇷🇸</span>
+        <span class="quiz-type-label">Русский → Сербский</span>
+      </button>
+      <button class="quiz-type-btn" onclick="startQuiz('reverse')">
+        <span class="quiz-type-icon">🇷🇸→🇷🇺</span>
+        <span class="quiz-type-label">Сербский → Русский</span>
+      </button>
+      <button class="quiz-type-btn" onclick="startQuiz('transcription')">
+        <span class="quiz-type-icon">🔊</span>
+        <span class="quiz-type-label">Транскрипция</span>
+      </button>
+    </div>
+    <div id="quiz-body" style="display:none"></div>
+  </div>
+
+  <!-- ==================== PLAN 30 ==================== -->
+  <div id="screen-plan" class="screen">
+    <div class="screen-header">
+      <button class="btn-back" onclick="showScreen('screen-home')">←</button>
+      <h2>30 дней</h2>
+    </div>
+    <div id="plan-list" class="plan-list"></div>
+  </div>
+
+  <!-- ==================== PROGRESS ==================== -->
+  <div id="screen-progress" class="screen">
+    <div class="screen-header">
+      <button class="btn-back" onclick="showScreen('screen-home')">←</button>
+      <h2>Прогресс</h2>
+    </div>
+    <div class="progress-tabs">
+      <button class="progress-tab active" id="ptab-xp" onclick="switchProgressTab('xp')">XP</button>
+      <button class="progress-tab" id="ptab-level" onclick="switchProgressTab('level')">Уровень</button>
+      <button class="progress-tab" id="ptab-lessons" onclick="switchProgressTab('lessons')">Уроки</button>
+    </div>
+    <div id="progress-body"></div>
+  </div>
+
+  <!-- ==================== ACHIEVEMENTS ==================== -->
+  <div id="screen-achievements" class="screen">
+    <div class="screen-header">
+      <button class="btn-back" onclick="showScreen('screen-home')">←</button>
+      <h2>Достижения</h2>
+    </div>
+    <div id="achievements-list" class="achievements-list"></div>
+  </div>
+
+  <!-- ==================== SETTINGS ==================== -->
+  <div id="screen-settings" class="screen">
+    <div class="screen-header">
+      <button class="btn-back" onclick="showScreen('screen-home')">←</button>
+      <h2>Настройки</h2>
+    </div>
+    <div class="settings-body">
+      <div class="settings-section">
+        <div class="settings-title">Аккаунт</div>
+        <div class="settings-item" id="settings-user-info"></div>
+      </div>
+      <div class="settings-section">
+        <div class="settings-title">Подписка</div>
+        <div class="settings-item" id="settings-sub-info">Загрузка...</div>
+        <a href="https://app.lemonsqueezy.com/my-orders" target="_blank" class="settings-link">Управление подпиской →</a>
+      </div>
+      <div class="settings-section">
+        <div class="settings-title">Приложение</div>
+        <button class="settings-link" onclick="showPwaGuide()">📲 Установить как приложение</button>
+      </div>
+      <button class="btn-secondary" style="margin-top:24px; width:100%" onclick="signOut()">Выйти из аккаунта</button>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

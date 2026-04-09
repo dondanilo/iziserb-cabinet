@@ -1,14 +1,14 @@
 // ============================================================
 // FIREBASE
 // ============================================================
-// TODO: Replace with IziSerb Firebase project config from console.firebase.google.com
 const firebaseConfig = {
-  apiKey: "REPLACE_WITH_IZISERB_API_KEY",
-  authDomain: "REPLACE_WITH_IZISERB_PROJECT_ID.firebaseapp.com",
-  projectId: "REPLACE_WITH_IZISERB_PROJECT_ID",
-  storageBucket: "REPLACE_WITH_IZISERB_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "REPLACE_WITH_SENDER_ID",
-  appId: "REPLACE_WITH_APP_ID"
+  apiKey: "AIzaSyDz-uV7iabLnbtmWMEwVxIGZeCpLfCUzNU",
+  authDomain: "iziserb.firebaseapp.com",
+  projectId: "iziserb",
+  storageBucket: "iziserb.firebasestorage.app",
+  messagingSenderId: "1033525795085",
+  appId: "1:1033525795085:web:76f4abc1f5d5ca11797844",
+  measurementId: "G-0WJ18YFDNT"
 };
 
 firebase.initializeApp(firebaseConfig);

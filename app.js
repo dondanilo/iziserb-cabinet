@@ -28,39 +28,8 @@ function signInWithGoogle() {
   if (btn) { btn.disabled = true; btn.textContent = 'Подождите...'; }
 
   const provider = new firebase.auth.GoogleAuthProvider();
-  const resetBtn = () => {
-    _signingIn = false;
-    if (btn) { btn.disabled = false; btn.innerHTML = GOOGLE_BTN_HTML; }
-  };
-  const useRedirect = () => {
-    auth.signInWithRedirect(provider);
-    // страница перезагрузится, кнопку не сбрасываем
-  };
-
-  // Таймаут 12 сек: если popup завис или заблокирован без ошибки — переходим на redirect
-  const fallbackTimer = setTimeout(() => {
-    if (_signingIn) useRedirect();
-  }, 12000);
-
-  auth.signInWithPopup(provider)
-    .then(() => clearTimeout(fallbackTimer))
-    .catch(err => {
-      clearTimeout(fallbackTimer);
-      if (err.code === 'auth/cancelled-popup-request' ||
-          err.code === 'auth/popup-closed-by-user') {
-        resetBtn();
-        return;
-      }
-      if (err.code === 'auth/popup-blocked') {
-        useRedirect();
-        return;
-      }
-      resetBtn();
-      console.error('signInWithPopup error:', err.code, err.message);
-    })
-    .finally(() => {
-      if (_signingIn) resetBtn();
-    });
+  // Используем redirect — надёжнее popup во всех браузерах (COOP/CORP/мобильные)
+  auth.signInWithRedirect(provider);
 }
 
 // Обработка результата после redirect (fallback для браузеров где popup недоступен)

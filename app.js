@@ -492,13 +492,14 @@ async function init() {
   // Это важно: без await onAuthStateChanged может сработать до обработки redirect и показать login
   try {
     const redirectResult = await auth.getRedirectResult();
-    if (redirectResult?.user) console.log('redirect auth ok:', redirectResult.user.email);
+    console.log('[AUTH] getRedirectResult user:', redirectResult?.user?.email || 'null');
   } catch(e) {
-    console.error('getRedirectResult error:', e.code);
+    console.error('[AUTH] getRedirectResult error:', e.code, e.message);
   }
 
   // Подписываемся на состояние авторизации
   auth.onAuthStateChanged(async user => {
+    console.log('[AUTH] onAuthStateChanged user:', user?.email || 'null');
     if (user) {
       currentUser = user;
       await loadState();

@@ -32,10 +32,6 @@ function signInWithGoogle() {
   auth.signInWithRedirect(provider);
 }
 
-// Обработка результата после redirect (fallback для браузеров где popup недоступен)
-auth.getRedirectResult()
-  .then(result => { if (result && result.user) console.log('redirect auth ok:', result.user.email); })
-  .catch(() => {});
 
 function signOut() {
   hideUserMenu();
@@ -490,6 +486,15 @@ async function init() {
       if (reg.installing) onInstalled(reg.installing);
       reg.addEventListener('updatefound', () => onInstalled(reg.installing));
     }
+  }
+
+  // Сначала обрабатываем redirect-результат, потом подписываемся на auth state
+  // Это важно: без await onAuthStateChanged может сработать до обработки redirect и показать login
+  try {
+    const redirectResult = await auth.getRedirectResult();
+    if (redirectResult?.user) console.log('redirect auth ok:', redirectResult.user.email);
+  } catch(e) {
+    console.error('getRedirectResult error:', e.code);
   }
 
   // Подписываемся на состояние авторизации

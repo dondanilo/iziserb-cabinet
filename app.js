@@ -146,19 +146,6 @@ const XP_PER_CORRECT = 10;
 const XP_PER_SCENARIO_STEP = 15;
 const EXERCISES_PER_LESSON = 10;
 
-const GREEK_KEYS = [
-  ['α','β','γ','δ','ε','ζ','η','θ'],
-  ['ι','κ','λ','μ','ν','ξ','ο','π'],
-  ['ρ','σ','ς','τ','υ','φ','χ','ψ','ω'],
-];
-
-const PRONOUNS = ["εγώ", "εσύ", "αυτός/ή/ό", "εμείς", "εσείς", "αυτοί/ές/ά"];
-const PRONOUNS_RU = {
-  "εγώ": "я", "εσύ": "ты", "αυτός/ή/ό": "он/она/оно",
-  "εμείς": "мы", "εσείς": "вы", "αυτοί/ές/ά": "они"
-};
-// VERBS array in data.js contains mixed data — filter real verbs only
-const WORDS = VERBS.filter(v => v.infinitive);
 
 // ============================================================
 // PERSISTENCE
@@ -604,7 +591,7 @@ function renderHome() {
   const weakBtn = document.getElementById('weak-lesson-btn');
   if (weakBtn) {
     weakBtn.style.display = weakCount > 0 ? 'flex' : 'none';
-    document.getElementById('weak-verbs-count').textContent = `${weakCount} ${weakCount === 1 ? 'глагол' : weakCount < 5 ? 'глагола' : 'глаголов'}`;
+    document.getElementById('weak-verbs-count').textContent = `${weakCount} ${weakCount === 1 ? 'слово' : weakCount < 5 ? 'слова' : 'слов'}`;
   }
 
   // SRS review button
@@ -612,7 +599,7 @@ function renderHome() {
   const srsBtn = document.getElementById('srs-review-btn');
   if (srsBtn) {
     srsBtn.style.display = dueCount > 0 ? 'flex' : 'none';
-    document.getElementById('srs-due-count').textContent = `${dueCount} ${dueCount === 1 ? 'глагол' : dueCount < 5 ? 'глагола' : 'глаголов'}`;
+    document.getElementById('srs-due-count').textContent = `${dueCount} ${dueCount === 1 ? 'слово' : dueCount < 5 ? 'слова' : 'слов'}`;
   }
 }
 
@@ -624,71 +611,31 @@ function showHome() {
 // ============================================================
 // LESSON — EXERCISE GENERATION
 // ============================================================
-function generateLesson(verbPool = null) {
-  const pool = verbPool || buildSrsPool();
+function generateLesson(wordPool = null) {
+  const pool = wordPool || buildSrsPool();
   const exercises = [];
   for (let i = 0; i < EXERCISES_PER_LESSON; i++) {
-    const verb = pool[Math.floor(Math.random() * pool.length)];
-    const type = Math.floor(Math.random() * 5); // 0-3: multiple choice, 4: typing
-    const pronoun = PRONOUNS[Math.floor(Math.random() * PRONOUNS.length)];
+    const word = pool[Math.floor(Math.random() * pool.length)];
+    const type = i % 2 === 0 ? 'word_meaning' : 'translate_to_serbian';
 
-    if (type === 0) {
-      const correct = verb.present[pronoun];
-      exercises.push({
-        type: 'conjugation', verb, pronoun,
-        correctAnswer: correct,
-        options: shuffle([correct, ...getWrongForms(verb, correct)])
-      });
-    } else if (type === 1) {
-      const form = verb.present[pronoun];
-      const correct = `${PRONOUNS_RU[pronoun]} ${verb.translation}`;
-      exercises.push({
-        type: 'phrase_meaning', verb,
-        greek: `${pronoun} ${form}`,
-        correctAnswer: correct,
-        options: shuffle([correct, ...getWrongMeanings(verb, pronoun)])
-      });
-    } else if (type === 2) {
-      const correct = verb.translation;
-      const wrongs = WORDS.filter(v => v.id !== verb.id).sort(() => Math.random() - 0.5).slice(0, 3).map(v => v.translation);
-      exercises.push({
-        type: 'word_meaning', verb, greek: verb.infinitive,
-        correctAnswer: correct, options: shuffle([correct, ...wrongs])
-      });
-    } else if (type === 3) {
-      const correct = verb.present[pronoun];
-      exercises.push({
-        type: 'translate_to_greek',
-        russian: `${PRONOUNS_RU[pronoun]} ${verb.translation}`,
-        verb, pronoun,
-        correctAnswer: correct,
-        options: shuffle([correct, ...getWrongForms(verb, correct)])
-      });
+    if (type === 'word_meaning') {
+      const correct = word.translation;
+      const wrongs = WORDS.filter(w => w.id !== word.id)
+        .sort(() => Math.random() - 0.5).slice(0, 3).map(w => w.translation);
+      exercises.push({ type, word, correctAnswer: correct, options: shuffle([correct, ...wrongs]) });
     } else {
-      // type === 4: typing
-      const correct = verb.present[pronoun];
-      exercises.push({
-        type: 'typing',
-        verb, pronoun,
-        correctAnswer: correct
-      });
+      const correct = word.serbian;
+      const wrongs = WORDS.filter(w => w.id !== word.id)
+        .sort(() => Math.random() - 0.5).slice(0, 3).map(w => w.serbian);
+      exercises.push({ type, word, correctAnswer: correct, options: shuffle([correct, ...wrongs]) });
     }
   }
   return exercises;
 }
 
-function getWrongForms(verb, correctForm) {
-  const allForms = Object.values(verb.present).filter(f => f !== correctForm);
-  if (allForms.length < 3) {
-    const extra = WORDS.find(v => v.id !== verb.id);
-    allForms.push(...Object.values(extra.present).filter(f => f !== correctForm));
-  }
-  return shuffle(allForms).slice(0, 3);
-}
-
-function getWrongMeanings(verb, pronoun) {
-  const pRu = PRONOUNS_RU[pronoun];
-  return WORDS.filter(v => v.id !== verb.id).sort(() => Math.random() - 0.5).slice(0, 3).map(v => `${pRu} ${v.translation}`);
+function getWrongOptions(word, field) {
+  return WORDS.filter(w => w.id !== word.id)
+    .sort(() => Math.random() - 0.5).slice(0, 3).map(w => w[field]);
 }
 
 function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
@@ -706,10 +653,10 @@ function startWeakLesson() {
   const weakIds = Object.keys(state.errorLog)
     .sort((a, b) => state.errorLog[b] - state.errorLog[a])
     .map(id => parseInt(id));
-  const weakVerbs = WORDS.filter(v => weakIds.includes(v.id));
-  if (weakVerbs.length < 2) return;
+  const weakWords = WORDS.filter(w => weakIds.includes(w.id));
+  if (weakWords.length < 2) return;
   lessonState = {
-    exercises: generateLesson(weakVerbs),
+    exercises: generateLesson(weakWords),
     currentIndex: 0, hearts: 3, xpEarned: 0, correct: 0, answered: false,
     isWeakMode: true
   };
@@ -731,26 +678,14 @@ function renderExercise() {
   const question = document.getElementById('exercise-question');
   const subtitle = document.getElementById('exercise-subtitle');
 
-  if (ex.type === 'conjugation') {
-    label.textContent = 'Выбери правильную форму';
-    question.textContent = ex.verb.infinitive;
-    subtitle.textContent = `${ex.pronoun}  (${PRONOUNS_RU[ex.pronoun]})  —  ${ex.verb.translation}`;
-  } else if (ex.type === 'phrase_meaning') {
-    label.textContent = 'Что это значит?';
-    question.textContent = ex.greek;
-    subtitle.textContent = '';
-  } else if (ex.type === 'word_meaning') {
-    label.textContent = 'Что значит этот глагол?';
-    question.textContent = ex.greek;
-    subtitle.textContent = '';
-  } else if (ex.type === 'typing') {
-    label.innerHTML = 'Напечатай форму <span class="label-badge">⌨️ сложно</span>';
-    question.textContent = ex.verb.infinitive;
-    subtitle.textContent = `${ex.pronoun}  (${PRONOUNS_RU[ex.pronoun]})  —  ${ex.verb.translation}`;
+  if (ex.type === 'word_meaning') {
+    label.textContent = 'Что значит это слово?';
+    question.textContent = ex.word.serbian;
+    subtitle.textContent = ex.word.transcription ? `[${ex.word.transcription}]` : '';
   } else {
-    label.textContent = 'Переведи на сербский';
-    question.textContent = ex.russian;
-    subtitle.textContent = `${ex.verb.infinitive}  —  ${ex.verb.translation}`;
+    label.textContent = 'Как это по-сербски?';
+    question.textContent = ex.word.translation;
+    subtitle.textContent = '';
   }
 
   const grid = document.getElementById('options-grid');
@@ -763,7 +698,7 @@ function renderExercise() {
       const btn = document.createElement('button');
       btn.className = 'option-btn';
       btn.textContent = opt;
-      btn.addEventListener('click', () => selectAnswer(opt, ex.correctAnswer, ex.verb?.id));
+      btn.addEventListener('click', () => selectAnswer(opt, ex.correctAnswer, ex.word?.id));
       grid.appendChild(btn);
     });
   }
@@ -774,20 +709,9 @@ function renderTypingInput() {
   grid.innerHTML = `
     <div class="typing-wrap">
       <input type="text" id="typing-input" class="typing-input"
-             placeholder="Введи форму глагола..."
-             autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-    </div>
-    <div class="greek-keyboard">
-      ${GREEK_KEYS.map(row => `
-        <div class="gk-row">
-          ${row.map(ch => `<button class="gk-btn" onclick="insertGreekChar('${ch}')">${ch}</button>`).join('')}
-        </div>
-      `).join('')}
-      <div class="gk-row gk-bottom-row">
-        <button class="gk-btn gk-space" onclick="insertGreekChar(' ')">·</button>
-        <button class="gk-btn gk-backspace" onclick="insertGreekChar('⌫')">⌫</button>
-        <button class="gk-btn gk-submit" onclick="checkTypingAnswer()">✓</button>
-      </div>
+             placeholder="Введи слово по-сербски..."
+             autocomplete="off" autocorrect="off" spellcheck="false">
+      <button class="typing-submit-btn" onclick="checkTypingAnswer()">✓ Проверить</button>
     </div>
   `;
   const input = document.getElementById('typing-input');
@@ -795,19 +719,8 @@ function renderTypingInput() {
   setTimeout(() => input.focus(), 50);
 }
 
-function insertGreekChar(char) {
-  const input = document.getElementById('typing-input');
-  if (!input || lessonState.answered) return;
-  if (char === '⌫') {
-    input.value = input.value.slice(0, -1);
-  } else {
-    input.value += char;
-  }
-  input.focus();
-}
-
-function normalizeGreek(str) {
-  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+function normalize(str) {
+  return str.toLowerCase().trim();
 }
 
 function checkTypingAnswer() {
@@ -823,8 +736,8 @@ function checkTypingAnswer() {
 
   const footer = document.getElementById('lesson-footer');
   const feedback = document.getElementById('feedback-message');
-  const isCorrect = normalizeGreek(userAnswer) === normalizeGreek(ex.correctAnswer);
-  if (ex.verb?.id) srsRate(ex.verb.id, isCorrect);
+  const isCorrect = normalize(userAnswer) === normalize(ex.correctAnswer);
+  if (ex.word?.id) srsRate(ex.word.id, isCorrect);
 
   if (isCorrect) {
     lessonState.correct++;
@@ -842,7 +755,7 @@ function checkTypingAnswer() {
     feedback.className = 'feedback-message wrong';
     footer.className = 'lesson-footer wrong-footer';
     input.classList.add('typing-wrong');
-    if (ex.verb?.id) state.errorLog[ex.verb.id] = (state.errorLog[ex.verb.id] || 0) + 1;
+    if (ex.word?.id) state.errorLog[ex.word.id] = (state.errorLog[ex.word.id] || 0) + 1;
     playSound('wrong');
   }
 
@@ -857,7 +770,7 @@ function renderHearts() {
     '<span class="heart-icon dead">🖤</span>'.repeat(3 - h);
 }
 
-function selectAnswer(selected, correct, verbId) {
+function selectAnswer(selected, correct, wordId) {
   if (lessonState.answered) return;
   lessonState.answered = true;
 
@@ -871,7 +784,7 @@ function selectAnswer(selected, correct, verbId) {
   });
 
   const isCorrect = selected === correct;
-  if (verbId) srsRate(verbId, isCorrect);
+  if (wordId) srsRate(wordId, isCorrect);
   if (isCorrect) {
     lessonState.correct++;
     lessonState.xpEarned += XP_PER_CORRECT;
@@ -888,8 +801,8 @@ function selectAnswer(selected, correct, verbId) {
     feedback.className = 'feedback-message wrong';
     footer.className = 'lesson-footer wrong-footer';
     buttons.forEach(btn => { if (btn.textContent === selected) btn.classList.add('wrong'); });
-    if (verbId) {
-      state.errorLog[verbId] = (state.errorLog[verbId] || 0) + 1;
+    if (wordId) {
+      state.errorLog[wordId] = (state.errorLog[wordId] || 0) + 1;
     }
     playSound('wrong');
   }
@@ -920,7 +833,7 @@ function completeLesson() {
   const isPerfect = lessonState.hearts === 3 && lessonState.correct === EXERCISES_PER_LESSON;
   if (lessonState.isWeakMode) {
     // Clear errors for verbs that were practiced
-    const practicedIds = [...new Set(lessonState.exercises.filter(e => e.verb).map(e => e.verb.id))];
+    const practicedIds = [...new Set(lessonState.exercises.filter(e => e.word).map(e => e.word.id))];
     practicedIds.forEach(id => { delete state.errorLog[id]; });
   }
   saveState();
@@ -953,16 +866,18 @@ function randomCorrectPhrase() {
 // ============================================================
 // TTS (TEXT-TO-SPEECH)
 // ============================================================
-function speakGreek(text, event) {
+function speakSerbian(text, event) {
   if (event) event.stopPropagation();
   if (!('speechSynthesis' in window)) return;
   speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'el-GR';
+  utterance.lang = 'sr-RS';
   utterance.rate = 0.85;
   utterance.pitch = 1;
   speechSynthesis.speak(utterance);
 }
+// Alias for legacy calls
+function speakGreek(text, event) { speakSerbian(text, event); }
 
 // ============================================================
 // SPACED REPETITION (SRS)
@@ -1019,7 +934,7 @@ function renderSrsStats() {
         <div style="height:100%; width:${Math.round(dueCount/total*100)}%; background:#FF9600; display:inline-block; float:left;"></div>
       </div>
     </div>
-    <div style="font-size:12px; color:#999; margin-top:6px;">${studied} из ${total} глаголов изучалось</div>
+    <div style="font-size:12px; color:#999; margin-top:6px;">${studied} из ${total} слов изучалось</div>
   `;
 }
 
@@ -1229,8 +1144,8 @@ function renderScenarioStep(scenario, stepIdx) {
     <div class="dialogue-card">
       <div class="dialogue-speaker">${step.speaker} говорит:</div>
       <div class="dialogue-greek-wrap">
-        <div class="dialogue-greek">${step.greek}</div>
-        <button class="speak-btn-lg" data-speak="${step.greek.replace(/"/g, '&quot;')}" onclick="speakGreek(this.dataset.speak)">🔊</button>
+        <div class="dialogue-greek">${step.serbian}</div>
+        <button class="speak-btn-lg" data-speak="${(step.serbian||'').replace(/"/g, '&quot;')}" onclick="speakSerbian(this.dataset.speak)">🔊</button>
       </div>
       <div class="dialogue-transcription">${step.transcription}</div>
       <div class="dialogue-translation">${step.translation}</div>
@@ -1331,40 +1246,31 @@ function completeScenario(scenario) {
 }
 
 // ============================================================
-// VERB TABLE
+// WORD TABLE
 // ============================================================
-function renderVerbCards(verbs) {
-  const pronounsRu = ['я', 'ты', 'он/она', 'мы', 'вы', 'они'];
+function renderWordCards(words) {
   const container = document.getElementById('verb-table-container');
-  document.getElementById('verb-count-badge').textContent = verbs.length;
+  document.getElementById('verb-count-badge').textContent = words.length;
 
-  if (verbs.length === 0) {
+  if (words.length === 0) {
     container.innerHTML = '<div class="no-results">Ничего не найдено 🤷</div>';
     return;
   }
 
-  container.innerHTML = verbs.map(verb => `
+  container.innerHTML = words.map(w => `
     <div class="verb-card" onclick="this.classList.toggle('expanded')">
       <div class="verb-title">
         <div>
-          <span class="verb-infinitive">${verb.infinitive}</span>
-          <span class="verb-transcription"> [${verb.transcription}]</span>
+          <span class="verb-infinitive">${w.serbian}</span>
+          <span class="verb-transcription"> [${w.transcription}]</span>
         </div>
-        <span class="verb-translation-badge">${verb.translation}</span>
+        <span class="verb-translation-badge">${w.translation}</span>
       </div>
-      ${verb.note ? `<div class="verb-note">${verb.note}</div>` : ''}
+      ${w.note ? `<div class="verb-note">${w.note}</div>` : ''}
       <div class="verb-example">
-        <button class="speak-btn" data-speak="${verb.example.greek}" onclick="speakGreek(this.dataset.speak, event)" title="Произнести">🔊</button>
-        <span class="example-greek">${verb.example.greek}</span>
-        <span class="example-ru">${verb.example.ru}</span>
-      </div>
-      <div class="verb-conjugation">
-        ${PRONOUNS.map((p, i) => `
-          <div class="conj-row">
-            <span class="conj-pronoun">${pronounsRu[i]}</span>
-            <span class="conj-form conj-speakable" onclick="speakGreek('${verb.present[p]}', event)" title="Нажми — услышишь">${verb.present[p]}</span>
-          </div>
-        `).join('')}
+        <button class="speak-btn" onclick="speakSerbian('${w.serbian.replace(/'/g, "\\'")}', event)" title="Произнести">🔊</button>
+        <span class="example-greek">${w.example.serbian}</span>
+        <span class="example-ru">${w.example.ru}</span>
       </div>
     </div>
   `).join('');
@@ -1373,18 +1279,17 @@ function renderVerbCards(verbs) {
 function filterVerbs(query) {
   const q = query.toLowerCase().trim();
   const filtered = q
-    ? WORDS.filter(v =>
-        v.infinitive.toLowerCase().includes(q) ||
-        v.translation.toLowerCase().includes(q) ||
-        Object.values(v.present).some(f => f.toLowerCase().includes(q))
+    ? WORDS.filter(w =>
+        w.serbian.toLowerCase().includes(q) ||
+        w.translation.toLowerCase().includes(q)
       )
     : WORDS;
-  renderVerbCards(filtered);
+  renderWordCards(filtered);
 }
 
 function showVerbTable() {
   document.getElementById('verb-search').value = '';
-  renderVerbCards(WORDS);
+  renderWordCards(WORDS);
   showScreen('screen-verbs');
 }
 
@@ -1412,10 +1317,10 @@ function showPhrases() {
       ${cat.phrases.map(p => `
         <div class="phrase-card">
           <div class="phrase-top">
-            <div class="phrase-greek" data-speak="${p.greek.replace(/"/g,'&quot;')}"
-                 onclick="speakGreek(this.dataset.speak)">${p.greek}</div>
-            <button class="speak-btn" data-speak="${p.greek.replace(/"/g,'&quot;')}"
-                    onclick="speakGreek(this.dataset.speak, event)">🔊</button>
+            <div class="phrase-greek" data-speak="${(p.serbian||'').replace(/"/g,'&quot;')}"
+                 onclick="speakSerbian(this.dataset.speak)">${p.serbian}</div>
+            <button class="speak-btn" data-speak="${(p.serbian||'').replace(/"/g,'&quot;')}"
+                    onclick="speakSerbian(this.dataset.speak, event)">🔊</button>
           </div>
           <div class="phrase-transcription">${p.transcription}</div>
           <div class="phrase-translation">${p.translation}</div>
@@ -1457,7 +1362,7 @@ function searchPhrases(query) {
   PHRASES.forEach(cat => {
     cat.phrases.forEach(p => {
       if (
-        p.greek.toLowerCase().includes(q) ||
+        (p.serbian||'').toLowerCase().includes(q) ||
         p.transcription.toLowerCase().includes(q) ||
         p.translation.toLowerCase().includes(q) ||
         (p.note && p.note.toLowerCase().includes(q))
@@ -1476,10 +1381,10 @@ function searchPhrases(query) {
     <div class="phrase-card">
       <div class="phrase-search-cat" style="color:${p.catColor}">${p.catIcon} ${p.catTitle}</div>
       <div class="phrase-top">
-        <div class="phrase-greek" data-speak="${p.greek.replace(/"/g,'&quot;')}"
-             onclick="speakGreek(this.dataset.speak)">${p.greek}</div>
-        <button class="speak-btn" data-speak="${p.greek.replace(/"/g,'&quot;')}"
-                onclick="speakGreek(this.dataset.speak, event)">🔊</button>
+        <div class="phrase-greek" data-speak="${(p.serbian||'').replace(/"/g,'&quot;')}"
+             onclick="speakSerbian(this.dataset.speak)">${p.serbian}</div>
+        <button class="speak-btn" data-speak="${(p.serbian||'').replace(/"/g,'&quot;')}"
+                onclick="speakSerbian(this.dataset.speak, event)">🔊</button>
       </div>
       <div class="phrase-transcription">${p.transcription}</div>
       <div class="phrase-translation">${p.translation}</div>
@@ -2483,9 +2388,9 @@ function searchVocab(query) {
   VOCAB_CATEGORIES.forEach(cat => {
     cat.words.forEach(w => {
       if (
-        w.greek.toLowerCase().includes(q) ||
-        w.transcription.toLowerCase().includes(q) ||
-        w.translation.toLowerCase().includes(q)
+        (w.serbian||'').toLowerCase().includes(q) ||
+        (w.transcription||'').toLowerCase().includes(q) ||
+        (w.translation||'').toLowerCase().includes(q)
       ) {
         matches.push({ ...w, catTitle: cat.title, catEmoji: cat.emoji });
       }
@@ -2501,9 +2406,9 @@ function searchVocab(query) {
     <div class="vocab-search-card">
       <div class="vocab-search-emoji">${w.emoji || '📝'}</div>
       <div class="vocab-search-body">
-        <div class="vocab-search-greek">${w.greek}
-          <button class="vocab-tts-btn" data-greek="${w.greek.replace(/"/g,'&quot;')}"
-                  onclick="speakGreek(this.dataset.greek)">🔊</button>
+        <div class="vocab-search-greek">${w.serbian}
+          <button class="vocab-tts-btn" data-speak="${(w.serbian||'').replace(/"/g,'&quot;')}"
+                  onclick="speakSerbian(this.dataset.speak)">🔊</button>
         </div>
         <div class="vocab-search-transcription">${w.transcription}</div>
         <div class="vocab-search-translation">${w.translation}</div>
@@ -2539,14 +2444,13 @@ function renderVocabWord() {
 }
 
 function renderImageQuiz(word, category) {
-  const pool = category.words.filter(w => w.greek !== word.greek);
+  const pool = category.words.filter(w => w.serbian !== word.serbian);
   const wrongWords = shuffle(pool).slice(0, 3);
-  // if pool has < 3 words pad from other categories
   if (wrongWords.length < 3) {
     const extra = VOCAB_CATEGORIES
       .filter(c => c.id !== category.id)
       .flatMap(c => c.words)
-      .filter(w => !wrongWords.some(x => x.greek === w.greek));
+      .filter(w => !wrongWords.some(x => x.serbian === w.serbian));
     wrongWords.push(...shuffle(extra).slice(0, 3 - wrongWords.length));
   }
   const options = shuffle([word, ...wrongWords]);
@@ -2557,8 +2461,8 @@ function renderImageQuiz(word, category) {
       <div class="vocab-word-mode-label">✦ Новый</div>
       <div class="vocab-word-instruction">Выберите картинку с переводом на русский</div>
       <div class="vocab-word-greek">
-        ${word.greek}
-        <button class="vocab-tts-btn" data-greek="${word.greek.replace(/"/g, '&quot;')}" onclick="speakGreek(this.dataset.greek)">🔊</button>
+        ${word.serbian}
+        <button class="vocab-tts-btn" data-speak="${(word.serbian||'').replace(/"/g, '&quot;')}" onclick="speakSerbian(this.dataset.speak)">🔊</button>
       </div>
       <div class="vocab-word-transcription">${word.transcription}</div>
     </div>
@@ -2572,13 +2476,13 @@ function renderImageQuiz(word, category) {
 }
 
 function renderTranslationQuiz(word, category) {
-  const pool = category.words.filter(w => w.greek !== word.greek);
+  const pool = category.words.filter(w => w.serbian !== word.serbian);
   const wrongWords = shuffle(pool).slice(0, 2);
   if (wrongWords.length < 2) {
     const extra = VOCAB_CATEGORIES
       .filter(c => c.id !== category.id)
       .flatMap(c => c.words)
-      .filter(w => !wrongWords.some(x => x.greek === w.greek));
+      .filter(w => !wrongWords.some(x => x.serbian === w.serbian));
     wrongWords.push(...shuffle(extra).slice(0, 2 - wrongWords.length));
   }
   const options = shuffle([word, ...wrongWords]);
@@ -2589,8 +2493,8 @@ function renderTranslationQuiz(word, category) {
       <div class="vocab-word-mode-label">✦ Новый</div>
       <div class="vocab-word-instruction">Выберите перевод на русский</div>
       <div class="vocab-word-greek">
-        ${word.greek}
-        <button class="vocab-tts-btn" data-greek="${word.greek.replace(/"/g, '&quot;')}" onclick="speakGreek(this.dataset.greek)">🔊</button>
+        ${word.serbian}
+        <button class="vocab-tts-btn" data-speak="${(word.serbian||'').replace(/"/g, '&quot;')}" onclick="speakSerbian(this.dataset.speak)">🔊</button>
       </div>
       <div class="vocab-word-transcription">${word.transcription}</div>
     </div>
@@ -2609,8 +2513,8 @@ function selectVocabAnswer(optionIdx) {
   const { words, currentIndex, options, mode } = vocabQuizState;
   const correctWord = words[currentIndex];
   const selectedWord = options[optionIdx];
-  const isCorrect = selectedWord.greek === correctWord.greek;
-  const correctIdx = options.findIndex(o => o.greek === correctWord.greek);
+  const isCorrect = selectedWord.serbian === correctWord.serbian;
+  const correctIdx = options.findIndex(o => o.serbian === correctWord.serbian);
 
   const btnSelector = mode === 'image' ? '.vocab-image-card' : '.vocab-translation-btn';
   const buttons = document.querySelectorAll(btnSelector);
@@ -2627,8 +2531,8 @@ function selectVocabAnswer(optionIdx) {
     // Mark word as learned
     const catId = vocabQuizState.categoryId;
     if (!state.vocabProgress[catId]) state.vocabProgress[catId] = [];
-    if (!state.vocabProgress[catId].includes(correctWord.greek)) {
-      state.vocabProgress[catId].push(correctWord.greek);
+    if (!state.vocabProgress[catId].includes(correctWord.serbian)) {
+      state.vocabProgress[catId].push(correctWord.serbian);
     }
   } else {
     buttons[optionIdx].classList.add('wrong');
@@ -2671,15 +2575,6 @@ function completeVocabQuiz() {
 function restartVocabQuiz() { startVocabQuiz(vocabQuizState.categoryId); }
 function exitVocabQuiz() { showVocab(currentVocabMode); }
 
-function speakGreek(text) {
-  if ('speechSynthesis' in window) {
-    window.speechSynthesis.cancel();
-    const utt = new SpeechSynthesisUtterance(text);
-    utt.lang = 'el-GR';
-    utt.rate = 0.85;
-    window.speechSynthesis.speak(utt);
-  }
-}
 
 // ============================================================
 // QUIZ — SENTENCE ORDERING
@@ -3062,15 +2957,15 @@ function openBlogArticle(slug, title) {
 const SPEECH_CATEGORIES = (() => {
   const cats = [];
 
-  // Глаголы из VERBS
+  // Слова из WORDS
   cats.push({
-    id: 'verbs',
+    id: 'words',
     icon: '📚',
-    name: 'Глаголы',
-    getWords: () => VERBS.map(v => ({
-      greek: v.infinitive,
-      transcription: v.transcription,
-      translation: v.translation
+    name: 'Сербские слова',
+    getWords: () => WORDS.map(w => ({
+      greek: w.serbian,
+      transcription: w.transcription,
+      translation: w.translation
     }))
   });
 
@@ -3082,7 +2977,7 @@ const SPEECH_CATEGORIES = (() => {
         icon: cat.icon || '💬',
         name: 'Фразы: ' + cat.category,
         getWords: () => cat.phrases.map(p => ({
-          greek: p.greek,
+          greek: p.serbian || p.greek || '',
           transcription: p.transcription,
           translation: p.translation
         }))
@@ -3098,7 +2993,7 @@ const SPEECH_CATEGORIES = (() => {
         icon: cat.icon || '🔤',
         name: cat.title,
         getWords: () => cat.words.map(w => ({
-          greek: w.greek,
+          greek: w.serbian || w.greek || '',
           transcription: w.transcription,
           translation: w.translation
         }))
@@ -3167,7 +3062,7 @@ function showSpeechTraining() {
 function startSpeechSession(catId) {
   const cat = SPEECH_CATEGORIES.find(c => c.id === catId);
   if (!cat) return;
-  const all = cat.getWords().filter(w => w.greek && w.translation);
+  const all = cat.getWords().filter(w => (w.greek || w.serbian) && w.translation);
   const shuffled = all.sort(() => Math.random() - 0.5);
   speechSession.words = shuffled.slice(0, speechSession.total);
   speechSession.index = 0;
@@ -3180,7 +3075,7 @@ function startSpeechSession(catId) {
 
 function renderSpeechCard() {
   const w = speechSession.words[speechSession.index];
-  document.getElementById('speech-greek').textContent = w.greek;
+  document.getElementById('speech-greek').textContent = w.greek || w.serbian || '';
   document.getElementById('speech-transcription').textContent = w.transcription || '';
   document.getElementById('speech-translation').textContent = w.translation ? '"' + w.translation + '"' : '';
   document.getElementById('speech-counter').textContent =
@@ -3281,7 +3176,7 @@ function startSpeechRecognition() {
 function runSpeechRecognition(SR) {
   setSpeechUIState('recording');
   const r = new SR();
-  r.lang = 'el-GR';
+  r.lang = 'sr-RS';
   r.continuous = false;
   r.interimResults = false;
   r.maxAlternatives = 6;
@@ -3301,7 +3196,7 @@ function runSpeechRecognition(SR) {
 
   r.onresult = (event) => {
     clearTimeout(timeout);
-    const target = speechSession.words[speechSession.index].greek;
+    const target = speechSession.words[speechSession.index].greek || speechSession.words[speechSession.index].serbian || '';
     const alts = Array.from(event.results[0]).map(a => a.transcript);
     document.getElementById('speech-recognized').textContent = alts[0] || '';
     const ok = alts.some(t => normalizeGreekSpeech(t) === normalizeGreekSpeech(target));
@@ -3334,8 +3229,8 @@ function runSpeechRecognition(SR) {
 function normalizeGreekSpeech(text) {
   return text.toLowerCase()
     .normalize('NFD')
-    .replace(/[\u0300-\u036f\u0345]/g, '')
-    .replace(/[^α-ωa-z]/gi, '')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^\u0400-\u04ffa-z]/gi, '')
     .trim();
 }
 

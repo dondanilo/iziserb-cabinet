@@ -28,8 +28,29 @@ function signInWithGoogle() {
   if (btn) { btn.disabled = true; btn.textContent = 'Подождите...'; }
 
   const provider = new firebase.auth.GoogleAuthProvider();
-  // Используем redirect — надёжнее popup во всех браузерах (COOP/CORP/мобильные)
-  auth.signInWithRedirect(provider);
+  const resetBtn = () => {
+    _signingIn = false;
+    if (btn) { btn.disabled = false; btn.innerHTML = GOOGLE_BTN_HTML; }
+  };
+
+  auth.signInWithPopup(provider)
+    .then(() => { _signingIn = false; })
+    .catch(err => {
+      console.log('[AUTH] popup error:', err.code);
+      if (err.code === 'auth/popup-closed-by-user' ||
+          err.code === 'auth/cancelled-popup-request') {
+        resetBtn();
+        return;
+      }
+      // Popup заблокирован браузером — пробуем redirect
+      if (err.code === 'auth/popup-blocked') {
+        auth.signInWithRedirect(provider);
+        return;
+      }
+      // Любая другая ошибка — также пробуем redirect
+      console.log('[AUTH] falling back to redirect...');
+      auth.signInWithRedirect(provider);
+    });
 }
 
 

@@ -463,6 +463,7 @@ function showPaywall() {
 // INIT
 // ============================================================
 async function init() {
+  console.log('[AUTH] init() started');
   if ('serviceWorker' in navigator) {
     const reg = await navigator.serviceWorker.register('sw.js').catch(() => null);
 
@@ -490,12 +491,17 @@ async function init() {
 
   // Сначала обрабатываем redirect-результат, потом подписываемся на auth state
   // Это важно: без await onAuthStateChanged может сработать до обработки redirect и показать login
+  console.log('[AUTH] calling getRedirectResult...');
   try {
-    const redirectResult = await auth.getRedirectResult();
+    const redirectResult = await Promise.race([
+      auth.getRedirectResult(),
+      new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 8000))
+    ]);
     console.log('[AUTH] getRedirectResult user:', redirectResult?.user?.email || 'null');
   } catch(e) {
-    console.error('[AUTH] getRedirectResult error:', e.code, e.message);
+    console.error('[AUTH] getRedirectResult error:', e.code || e.message);
   }
+  console.log('[AUTH] registering onAuthStateChanged...');
 
   // Подписываемся на состояние авторизации
   auth.onAuthStateChanged(async user => {

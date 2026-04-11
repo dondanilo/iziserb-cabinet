@@ -177,7 +177,7 @@
         <span class="nav-icon">🎭</span>
         <span class="nav-label">Сценарии</span>
       </button>
-      <button class="nav-btn" onclick="showWordTable()">
+      <button class="nav-btn" onclick="showVerbTable()">
         <span class="nav-icon">📚</span>
         <span class="nav-label">Слова</span>
       </button>
@@ -349,7 +349,7 @@
       <h2>Слова</h2>
     </div>
     <div class="verb-search-wrap">
-      <input type="text" id="word-search" class="verb-search-input" placeholder="Поиск слова..." oninput="filterWords()">
+      <input type="text" id="word-search" class="verb-search-input" placeholder="Поиск слова..." oninput="filterVerbs(this.value)">
     </div>
     <div class="verb-table-wrap" id="word-table-wrap"></div>
   </div>
@@ -429,6 +429,49 @@
     <div id="achievements-list" class="achievements-list"></div>
   </div>
 
+  <!-- ==================== SCENARIO COMPLETE ==================== -->
+  <div id="screen-scenario-complete" class="screen">
+    <div class="result-container">
+      <div class="result-icon" id="scenario-complete-icon">🎭</div>
+      <h2 class="result-title" id="scenario-complete-title">Сценарий пройден!</h2>
+      <div class="result-icon" id="scenario-complete-stars" style="font-size:28px">⭐</div>
+      <div class="result-stats">
+        <div class="result-stat"><div class="result-stat-val" id="scenario-score">0/4</div><div class="result-stat-lbl">Верных</div></div>
+        <div class="result-stat"><div class="result-stat-val" id="scenario-xp">+0 XP</div><div class="result-stat-lbl">XP</div></div>
+      </div>
+      <p id="scenario-complete-msg" style="text-align:center;padding:0 24px;color:#555;margin:12px 0"></p>
+      <button class="btn-primary" onclick="showScenarios()">К сценариям</button>
+      <button class="btn-secondary" style="margin-top:12px" onclick="showScreen('screen-home')">На главную</button>
+    </div>
+  </div>
+
+  <!-- ==================== VOCAB QUIZ ==================== -->
+  <div id="screen-vocab-quiz" class="screen">
+    <div class="lesson-header">
+      <button class="btn-back" onclick="exitVocabQuiz()">✕</button>
+      <div class="lesson-progress-bar-bg">
+        <div class="lesson-progress-bar-fill" id="vocab-progress"></div>
+      </div>
+      <div class="lesson-hearts" id="vocab-score-display">0</div>
+    </div>
+    <div class="lesson-body" id="vocab-body"></div>
+  </div>
+
+  <!-- ==================== VOCAB COMPLETE ==================== -->
+  <div id="screen-vocab-complete" class="screen">
+    <div class="result-container">
+      <div class="result-icon" id="vocab-complete-stars">⭐</div>
+      <h2 class="result-title">Словарь пройден!</h2>
+      <p class="result-subtitle" id="vocab-complete-sub"></p>
+      <div class="result-stats">
+        <div class="result-stat"><div class="result-stat-val" id="vocab-complete-score">0/10</div><div class="result-stat-lbl">Верных</div></div>
+        <div class="result-stat"><div class="result-stat-val" id="vocab-complete-xp">+0</div><div class="result-stat-lbl">XP</div></div>
+      </div>
+      <button class="btn-primary" onclick="restartVocabQuiz()">Ещё раз</button>
+      <button class="btn-secondary" style="margin-top:12px" onclick="exitVocabQuiz()">К категориям</button>
+    </div>
+  </div>
+
   <!-- ==================== SETTINGS ==================== -->
   <div id="screen-settings" class="screen">
     <div class="screen-header">
@@ -457,6 +500,16 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <!-- Achievement Toast -->
+  <div id="achievement-toast" class="achievement-toast">
+    <div class="toast-icon" id="toast-icon">🏅</div>
+    <div class="toast-content">
+      <div class="toast-header">Достижение!</div>
+      <div class="toast-title" id="toast-title"></div>
+      <div class="toast-desc" id="toast-desc"></div>
+    </div>
+  </div>
 
   <script src="data.js"></script>
   <script src="app.js"></script>

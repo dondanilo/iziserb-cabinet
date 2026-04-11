@@ -271,131 +271,123 @@ let activeProgressTab = 'xp';
 
 function showProgress(tab = 'xp') {
   activeProgressTab = tab;
-  // Record start date if not set
   if (!state.startedAt) {
     state.startedAt = new Date().toISOString();
     saveState();
   }
-  renderProgressXP();
-  renderProgressLevel();
-  renderProgressLessons();
-  switchProgressTab(tab);
   showScreen('screen-progress');
+  switchProgressTab(tab);
 }
 
 function switchProgressTab(tab) {
   activeProgressTab = tab;
   ['xp', 'level', 'lessons'].forEach(t => {
-    document.getElementById(`tab-${t}`).classList.toggle('active', t === tab);
-    document.getElementById(`panel-${t}`).style.display = t === tab ? 'block' : 'none';
+    document.getElementById(`ptab-${t}`).classList.toggle('active', t === tab);
   });
+  const body = document.getElementById('progress-body');
+  if (tab === 'xp') body.innerHTML = getProgressXPHtml();
+  else if (tab === 'level') body.innerHTML = getProgressLevelHtml();
+  else body.innerHTML = getProgressLessonsHtml();
 }
 
-function renderProgressXP() {
+function getProgressXPHtml() {
   const xp = state.totalXp;
   const level = state.level;
-  const xpForLevel = (level - 1) * 500;
-  const xpNextLevel = level * 500;
-  const xpInLevel = xp - xpForLevel;
+  const xpInLevel = xp - (level - 1) * 500;
   const pct = Math.min(100, Math.round(xpInLevel / 500 * 100));
-
-  document.getElementById('pg-total-xp').textContent = xp.toLocaleString('ru-RU');
-  document.getElementById('pg-xp-bar').style.width = pct + '%';
-  document.getElementById('pg-xp-bar-label').textContent =
-    `${xpInLevel} / 500 XP до уровня ${level + 1}`;
-
   const days = state.startedAt
     ? Math.max(1, Math.ceil((Date.now() - new Date(state.startedAt).getTime()) / 86400000))
     : 1;
-  document.getElementById('pg-xp-days').textContent = `${days} ${pluralDays(days)} в пути`;
-
-  document.getElementById('pg-daily-xp').textContent = state.dailyXp || 0;
-  document.getElementById('pg-streak-xp').textContent = state.streak || 0;
   const lessons = state.lessonsCompleted || 0;
-  document.getElementById('pg-avg-xp').textContent = lessons > 0 ? Math.round(xp / lessons) : 0;
-  document.getElementById('pg-goal-xp').textContent = state.dailyGoal || 50;
+  return `
+    <div class="progress-section">
+      <div class="progress-big-stat">
+        <div class="progress-big-val">${xp.toLocaleString('ru-RU')}</div>
+        <div class="progress-big-lbl">Всего XP · ${days} ${pluralDays(days)} в пути</div>
+      </div>
+      <div class="progress-bar-bg" style="margin:16px 0 4px">
+        <div class="progress-bar-fill" style="width:${pct}%"></div>
+      </div>
+      <div class="progress-bar-label">${xpInLevel} / 500 XP до уровня ${level + 1}</div>
+    </div>
+    <div class="progress-grid">
+      <div class="progress-card"><div class="progress-card-val">${state.dailyXp || 0}</div><div class="progress-card-lbl">Сегодня XP</div></div>
+      <div class="progress-card"><div class="progress-card-val">${state.streak || 0}</div><div class="progress-card-lbl">Дней подряд</div></div>
+      <div class="progress-card"><div class="progress-card-val">${lessons > 0 ? Math.round(xp / lessons) : 0}</div><div class="progress-card-lbl">XP за урок</div></div>
+      <div class="progress-card"><div class="progress-card-val">${state.dailyGoal || 50}</div><div class="progress-card-lbl">Цель / день</div></div>
+    </div>`;
 }
 
-function renderProgressLevel() {
+function getProgressLevelHtml() {
   const level = state.level;
   const league = getLeague(level);
   const nextLeague = LEAGUES[LEAGUES.indexOf(league) + 1];
-
-  document.getElementById('pg-league-badge').textContent = league.icon;
-  document.getElementById('pg-league-name').textContent = league.name;
-  document.getElementById('pg-level-val').textContent = level;
-
-  // Progress within league
   const leagueLen = league.max - league.min + 1;
   const inLeague = level - league.min;
   const pct = Math.round(inLeague / leagueLen * 100);
-  document.getElementById('pg-league-bar').style.width = pct + '%';
-
-  if (nextLeague) {
-    document.getElementById('pg-league-progress-title').textContent =
-      `Прогресс в лиге (${inLeague} / ${leagueLen} уровней)`;
-    document.getElementById('pg-league-bar-label').textContent =
-      `До ${nextLeague.name}: ${league.max - level + 1} уровней`;
-  } else {
-    document.getElementById('pg-league-progress-title').textContent = 'Максимальная лига!';
-    document.getElementById('pg-league-bar-label').textContent = 'Ты достиг платинового уровня 💎';
-  }
-
-  // Highlight league rows
-  LEAGUES.forEach(l => {
-    const row = document.getElementById(`league-${l.id}`);
-    const check = document.getElementById(`lcheck-${l.id}`);
-    if (!row) return;
-    row.classList.remove('current', 'done');
-    if (l.id === league.id) { row.classList.add('current'); check.textContent = ''; }
-    else if (level > l.max) { row.classList.add('done'); check.textContent = '✅'; }
-    else { check.textContent = ''; }
-  });
-}
-
-function renderProgressLessons() {
-  const lessons = state.lessonsCompleted || 0;
-  document.getElementById('pg-lessons-val').textContent = lessons;
-  document.getElementById('pg-lessons-sub').textContent =
-    `Это примерно ${Math.round(lessons * 5)} минут практики`;
-
-  const milestones = [
-    { n: 1,   icon: '🌱', title: 'Первый урок',       sub: 'Начало большого пути' },
-    { n: 5,   icon: '🔥', title: '5 уроков',           sub: 'Войдёшь в ритм!' },
-    { n: 10,  icon: '⭐', title: '10 уроков',          sub: 'Ты серьёзен!' },
-    { n: 30,  icon: '🚀', title: '30 уроков',          sub: 'Месяц практики' },
-    { n: 50,  icon: '💪', title: '50 уроков',          sub: 'Полпути к мастерству' },
-    { n: 100, icon: '🏆', title: '100 уроков',         sub: 'Настоящий грек!' },
-  ];
-  const nextMilestone = milestones.find(m => m.n > lessons) || milestones[milestones.length - 1];
-  document.getElementById('pg-milestones').innerHTML = milestones.map(m => `
-    <div class="milestone-row ${lessons >= m.n ? 'done' : ''}">
-      <div class="milestone-icon">${m.icon}</div>
-      <div class="milestone-info">
-        <div class="milestone-title">${m.title}</div>
-        <div class="milestone-sub">${m.sub}</div>
+  return `
+    <div class="progress-section">
+      <div class="progress-big-stat">
+        <div class="progress-big-val">${league.icon} ${level}</div>
+        <div class="progress-big-lbl">${league.name}</div>
       </div>
-      <div class="milestone-check">${lessons >= m.n ? '✅' : `${m.n}`}</div>
-    </div>`).join('');
-
-  document.getElementById('pg-scenarios').textContent = (state.scenariosCompleted || []).length;
-  const vocabLearned = Object.values(state.vocabProgress || {}).reduce((s, a) => s + a.length, 0);
-  document.getElementById('pg-vocab-learned').textContent = vocabLearned;
-  document.getElementById('pg-achievements').textContent = (state.achievements || []).length;
-  document.getElementById('pg-streak-lessons').textContent = state.streak || 0;
-
-  // Motivation
-  const motivations = [
-    { emoji: '🔥', text: `Ещё ${nextMilestone.n - lessons} уроков до «${nextMilestone.title}»`, sub: 'Ты почти там!' },
-    { emoji: '🧠', text: `${vocabLearned} слов уже в голове`, sub: 'Каждое слово — шаг к гражданству' },
-    { emoji: '⚡', text: `${state.totalXp} XP заработано`, sub: 'Продолжай — каждый урок считается' },
-  ];
-  const m = motivations[lessons % motivations.length];
-  document.getElementById('pg-motivation').innerHTML = `
-    <div class="progress-motivation-emoji">${m.emoji}</div>
-    <div class="progress-motivation-text">${m.text}</div>
-    <div class="progress-motivation-sub">${m.sub}</div>`;
+      <div class="progress-bar-bg" style="margin:16px 0 4px">
+        <div class="progress-bar-fill" style="width:${pct}%"></div>
+      </div>
+      <div class="progress-bar-label">${nextLeague ? `До ${nextLeague.name}: ${league.max - level + 1} уровней` : 'Максимальный уровень! 💎'}</div>
+    </div>
+    <div class="progress-grid">
+      ${LEAGUES.map(l => `
+        <div class="progress-card ${level >= l.min && level <= l.max ? 'progress-card-active' : level > l.max ? 'progress-card-done' : ''}">
+          <div class="progress-card-val">${l.icon}</div>
+          <div class="progress-card-lbl">${l.name}</div>
+          <div style="font-size:11px;color:#aaa">${l.min}–${l.max} ур.</div>
+        </div>`).join('')}
+    </div>`;
 }
+
+function getProgressLessonsHtml() {
+  const lessons = state.lessonsCompleted || 0;
+  const vocabLearned = Object.values(state.vocabProgress || {}).reduce((s, a) => s + a.length, 0);
+  const milestones = [
+    { n: 1, icon: '🌱', title: 'Первый урок', sub: 'Начало пути' },
+    { n: 5, icon: '🔥', title: '5 уроков', sub: 'Входишь в ритм!' },
+    { n: 10, icon: '⭐', title: '10 уроков', sub: 'Ты серьёзен!' },
+    { n: 30, icon: '🚀', title: '30 уроков', sub: 'Месяц практики' },
+    { n: 50, icon: '💪', title: '50 уроков', sub: 'Полпути к мастерству' },
+    { n: 100, icon: '🏆', title: '100 уроков', sub: 'Настоящий серб!' },
+  ];
+  return `
+    <div class="progress-section">
+      <div class="progress-big-stat">
+        <div class="progress-big-val">${lessons}</div>
+        <div class="progress-big-lbl">Уроков · ≈${Math.round(lessons * 5)} мин практики</div>
+      </div>
+    </div>
+    <div class="progress-grid">
+      <div class="progress-card"><div class="progress-card-val">${(state.scenariosCompleted || []).length}</div><div class="progress-card-lbl">Сценариев</div></div>
+      <div class="progress-card"><div class="progress-card-val">${vocabLearned}</div><div class="progress-card-lbl">Слов выучено</div></div>
+      <div class="progress-card"><div class="progress-card-val">${(state.achievements || []).length}</div><div class="progress-card-lbl">Достижений</div></div>
+      <div class="progress-card"><div class="progress-card-val">${state.streak || 0}</div><div class="progress-card-lbl">Стрик</div></div>
+    </div>
+    <div class="progress-section-title">Вехи</div>
+    <div class="milestones-list">
+      ${milestones.map(m => `
+        <div class="milestone-row ${lessons >= m.n ? 'done' : ''}">
+          <div class="milestone-icon">${m.icon}</div>
+          <div class="milestone-info">
+            <div class="milestone-title">${m.title}</div>
+            <div class="milestone-sub">${m.sub}</div>
+          </div>
+          <div class="milestone-check">${lessons >= m.n ? '✅' : m.n}</div>
+        </div>`).join('')}
+    </div>`;
+}
+
+// Legacy stubs (kept for compatibility)
+function renderProgressXP() {}
+function renderProgressLevel() {}
+function renderProgressLessons() {}
 
 function pluralDays(n) {
   if (n % 100 >= 11 && n % 100 <= 19) return 'дней';
@@ -406,40 +398,30 @@ function pluralDays(n) {
 }
 
 function showSettings() {
-  // User info
   if (currentUser) {
     const name = currentUser.displayName || 'Пользователь';
     const email = currentUser.email || '';
-    document.getElementById('settings-user-name').textContent = name;
-    document.getElementById('settings-user-email').textContent = email;
-    document.getElementById('settings-initials').textContent = name.charAt(0).toUpperCase();
-    const avatarEl = document.getElementById('settings-avatar');
-    const initialsEl = document.getElementById('settings-initials');
-    if (currentUser.photoURL) {
-      avatarEl.src = currentUser.photoURL;
-      avatarEl.style.display = 'block';
-      initialsEl.style.display = 'none';
-    } else {
-      avatarEl.style.display = 'none';
-      initialsEl.style.display = 'flex';
-    }
+    const initial = name.charAt(0).toUpperCase();
+    const avatarHtml = currentUser.photoURL
+      ? `<img src="${currentUser.photoURL}" alt="" style="width:44px;height:44px;border-radius:50%;object-fit:cover">`
+      : `<div style="width:44px;height:44px;border-radius:50%;background:#1A7FD4;color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px">${initial}</div>`;
+    document.getElementById('settings-user-info').innerHTML = `
+      <div style="display:flex;align-items:center;gap:12px;padding:8px 0">
+        ${avatarHtml}
+        <div>
+          <div style="font-weight:700;font-size:15px">${name}</div>
+          <div style="color:#888;font-size:13px">${email}</div>
+        </div>
+      </div>`;
   }
 
-  // Daily goal buttons
-  document.querySelectorAll('.settings-goal-btn').forEach(btn => {
-    btn.classList.toggle('active', parseInt(btn.dataset.xp) === state.dailyGoal);
-  });
-
-  // Push toggle
-  const pushOn = Notification.permission === 'granted';
-  document.getElementById('push-toggle').classList.toggle('on', pushOn);
-
-  // Stats
-  document.getElementById('s-total-xp').textContent = state.totalXp;
-  document.getElementById('s-lessons').textContent = state.lessonsCompleted;
-  document.getElementById('s-streak').textContent = state.streak;
-  const learnedCount = Object.values(state.vocabProgress || {}).reduce((sum, arr) => sum + arr.length, 0);
-  document.getElementById('s-vocab').textContent = learnedCount;
+  const sub = state.subscription;
+  const subEl = document.getElementById('settings-sub-info');
+  if (subEl) {
+    subEl.textContent = sub
+      ? (sub.status === 'active' ? 'Подписка активна ✅' : sub.status === 'trialing' ? 'Пробный период 🎁' : 'Нет активной подписки')
+      : (currentUser?.email === 'dondanilo1994@gmail.com' ? 'Аккаунт разработчика 🛠️' : 'Загрузка...');
+  }
 
   showScreen('screen-settings');
 }
@@ -569,12 +551,13 @@ function renderHome() {
   if (!state.achievements) state.achievements = [];
   document.getElementById('ach-nav-count').textContent = `${state.achievements.length}/${ACHIEVEMENTS.length}`;
 
-  // Weak lesson button
+  // Weak lesson button (if present in HTML)
   const weakCount = Object.keys(state.errorLog).length;
   const weakBtn = document.getElementById('weak-lesson-btn');
   if (weakBtn) {
     weakBtn.style.display = weakCount > 0 ? 'flex' : 'none';
-    document.getElementById('weak-verbs-count').textContent = `${weakCount} ${weakCount === 1 ? 'слово' : weakCount < 5 ? 'слова' : 'слов'}`;
+    const wvc = document.getElementById('weak-verbs-count');
+    if (wvc) wvc.textContent = `${weakCount} ${weakCount === 1 ? 'слово' : weakCount < 5 ? 'слова' : 'слов'}`;
   }
 
   // SRS review button
@@ -651,29 +634,32 @@ function renderExercise() {
   const ex = lessonState.exercises[lessonState.currentIndex];
   lessonState.answered = false;
 
-  document.getElementById('lesson-progress').style.width = (lessonState.currentIndex / EXERCISES_PER_LESSON * 100) + '%';
+  document.getElementById('lesson-progress-fill').style.width = (lessonState.currentIndex / EXERCISES_PER_LESSON * 100) + '%';
   renderHearts();
-  document.getElementById('lesson-xp').textContent = lessonState.xpEarned;
-  document.getElementById('lesson-footer').style.display = 'none';
-  document.getElementById('lesson-footer').className = 'lesson-footer';
 
-  const label = document.getElementById('exercise-label');
-  const question = document.getElementById('exercise-question');
-  const subtitle = document.getElementById('exercise-subtitle');
-
+  let labelText, questionText, subtitleText;
   if (ex.type === 'word_meaning') {
-    label.textContent = 'Что значит это слово?';
-    question.textContent = ex.word.serbian;
-    subtitle.textContent = ex.word.transcription ? `[${ex.word.transcription}]` : '';
+    labelText = 'Что значит это слово?';
+    questionText = ex.word.serbian;
+    subtitleText = ex.word.transcription ? `[${ex.word.transcription}]` : '';
   } else {
-    label.textContent = 'Как это по-сербски?';
-    question.textContent = ex.word.translation;
-    subtitle.textContent = '';
+    labelText = 'Как это по-сербски?';
+    questionText = ex.word.translation;
+    subtitleText = '';
   }
 
-  const grid = document.getElementById('options-grid');
-  grid.innerHTML = '';
+  document.getElementById('lesson-body').innerHTML = `
+    <div class="exercise-label">${labelText}</div>
+    <div class="exercise-question">${questionText}</div>
+    ${subtitleText ? `<div class="exercise-subtitle">${subtitleText}</div>` : ''}
+    <div class="options-grid" id="options-grid"></div>
+    <div class="lesson-footer" id="lesson-footer" style="display:none">
+      <div class="feedback-message" id="feedback-message"></div>
+      <button class="btn-continue" id="continue-btn" onclick="nextExercise()">Продолжить</button>
+    </div>
+  `;
 
+  const grid = document.getElementById('options-grid');
   if (ex.type === 'typing') {
     renderTypingInput();
   } else {
@@ -725,7 +711,6 @@ function checkTypingAnswer() {
   if (isCorrect) {
     lessonState.correct++;
     lessonState.xpEarned += XP_PER_CORRECT;
-    document.getElementById('lesson-xp').textContent = lessonState.xpEarned;
     feedback.textContent = randomCorrectPhrase();
     feedback.className = 'feedback-message correct';
     footer.className = 'lesson-footer correct-footer';
@@ -748,7 +733,7 @@ function checkTypingAnswer() {
 
 function renderHearts() {
   const h = lessonState.hearts;
-  document.getElementById('hearts-display').innerHTML =
+  document.getElementById('lesson-hearts').innerHTML =
     '<span class="heart-icon">❤️</span>'.repeat(h) +
     '<span class="heart-icon dead">🖤</span>'.repeat(3 - h);
 }
@@ -771,7 +756,6 @@ function selectAnswer(selected, correct, wordId) {
   if (isCorrect) {
     lessonState.correct++;
     lessonState.xpEarned += XP_PER_CORRECT;
-    document.getElementById('lesson-xp').textContent = lessonState.xpEarned;
     feedback.textContent = randomCorrectPhrase();
     feedback.className = 'feedback-message correct';
     footer.className = 'lesson-footer correct-footer';
@@ -833,17 +817,25 @@ function completeLesson() {
   const acc = lessonState.correct / EXERCISES_PER_LESSON;
   const stars = (lessonState.hearts === 3 && acc === 1) ? '⭐⭐⭐' : (lessonState.hearts >= 2 && acc >= 0.7) ? '⭐⭐' : lessonState.hearts >= 1 ? '⭐' : '😅';
 
-  document.getElementById('complete-stars').textContent = stars;
-  document.getElementById('complete-xp').textContent = `+${lessonState.xpEarned}`;
-  document.getElementById('complete-correct').textContent = `${lessonState.correct}/${EXERCISES_PER_LESSON}`;
-  document.getElementById('complete-hearts').textContent = lessonState.hearts;
-  document.getElementById('complete-streak').textContent = state.streak;
-  document.getElementById('complete-goal-msg').style.display = state.dailyXp >= state.dailyGoal ? 'block' : 'none';
-  showScreen('screen-complete');
+  document.getElementById('result-icon').textContent = stars;
+  document.getElementById('result-title').textContent = 'Урок завершён!';
+  document.getElementById('result-subtitle').textContent = state.dailyXp >= state.dailyGoal ? '🎯 Дневная цель выполнена!' : '';
+  document.getElementById('res-xp').textContent = `+${lessonState.xpEarned}`;
+  document.getElementById('res-correct').textContent = `${lessonState.correct}/${EXERCISES_PER_LESSON}`;
+  document.getElementById('res-streak').textContent = state.streak;
+  showScreen('screen-lesson-result');
 }
 
 function randomCorrectPhrase() {
-  return ['Σωστά! Правильно!', 'Μπράβο! Молодец!', 'Τέλεια! Отлично!', 'Ωραία! Прекрасно!', 'Εξαιρετικά!'][Math.floor(Math.random() * 5)];
+  return ['Тачно! Правильно!', 'Брavo! Молодец!', 'Одлично! Отлично!', 'Тако је! Верно!', 'Супер!'][Math.floor(Math.random() * 5)];
+}
+
+function exitLesson() {
+  showScreen('screen-home');
+}
+
+function exitScenario() {
+  showScenarios();
 }
 
 // ============================================================
@@ -1029,32 +1021,22 @@ function showAchievements() {
   if (!state.achievements) state.achievements = [];
   const unlocked = state.achievements.length;
   const total = ACHIEVEMENTS.length;
-  document.getElementById('ach-badge').textContent = `${unlocked}/${total}`;
 
-  const container = document.getElementById('achievements-container');
-  const byCategory = {};
-  ACHIEVEMENTS.forEach(a => {
-    if (!byCategory[a.category]) byCategory[a.category] = [];
-    byCategory[a.category].push(a);
-  });
-
-  container.innerHTML = Object.entries(byCategory).map(([cat, achs]) => `
-    <div class="ach-category">
-      <div class="ach-category-title">${cat}</div>
-      ${achs.map(a => {
-        const isUnlocked = state.achievements.includes(a.id);
-        return `
-        <div class="ach-card ${isUnlocked ? 'unlocked' : 'locked'}">
-          <div class="ach-icon">${isUnlocked ? a.icon : '🔒'}</div>
-          <div class="ach-info">
-            <div class="ach-title">${a.title}</div>
-            <div class="ach-desc">${a.desc}</div>
-          </div>
-          ${isUnlocked ? '<div class="ach-check">✓</div>' : ''}
-        </div>`;
-      }).join('')}
-    </div>
-  `).join('');
+  const list = document.getElementById('achievements-list');
+  list.innerHTML = `
+    <div class="ach-summary" style="text-align:center;padding:12px;color:#666;font-size:14px">${unlocked} из ${total} достижений</div>
+    ${ACHIEVEMENTS.map(a => {
+      const isUnlocked = state.achievements.includes(a.id);
+      return `
+      <div class="ach-card ${isUnlocked ? 'unlocked' : 'locked'}">
+        <div class="ach-icon">${isUnlocked ? a.icon : '🔒'}</div>
+        <div class="ach-info">
+          <div class="ach-title">${a.title}</div>
+          <div class="ach-desc">${a.desc}</div>
+        </div>
+        ${isUnlocked ? '<div class="ach-check">✓</div>' : ''}
+      </div>`;
+    }).join('')}`;
 
   showScreen('screen-achievements');
 }
@@ -1109,7 +1091,7 @@ function startScenario(id) {
   if (!scenario) return;
   scenarioState = { scenarioId: id, currentStep: 0, score: 0, answered: false };
   renderScenarioStep(scenario, 0);
-  showScreen('screen-scenario-detail');
+  showScreen('screen-scenario-play');
 }
 
 function renderScenarioStep(scenario, stepIdx) {
@@ -1118,10 +1100,9 @@ function renderScenarioStep(scenario, stepIdx) {
   const total = scenario.steps.length;
 
   document.getElementById('scenario-progress-fill').style.width = (stepIdx / total * 100) + '%';
-  document.getElementById('scenario-step-counter').textContent = `${stepIdx + 1}/${total}`;
-  document.getElementById('scenario-title-bar').textContent = scenario.title;
+  document.getElementById('scenario-score-badge').textContent = `${stepIdx + 1}/${total}`;
 
-  const container = document.getElementById('scenario-step-container');
+  const container = document.getElementById('scenario-body');
   container.innerHTML = `
     <div class="scenario-situation">${step.situation}</div>
     <div class="dialogue-card">
@@ -1226,14 +1207,14 @@ function completeScenario(scenario) {
     'Не страшно. Повтори сценарий — с каждым разом лучше.';
 
   showScreen('screen-scenario-complete');
+  renderHome();
 }
 
 // ============================================================
 // WORD TABLE
 // ============================================================
 function renderWordCards(words) {
-  const container = document.getElementById('verb-table-container');
-  document.getElementById('verb-count-badge').textContent = words.length;
+  const container = document.getElementById('word-table-wrap');
 
   if (words.length === 0) {
     container.innerHTML = '<div class="no-results">Ничего не найдено 🤷</div>';
@@ -1251,7 +1232,8 @@ function renderWordCards(words) {
       </div>
       ${w.note ? `<div class="verb-note">${w.note}</div>` : ''}
       <div class="verb-example">
-        <button class="speak-btn" onclick="speakSerbian('${w.serbian.replace(/'/g, "\\'")}', event)" title="Произнести">🔊</button>
+        <button class="speak-btn" data-speak="${(w.serbian||'').replace(/"/g,'&quot;')}"
+                onclick="speakSerbian(this.dataset.speak, event)" title="Произнести">🔊</button>
         <span class="example-greek">${w.example.serbian}</span>
         <span class="example-ru">${w.example.ru}</span>
       </div>
@@ -1260,7 +1242,7 @@ function renderWordCards(words) {
 }
 
 function filterVerbs(query) {
-  const q = query.toLowerCase().trim();
+  const q = (query || '').toLowerCase().trim();
   const filtered = q
     ? WORDS.filter(w =>
         w.serbian.toLowerCase().includes(q) ||
@@ -1271,25 +1253,25 @@ function filterVerbs(query) {
 }
 
 function showVerbTable() {
-  document.getElementById('verb-search').value = '';
+  document.getElementById('word-search').value = '';
   renderWordCards(WORDS);
-  showScreen('screen-verbs');
+  showScreen('screen-word-table');
 }
 
 // ============================================================
 // PHRASES & EXPRESSIONS
 // ============================================================
 function showPhrases() {
-  // Category pills
-  const catsEl = document.getElementById('phrase-cats');
-  catsEl.innerHTML = PHRASES.map(cat => `
+  // Category tabs
+  const tabsEl = document.getElementById('phrases-tabs');
+  tabsEl.innerHTML = PHRASES.map(cat => `
     <button class="phrase-cat-pill" onclick="scrollToPhraseCat('${cat.id}')" style="border-color:${cat.color};color:${cat.color}">
       ${cat.icon} ${cat.category}
     </button>
   `).join('');
 
   // All phrases
-  const container = document.getElementById('phrases-container');
+  const container = document.getElementById('phrases-list');
   container.innerHTML = PHRASES.map(cat => `
     <div class="phrase-category-block" id="phrase-cat-${cat.id}">
       <div class="phrase-cat-header" style="border-color:${cat.color}">
@@ -1300,7 +1282,7 @@ function showPhrases() {
       ${cat.phrases.map(p => `
         <div class="phrase-card">
           <div class="phrase-top">
-            <div class="phrase-greek" data-speak="${(p.serbian||'').replace(/"/g,'&quot;')}"
+            <div class="phrase-serbian" data-speak="${(p.serbian||'').replace(/"/g,'&quot;')}"
                  onclick="speakSerbian(this.dataset.speak)">${p.serbian}</div>
             <button class="speak-btn" data-speak="${(p.serbian||'').replace(/"/g,'&quot;')}"
                     onclick="speakSerbian(this.dataset.speak, event)">🔊</button>
@@ -1313,67 +1295,7 @@ function showPhrases() {
     </div>
   `).join('');
 
-  // Reset search
-  const si = document.getElementById('phrases-search');
-  if (si) si.value = '';
-  searchPhrases('');
-
   showScreen('screen-phrases');
-}
-
-function searchPhrases(query) {
-  const q = query.trim().toLowerCase();
-  const resultsEl = document.getElementById('phrases-search-results');
-  const normalEl = document.getElementById('phrases-container');
-  const catsEl = document.getElementById('phrase-cats');
-  const descEl = document.getElementById('phrases-sub-desc');
-
-  if (!q) {
-    resultsEl.style.display = 'none';
-    normalEl.style.display = '';
-    catsEl.style.display = '';
-    descEl.style.display = '';
-    return;
-  }
-
-  normalEl.style.display = 'none';
-  catsEl.style.display = 'none';
-  descEl.style.display = 'none';
-  resultsEl.style.display = '';
-
-  const matches = [];
-  PHRASES.forEach(cat => {
-    cat.phrases.forEach(p => {
-      if (
-        (p.serbian||'').toLowerCase().includes(q) ||
-        p.transcription.toLowerCase().includes(q) ||
-        p.translation.toLowerCase().includes(q) ||
-        (p.note && p.note.toLowerCase().includes(q))
-      ) {
-        matches.push({ ...p, catIcon: cat.icon, catTitle: cat.category, catColor: cat.color });
-      }
-    });
-  });
-
-  if (matches.length === 0) {
-    resultsEl.innerHTML = `<div class="search-empty">Ничего не найдено</div>`;
-    return;
-  }
-
-  resultsEl.innerHTML = matches.map(p => `
-    <div class="phrase-card">
-      <div class="phrase-search-cat" style="color:${p.catColor}">${p.catIcon} ${p.catTitle}</div>
-      <div class="phrase-top">
-        <div class="phrase-greek" data-speak="${(p.serbian||'').replace(/"/g,'&quot;')}"
-             onclick="speakSerbian(this.dataset.speak)">${p.serbian}</div>
-        <button class="speak-btn" data-speak="${(p.serbian||'').replace(/"/g,'&quot;')}"
-                onclick="speakSerbian(this.dataset.speak, event)">🔊</button>
-      </div>
-      <div class="phrase-transcription">${p.transcription}</div>
-      <div class="phrase-translation">${p.translation}</div>
-      ${p.note ? `<div class="phrase-note">${p.note}</div>` : ''}
-    </div>
-  `).join('');
 }
 
 function scrollToPhraseCat(id) {
@@ -1418,7 +1340,7 @@ function showPlan() {
   const typeIcons = { vocab: '📖', grammar: '⚙️', scenario: '🎭', review: '🔄', audit: '📊' };
   const typeLabels = { vocab: 'Лексика', grammar: 'Грамматика', scenario: 'Сценарий', review: 'Повторение', audit: 'Аудит' };
 
-  const container = document.getElementById('plan-container');
+  const container = document.getElementById('plan-list');
   container.innerHTML = PLAN_30.map(week => `
     <div class="week-block">
       <div class="week-header" style="border-color:${week.color}">
@@ -1572,12 +1494,34 @@ function showSupportForm() {
   const modal = document.getElementById('support-modal');
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
-  // Pre-fill name/email from current user
-  if (currentUser) {
-    const nameEl = document.getElementById('sf-name');
-    const emailEl = document.getElementById('sf-email');
-    if (nameEl && !nameEl.value) nameEl.value = currentUser.displayName || '';
-    if (emailEl && !emailEl.value) emailEl.value = currentUser.email || '';
+}
+
+async function submitSupport() {
+  const textEl = document.getElementById('support-text');
+  const message = textEl ? textEl.value.trim() : '';
+  if (!message) { alert('Введите сообщение'); return; }
+
+  const btn = document.querySelector('#support-form-wrap .btn-primary');
+  if (btn) { btn.disabled = true; btn.textContent = 'Отправляем...'; }
+
+  try {
+    await fetch('https://iziserb-webhook.vercel.app/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: currentUser?.displayName || 'Ученик',
+        email: currentUser?.email || '',
+        subject: 'Сообщение из кабинета',
+        message,
+        userId: currentUser?.uid || ''
+      })
+    });
+    document.getElementById('support-form-wrap').style.display = 'none';
+    document.getElementById('support-success').style.display = 'block';
+  } catch (e) {
+    alert('Не удалось отправить. Напишите на support@iziserb.com');
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = 'Отправить'; }
   }
 }
 
@@ -2317,15 +2261,10 @@ let vocabQuizState = {
   currentIndex: 0, score: 0, answered: false, totalWords: 10, options: []
 };
 
-function showVocab(mode) {
+function showVocab(mode = 'image') {
   currentVocabMode = mode;
-  document.getElementById('vocab-screen-title').textContent = mode === 'image' ? 'Карточки' : 'Перевод';
-  const descEl = document.getElementById('vocab-screen-desc');
-  if (descEl) descEl.textContent = mode === 'image'
-    ? 'Выбери картинку, которая соответствует сербскому слову.'
-    : 'Выбери правильный перевод сербского слова.';
 
-  document.getElementById('vocab-categories-list').innerHTML =
+  document.getElementById('vocab-categories').innerHTML =
     `<div class="vocab-categories-grid">${VOCAB_CATEGORIES.map(cat => {
       const learned = (state.vocabProgress[cat.id] || []).length;
       const total = cat.words.length;
@@ -2345,18 +2284,14 @@ function showVocab(mode) {
       </div>`;
     }).join('')}</div>`;
 
-  // Reset search
-  const si = document.getElementById('vocab-search');
-  if (si) si.value = '';
-  searchVocab('');
-
+  document.getElementById('vocab-words').style.display = 'none';
   showScreen('screen-vocab');
 }
 
 function searchVocab(query) {
-  const q = query.trim().toLowerCase();
-  const resultsEl = document.getElementById('vocab-search-results');
-  const catsEl = document.getElementById('vocab-categories-list');
+  const q = (query || '').trim().toLowerCase();
+  const resultsEl = document.getElementById('vocab-words');
+  const catsEl = document.getElementById('vocab-categories');
 
   if (!q) {
     resultsEl.style.display = 'none';
@@ -2417,76 +2352,60 @@ function renderVocabWord() {
   const { words, currentIndex, mode, totalWords } = vocabQuizState;
   const word = words[currentIndex];
   vocabQuizState.answered = false;
+
   document.getElementById('vocab-progress').style.width = (currentIndex / totalWords * 100) + '%';
-  document.getElementById('vocab-score').textContent = vocabQuizState.score;
-  document.getElementById('vocab-footer').style.display = 'none';
-  document.getElementById('vocab-footer').className = 'lesson-footer';
+  document.getElementById('vocab-score-display').textContent = `${vocabQuizState.score} ✓`;
+
   const category = VOCAB_CATEGORIES.find(c => c.id === vocabQuizState.categoryId);
-  if (mode === 'image') renderImageQuiz(word, category);
-  else renderTranslationQuiz(word, category);
-}
 
-function renderImageQuiz(word, category) {
-  const pool = category.words.filter(w => w.serbian !== word.serbian);
-  const wrongWords = shuffle(pool).slice(0, 3);
-  if (wrongWords.length < 3) {
-    const extra = VOCAB_CATEGORIES
-      .filter(c => c.id !== category.id)
-      .flatMap(c => c.words)
-      .filter(w => !wrongWords.some(x => x.serbian === w.serbian));
-    wrongWords.push(...shuffle(extra).slice(0, 3 - wrongWords.length));
-  }
-  const options = shuffle([word, ...wrongWords]);
-  vocabQuizState.options = options;
-
-  document.getElementById('vocab-quiz-container').innerHTML = `
-    <div class="vocab-word-display">
-      <div class="vocab-word-mode-label">✦ Новый</div>
-      <div class="vocab-word-instruction">Выберите картинку с переводом на русский</div>
-      <div class="vocab-word-greek">
-        ${word.serbian}
-        <button class="vocab-tts-btn" data-speak="${(word.serbian||'').replace(/"/g, '&quot;')}" onclick="speakSerbian(this.dataset.speak)">🔊</button>
-      </div>
-      <div class="vocab-word-transcription">${word.transcription}</div>
-    </div>
-    <div class="vocab-image-grid">
+  let optionsHtml, options;
+  if (mode === 'image') {
+    const pool = category.words.filter(w => w.serbian !== word.serbian);
+    let wrongWords = shuffle(pool).slice(0, 3);
+    if (wrongWords.length < 3) {
+      const extra = VOCAB_CATEGORIES.filter(c => c.id !== category.id).flatMap(c => c.words)
+        .filter(w => !wrongWords.some(x => x.serbian === w.serbian));
+      wrongWords.push(...shuffle(extra).slice(0, 3 - wrongWords.length));
+    }
+    options = shuffle([word, ...wrongWords]);
+    vocabQuizState.options = options;
+    optionsHtml = `<div class="vocab-image-grid" id="vocab-options">
       ${options.map((opt, i) => `
         <button class="vocab-image-card" onclick="selectVocabAnswer(${i})">
-          <span class="vocab-card-emoji">${opt.emoji}</span>
+          <span class="vocab-card-emoji">${opt.emoji || '📝'}</span>
           <div class="vocab-card-label">${opt.translation}</div>
         </button>`).join('')}
     </div>`;
-}
-
-function renderTranslationQuiz(word, category) {
-  const pool = category.words.filter(w => w.serbian !== word.serbian);
-  const wrongWords = shuffle(pool).slice(0, 2);
-  if (wrongWords.length < 2) {
-    const extra = VOCAB_CATEGORIES
-      .filter(c => c.id !== category.id)
-      .flatMap(c => c.words)
-      .filter(w => !wrongWords.some(x => x.serbian === w.serbian));
-    wrongWords.push(...shuffle(extra).slice(0, 2 - wrongWords.length));
-  }
-  const options = shuffle([word, ...wrongWords]);
-  vocabQuizState.options = options;
-
-  document.getElementById('vocab-quiz-container').innerHTML = `
-    <div class="vocab-word-display">
-      <div class="vocab-word-mode-label">✦ Новый</div>
-      <div class="vocab-word-instruction">Выберите перевод на русский</div>
-      <div class="vocab-word-greek">
-        ${word.serbian}
-        <button class="vocab-tts-btn" data-speak="${(word.serbian||'').replace(/"/g, '&quot;')}" onclick="speakSerbian(this.dataset.speak)">🔊</button>
-      </div>
-      <div class="vocab-word-transcription">${word.transcription}</div>
-    </div>
-    <div class="vocab-translation-options">
+  } else {
+    const pool = category.words.filter(w => w.serbian !== word.serbian);
+    let wrongWords = shuffle(pool).slice(0, 3);
+    if (wrongWords.length < 3) {
+      const extra = VOCAB_CATEGORIES.filter(c => c.id !== category.id).flatMap(c => c.words)
+        .filter(w => !wrongWords.some(x => x.serbian === w.serbian));
+      wrongWords.push(...shuffle(extra).slice(0, 3 - wrongWords.length));
+    }
+    options = shuffle([word, ...wrongWords]);
+    vocabQuizState.options = options;
+    optionsHtml = `<div class="options-grid" id="vocab-options">
       ${options.map((opt, i) => `
-        <button class="vocab-translation-btn" onclick="selectVocabAnswer(${i})">
-          ${opt.translation}
-        </button>`).join('')}
+        <button class="option-btn" onclick="selectVocabAnswer(${i})">${opt.translation}</button>`).join('')}
     </div>`;
+  }
+
+  document.getElementById('vocab-body').innerHTML = `
+    <div class="exercise-label">${mode === 'image' ? 'Выбери картинку:' : 'Что значит это слово?'}</div>
+    <div class="exercise-question">
+      ${word.serbian}
+      <button class="vocab-tts-btn" data-speak="${(word.serbian||'').replace(/"/g,'&quot;')}"
+              onclick="speakSerbian(this.dataset.speak)" style="margin-left:8px">🔊</button>
+    </div>
+    <div class="exercise-subtitle">${word.transcription}</div>
+    ${optionsHtml}
+    <div class="lesson-footer" id="vocab-footer" style="display:none">
+      <div class="feedback-message" id="vocab-feedback"></div>
+      <button class="btn-continue" onclick="nextVocabWord()">Продолжить</button>
+    </div>
+  `;
 }
 
 function selectVocabAnswer(optionIdx) {
@@ -2499,19 +2418,20 @@ function selectVocabAnswer(optionIdx) {
   const isCorrect = selectedWord.serbian === correctWord.serbian;
   const correctIdx = options.findIndex(o => o.serbian === correctWord.serbian);
 
-  const btnSelector = mode === 'image' ? '.vocab-image-card' : '.vocab-translation-btn';
-  const buttons = document.querySelectorAll(btnSelector);
+  const buttons = document.querySelectorAll('#vocab-options button');
   buttons.forEach(btn => btn.disabled = true);
+
+  const footer = document.getElementById('vocab-footer');
+  const feedback = document.getElementById('vocab-feedback');
 
   if (isCorrect) {
     vocabQuizState.score++;
     buttons[optionIdx].classList.add('correct');
-    document.getElementById('vocab-score').textContent = vocabQuizState.score;
-    document.getElementById('vocab-feedback').textContent = randomCorrectPhrase();
-    document.getElementById('vocab-feedback').className = 'feedback-message correct';
-    document.getElementById('vocab-footer').className = 'lesson-footer correct-footer';
+    document.getElementById('vocab-score-display').textContent = `${vocabQuizState.score} ✓`;
+    feedback.textContent = randomCorrectPhrase();
+    feedback.className = 'feedback-message correct';
+    footer.className = 'lesson-footer correct-footer';
     playSound('correct');
-    // Mark word as learned
     const catId = vocabQuizState.categoryId;
     if (!state.vocabProgress[catId]) state.vocabProgress[catId] = [];
     if (!state.vocabProgress[catId].includes(correctWord.serbian)) {
@@ -2520,12 +2440,12 @@ function selectVocabAnswer(optionIdx) {
   } else {
     buttons[optionIdx].classList.add('wrong');
     buttons[correctIdx].classList.add('correct');
-    document.getElementById('vocab-feedback').innerHTML = `Правильно: <strong>${correctWord.translation}</strong> ${correctWord.emoji}`;
-    document.getElementById('vocab-feedback').className = 'feedback-message wrong';
-    document.getElementById('vocab-footer').className = 'lesson-footer wrong-footer';
+    feedback.innerHTML = `Правильно: <strong>${correctWord.translation}</strong> ${correctWord.emoji || ''}`;
+    feedback.className = 'feedback-message wrong';
+    footer.className = 'lesson-footer wrong-footer';
     playSound('wrong');
   }
-  document.getElementById('vocab-footer').style.display = 'flex';
+  footer.style.display = 'flex';
 }
 
 function nextVocabWord() {
@@ -2552,6 +2472,7 @@ function completeVocabQuiz() {
   document.getElementById('vocab-complete-stars').textContent = pct === 1 ? '⭐⭐⭐' : pct >= 0.7 ? '⭐⭐' : '⭐';
   document.getElementById('vocab-complete-score').textContent = `${score}/${totalWords}`;
   document.getElementById('vocab-complete-xp').textContent = `+${xp}`;
+  document.getElementById('vocab-complete-sub').textContent = pct === 1 ? 'Идеально! Все слова знаешь!' : '';
   showScreen('screen-vocab-complete');
 }
 
@@ -2560,159 +2481,120 @@ function exitVocabQuiz() { showVocab(currentVocabMode); }
 
 
 // ============================================================
-// QUIZ — SENTENCE ORDERING
+// QUIZ — WORD QUIZ
 // ============================================================
 let quizState = {
-  categoryId: null, sentences: [], currentIndex: 0,
-  hearts: 3, score: 0, xpEarned: 0, answered: false,
-  placedWords: [], availableWords: [], dragSrc: null
+  type: null, words: [], currentIndex: 0,
+  hearts: 3, xpEarned: 0, correct: 0, answered: false
 };
 
 function showQuiz() {
-  const list = document.getElementById('quiz-categories-list');
-  list.innerHTML = `<div class="vocab-categories-grid">${
-    QUIZ_CATEGORIES.map(cat => `
-      <div class="vocab-category-card" onclick="startQuiz('${cat.id}')">
-        <div class="vocab-cat-icon">${cat.emoji}</div>
-        <div class="vocab-cat-title">${cat.title}</div>
-        <div class="vocab-cat-count">${cat.sentences.length} предложений</div>
-      </div>`).join('')
-  }</div>`;
+  document.getElementById('quiz-menu').style.display = '';
+  document.getElementById('quiz-body').style.display = 'none';
   showScreen('screen-quiz');
 }
 
-function startQuiz(categoryId) {
-  const cat = QUIZ_CATEGORIES.find(c => c.id === categoryId);
-  if (!cat) return;
-  // Берём 10 предложений: сортируем по сложности, выбираем равномерно
-  const sorted = [...cat.sentences].sort((a, b) => a.diff - b.diff);
-  const sentences = shuffle(sorted).slice(0, 10).sort((a, b) => a.diff - b.diff);
-  quizState = {
-    categoryId, sentences, currentIndex: 0,
-    hearts: 3, score: 0, xpEarned: 0, answered: false,
-    placedWords: [], availableWords: [], dragSrc: null
-  };
-  showScreen('screen-quiz-session');
-  renderQuizSentence();
+function startQuiz(type) {
+  const words = shuffle([...WORDS]).slice(0, 10);
+  quizState = { type, words, currentIndex: 0, hearts: 3, xpEarned: 0, correct: 0, answered: false };
+  document.getElementById('quiz-menu').style.display = 'none';
+  document.getElementById('quiz-body').style.display = '';
+  renderQuizQuestion();
 }
 
-function renderQuizSentence() {
-  const { sentences, currentIndex } = quizState;
-  const s = sentences[currentIndex];
+function renderQuizQuestion() {
+  const { words, currentIndex, type, hearts, xpEarned } = quizState;
+  const word = words[currentIndex];
   quizState.answered = false;
-  quizState.placedWords = [];
-  quizState.availableWords = shuffle([...s.words]);
 
-  document.getElementById('quiz-progress').style.width =
-    (currentIndex / quizState.sentences.length * 100) + '%';
-  document.getElementById('quiz-xp').textContent = quizState.xpEarned;
-  document.getElementById('quiz-footer').style.display = 'none';
-  document.getElementById('quiz-footer').className = 'lesson-footer';
-
-  renderQuizUI(s);
-}
-
-function renderQuizUI(s) {
-  const container = document.getElementById('quiz-session-container');
-  const hearts = '<span class="heart-icon">❤️</span>'.repeat(quizState.hearts) +
-    '<span class="heart-icon dead">🖤</span>'.repeat(3 - quizState.hearts);
-
-  container.innerHTML = `
-    <div class="quiz-hearts">${hearts}</div>
-    <div class="quiz-translation">${s.ru}</div>
-    <div class="quiz-answer-area" id="quiz-answer-area">
-      ${quizState.placedWords.length === 0
-        ? '<span class="quiz-answer-placeholder">Нажми на слова ниже</span>'
-        : quizState.placedWords.map((w, i) =>
-            `<button class="quiz-word-tile placed" onclick="removeQuizWord(${i})"
-              draggable="true" data-idx="${i}" data-source="placed">${w}</button>`
-          ).join('')}
-    </div>
-    <div class="quiz-word-pool" id="quiz-word-pool">
-      ${quizState.availableWords.map((w, i) =>
-        `<button class="quiz-word-tile" onclick="addQuizWord(${i})"
-          draggable="true" data-idx="${i}" data-source="pool">${w}</button>`
-      ).join('')}
-    </div>
-    <button class="btn-primary quiz-check-btn" id="quiz-check-btn"
-      onclick="checkQuizAnswer()"
-      ${quizState.placedWords.length === 0 ? 'disabled' : ''}>
-      Проверить ✓
-    </button>`;
-
-  setupQuizDragDrop();
-}
-
-function addQuizWord(poolIdx) {
-  if (quizState.answered) return;
-  const word = quizState.availableWords[poolIdx];
-  quizState.availableWords.splice(poolIdx, 1);
-  quizState.placedWords.push(word);
-  renderQuizUI(quizState.sentences[quizState.currentIndex]);
-}
-
-function removeQuizWord(placedIdx) {
-  if (quizState.answered) return;
-  const word = quizState.placedWords[placedIdx];
-  quizState.placedWords.splice(placedIdx, 1);
-  quizState.availableWords.push(word);
-  renderQuizUI(quizState.sentences[quizState.currentIndex]);
-}
-
-function checkQuizAnswer() {
-  if (quizState.answered || quizState.placedWords.length === 0) return;
-  const s = quizState.sentences[quizState.currentIndex];
-
-  // Проверяем если все слова размещены
-  if (quizState.placedWords.length < s.words.length) return;
-
-  quizState.answered = true;
-  const correct = s.words.join(' ');
-  const answer = quizState.placedWords.join(' ');
-  const isCorrect = answer === correct;
-
-  const footer = document.getElementById('quiz-footer');
-  const feedback = document.getElementById('quiz-feedback');
-  const checkBtn = document.getElementById('quiz-check-btn');
-  if (checkBtn) checkBtn.disabled = true;
-
-  // Подсветка ответа
-  const answerArea = document.getElementById('quiz-answer-area');
-  if (answerArea) {
-    answerArea.classList.add(isCorrect ? 'answer-correct' : 'answer-wrong');
+  let label, questionText, correctAnswer, wrongs;
+  if (type === 'translation') {
+    label = 'Как будет по-сербски?';
+    questionText = word.translation;
+    correctAnswer = word.serbian;
+    wrongs = WORDS.filter(w => w.id !== word.id).sort(() => Math.random() - 0.5).slice(0, 3).map(w => w.serbian);
+  } else if (type === 'reverse') {
+    label = 'Что значит это слово?';
+    questionText = word.serbian;
+    correctAnswer = word.translation;
+    wrongs = WORDS.filter(w => w.id !== word.id).sort(() => Math.random() - 0.5).slice(0, 3).map(w => w.translation);
+  } else { // transcription
+    label = 'Выбери транскрипцию:';
+    questionText = word.serbian;
+    correctAnswer = word.transcription;
+    wrongs = WORDS.filter(w => w.id !== word.id && w.transcription).sort(() => Math.random() - 0.5).slice(0, 3).map(w => w.transcription);
   }
 
+  const options = shuffle([correctAnswer, ...wrongs.slice(0, 3)]);
+
+  document.getElementById('quiz-body').innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 16px">
+      <div>${'❤️'.repeat(hearts)}${'🖤'.repeat(3 - hearts)}</div>
+      <div style="font-weight:700;color:#1A7FD4">+${xpEarned} XP · ${currentIndex + 1}/10</div>
+    </div>
+    <div class="exercise-label">${label}</div>
+    <div class="exercise-question">${questionText}</div>
+    <div class="options-grid" id="quiz-options-grid"></div>
+    <div class="lesson-footer" id="quiz-footer" style="display:none">
+      <div class="feedback-message" id="quiz-feedback"></div>
+      <button class="btn-continue" onclick="nextQuizQuestion()">Продолжить</button>
+    </div>
+  `;
+
+  const grid = document.getElementById('quiz-options-grid');
+  options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.textContent = opt;
+    btn.addEventListener('click', () => selectQuizAnswer(opt, correctAnswer));
+    grid.appendChild(btn);
+  });
+}
+
+function selectQuizAnswer(selected, correct) {
+  if (quizState.answered) return;
+  quizState.answered = true;
+
+  const buttons = document.querySelectorAll('#quiz-options-grid .option-btn');
+  buttons.forEach(btn => {
+    btn.disabled = true;
+    if (btn.textContent === correct) btn.classList.add('correct');
+  });
+
+  const isCorrect = selected === correct;
+  const footer = document.getElementById('quiz-footer');
+  const feedback = document.getElementById('quiz-feedback');
+
   if (isCorrect) {
-    quizState.score++;
+    quizState.correct++;
     quizState.xpEarned += XP_PER_CORRECT;
-    document.getElementById('quiz-xp').textContent = quizState.xpEarned;
     feedback.textContent = randomCorrectPhrase();
     feedback.className = 'feedback-message correct';
     footer.className = 'lesson-footer correct-footer';
+    buttons.forEach(btn => { if (btn.textContent === selected) btn.classList.add('correct'); });
     playSound('correct');
   } else {
     quizState.hearts--;
     feedback.innerHTML = `Правильно: <strong>${correct}</strong>`;
     feedback.className = 'feedback-message wrong';
     footer.className = 'lesson-footer wrong-footer';
+    buttons.forEach(btn => { if (btn.textContent === selected) btn.classList.add('wrong'); });
     playSound('wrong');
   }
 
   footer.style.display = 'flex';
-  const continueBtn = document.getElementById('quiz-continue-btn');
-  continueBtn.textContent = quizState.hearts <= 0 ? 'Завершить' : 'Продолжить';
 }
 
-function nextQuizSentence() {
+function nextQuizQuestion() {
   if (quizState.hearts <= 0) { completeQuiz(); return; }
   quizState.currentIndex++;
-  if (quizState.currentIndex >= quizState.sentences.length) completeQuiz();
-  else renderQuizSentence();
+  if (quizState.currentIndex >= quizState.words.length) completeQuiz();
+  else renderQuizQuestion();
 }
 
 function completeQuiz() {
-  const { score, xpEarned } = quizState;
-  const total = quizState.sentences.length;
+  const { correct, xpEarned } = quizState;
+  const total = quizState.words.length;
   state.totalXp += xpEarned;
   state.dailyXp += xpEarned;
   state.level = Math.floor(state.totalXp / 500) + 1;
@@ -2724,22 +2606,19 @@ function completeQuiz() {
     state.lastPlayed = today;
   }
   saveState();
-
-  const pct = score / total;
-  const cat = QUIZ_CATEGORIES.find(c => c.id === quizState.categoryId);
-  createPost('quiz_complete', {
-    score, total, pct, xp: xpEarned,
-    categoryTitle: cat?.title || 'Сербский'
-  });
-
-  document.getElementById('quiz-complete-stars').textContent =
-    pct === 1 ? '⭐⭐⭐' : pct >= 0.7 ? '⭐⭐' : '⭐';
-  document.getElementById('quiz-complete-score').textContent = `${score}/${total}`;
-  document.getElementById('quiz-complete-xp').textContent = `+${xpEarned}`;
-  showScreen('screen-quiz-complete');
+  const pct = correct / total;
+  createPost('quiz_complete', { score: correct, total, pct, xp: xpEarned, categoryTitle: 'Сербский' });
+  const stars = pct === 1 ? '⭐⭐⭐' : pct >= 0.7 ? '⭐⭐' : '⭐';
+  document.getElementById('result-icon').textContent = stars;
+  document.getElementById('result-title').textContent = 'Квиз завершён!';
+  document.getElementById('result-subtitle').textContent = '';
+  document.getElementById('res-xp').textContent = `+${xpEarned}`;
+  document.getElementById('res-correct').textContent = `${correct}/${total}`;
+  document.getElementById('res-streak').textContent = state.streak;
+  showScreen('screen-lesson-result');
 }
 
-function restartQuiz() { startQuiz(quizState.categoryId); }
+function restartQuiz() { startQuiz(quizState.type); }
 function exitQuiz() { showQuiz(); }
 
 // ============================================================

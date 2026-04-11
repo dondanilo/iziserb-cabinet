@@ -88,7 +88,7 @@ function renderUserInfo() {
 
   document.getElementById('user-menu-name').textContent = name;
   document.getElementById('user-menu-email').textContent = email;
-  document.getElementById('app-subtitle').textContent = `Γεια σου, ${name.split(' ')[0]}!`;
+  document.getElementById('app-subtitle').textContent = `Zdravo, ${name.split(' ')[0]}!`;
 }
 
 // ============================================================

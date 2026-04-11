@@ -625,3 +625,24 @@ const PLAN_30 = [
   { day: 29, title: 'Разговорный сленг', topics: ['Баш, па, ма, ај де', 'Как говорят реально'], done: false },
   { day: 30, title: 'Итог 30 дней!',    topics: ['Финальный тест', 'Что дальше?'], done: false }
 ];
+
+// ============================================================
+// ACHIEVEMENTS
+// ============================================================
+const ACHIEVEMENTS = [
+  { id: 'first_lesson',   icon: '🎯', title: 'Первый урок',        desc: 'Завершил первый урок' },
+  { id: 'perfect_lesson', icon: '⭐', title: 'Идеальный урок',     desc: 'Урок без ошибок' },
+  { id: 'lessons_5',      icon: '📚', title: '5 уроков',           desc: 'Завершил 5 уроков' },
+  { id: 'lessons_10',     icon: '🔟', title: '10 уроков',          desc: 'Завершил 10 уроков' },
+  { id: 'lessons_30',     icon: '🏆', title: '30 уроков',          desc: 'Завершил 30 уроков' },
+  { id: 'streak_3',       icon: '🔥', title: '3 дня подряд',       desc: 'Стрик 3 дня' },
+  { id: 'streak_7',       icon: '🔥', title: 'Неделя подряд',      desc: 'Стрик 7 дней' },
+  { id: 'streak_30',      icon: '🔥', title: 'Месяц подряд',       desc: 'Стрик 30 дней' },
+  { id: 'scenario_first', icon: '🎭', title: 'Первый сценарий',    desc: 'Прошёл первый сценарий' },
+  { id: 'scenarios_all',  icon: '🌟', title: 'Все сценарии',       desc: 'Прошёл все сценарии' },
+  { id: 'citizenship',    icon: '🇷🇸', title: 'Гражданин',         desc: 'Прошёл сценарий гражданства' },
+  { id: 'weak_conquered', icon: '💪', title: 'Работа над ошибками', desc: 'Прошёл урок слабых мест' },
+  { id: 'xp_500',         icon: '✨', title: '500 XP',             desc: 'Набрал 500 очков опыта' },
+  { id: 'xp_2000',        icon: '💎', title: '2000 XP',            desc: 'Набрал 2000 очков опыта' },
+  { id: 'level_5',        icon: '🚀', title: 'Уровень 5',          desc: 'Достиг 5 уровня' },
+];

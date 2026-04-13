@@ -2272,7 +2272,7 @@ function showVocab(mode = 'image') {
       const done = learned >= total;
       return `
       <div class="vocab-category-card${done ? ' vocab-cat-done' : ''}" onclick="startVocabQuiz('${cat.id}')">
-        <div class="vocab-cat-icon">${done ? '✅' : cat.emoji}</div>
+        <div class="vocab-cat-icon">${done ? '✅' : (cat.icon || cat.emoji || '📚')}</div>
         <div class="vocab-cat-title">${cat.title}</div>
         ${learned > 0 ? `
         <div class="vocab-cat-progress">
@@ -2310,7 +2310,7 @@ function searchVocab(query) {
         (w.transcription||'').toLowerCase().includes(q) ||
         (w.translation||'').toLowerCase().includes(q)
       ) {
-        matches.push({ ...w, catTitle: cat.title, catEmoji: cat.emoji });
+        matches.push({ ...w, catTitle: cat.title, catEmoji: cat.icon });
       }
     });
   });

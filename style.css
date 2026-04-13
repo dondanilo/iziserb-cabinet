@@ -149,8 +149,21 @@ body {
 .option-btn.wrong { border-color: var(--red); background: var(--red-light); color: var(--red); box-shadow: 0 3px 0 #cc2222; }
 
 .lesson-footer { display: none; flex-direction: column; gap: 12px; padding-top: 6px; animation: slideUp 0.25s ease; }
-.lesson-footer.correct-footer .btn-primary { background: var(--green); box-shadow: 0 4px 0 var(--green-dark); }
-.lesson-footer.wrong-footer .btn-primary { background: var(--red); box-shadow: 0 4px 0 #cc2222; }
+.lesson-footer.correct-footer .btn-primary,
+.lesson-footer.correct-footer .btn-continue { background: var(--green); box-shadow: 0 4px 0 var(--green-dark); }
+.lesson-footer.wrong-footer .btn-primary,
+.lesson-footer.wrong-footer .btn-continue { background: var(--red); box-shadow: 0 4px 0 #cc2222; }
+
+.btn-continue {
+  width: 100%; padding: 17px;
+  background: var(--green); color: white; border: none;
+  border-radius: var(--radius); font-family: 'Nunito', sans-serif;
+  font-size: 17px; font-weight: 800; cursor: pointer;
+  box-shadow: 0 4px 0 var(--green-dark);
+  transition: transform 0.08s, box-shadow 0.08s;
+  user-select: none;
+}
+.btn-continue:active { transform: translateY(4px); box-shadow: none; }
 
 @keyframes slideUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 .feedback-message { font-size: 17px; font-weight: 800; min-height: 22px; }
@@ -2139,4 +2152,103 @@ body {
   font-size: 16px;
 }
 .nav-btn-wide .nav-icon { font-size: 26px; }
+
+/* ==================== SCROLL TO TOP ==================== */
+#scroll-top-btn {
+  position: fixed;
+  bottom: 80px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--green);
+  color: white;
+  border: none;
+  font-size: 20px;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(20px) scale(0.8);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+#scroll-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+#scroll-top-btn:active { transform: scale(0.9); }
+
+/* ==================== PROGRESS — новые классы ==================== */
+.progress-section {
+  padding: 0 16px 12px;
+}
+.progress-big-stat {
+  text-align: center;
+  padding: 20px 0 8px;
+}
+.progress-big-val {
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1;
+}
+.progress-big-lbl {
+  font-size: 14px;
+  color: var(--gray);
+  font-weight: 600;
+  margin-top: 4px;
+}
+.progress-bar-label {
+  font-size: 12px;
+  color: var(--gray);
+  text-align: center;
+  margin-top: 4px;
+}
+.progress-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 16px 12px;
+}
+.progress-grid .progress-card {
+  text-align: center;
+  margin-bottom: 0;
+}
+.progress-card-val {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--green);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.progress-card-lbl {
+  font-size: 12px;
+  color: var(--gray);
+  font-weight: 600;
+}
+.progress-card-active {
+  border: 2px solid var(--green) !important;
+  background: var(--green-light) !important;
+}
+.progress-card-done {
+  opacity: 0.6;
+}
+.progress-section-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text);
+  padding: 8px 16px 10px;
+}
+.milestones-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 16px 24px;
+}
 .nav-btn-wide .nav-label { font-size: 15px; font-weight: 800; }

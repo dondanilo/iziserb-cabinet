@@ -470,7 +470,26 @@ async function init() {
   if ('serviceWorker' in navigator) {
     const reg = await navigator.serviceWorker.register('sw.js').catch(() => null);
 
-    // Не делаем автоперезагрузку при смене SW — она прерывает Firebase redirect auth
+    // Перезагрузка страницы когда новый SW берёт управление (гарантирует свежие файлы)
+    let reloading = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (reloading) return;
+      reloading = true;
+      window.location.reload();
+    });
+
+    if (reg) {
+      // Когда новый SW заканчивает установку — сразу говорим ему пропустить ожидание
+      const onInstalled = (sw) => {
+        sw.addEventListener('statechange', () => {
+          if (sw.state === 'installed' && navigator.serviceWorker.controller) {
+            sw.postMessage({ type: 'SKIP_WAITING' });
+          }
+        });
+      };
+      if (reg.installing) onInstalled(reg.installing);
+      reg.addEventListener('updatefound', () => onInstalled(reg.installing));
+    }
   }
 
   // Сначала обрабатываем redirect-результат, потом подписываемся на auth state

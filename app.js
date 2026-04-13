@@ -1517,9 +1517,11 @@ function showSupportForm() {
 
 async function submitSupport() {
   const textEl = document.getElementById('support-text');
+  const subjectEl = document.getElementById('support-subject');
   const message = textEl ? textEl.value.trim() : '';
   if (!message) { alert('Введите сообщение'); return; }
 
+  const subject = subjectEl ? subjectEl.value : 'Сообщение из кабинета';
   const btn = document.querySelector('#support-form-wrap .btn-primary');
   if (btn) { btn.disabled = true; btn.textContent = 'Отправляем...'; }
 
@@ -1530,7 +1532,7 @@ async function submitSupport() {
       body: JSON.stringify({
         name: currentUser?.displayName || 'Ученик',
         email: currentUser?.email || '',
-        subject: 'Сообщение из кабинета',
+        subject,
         message,
         userId: currentUser?.uid || ''
       })
@@ -1966,16 +1968,15 @@ document.addEventListener('DOMContentLoaded', init);
 // NEWS FEED
 // ============================================================
 const NEWS_TOPICS = [
-  { id: 'all',       label: 'Все',         emoji: '🌐' },
-  { id: 'football',  label: 'Футбол',      emoji: '⚽', query: 'ποδόσφαιρο' },
-  { id: 'politics',  label: 'Политика',    emoji: '🏛️', query: 'πολιτική' },
-  { id: 'history',   label: 'История',     emoji: '📜', query: 'ιστορία' },
-  { id: 'tech',      label: 'Технологии',  emoji: '💻', query: 'τεχνολογία' },
-  { id: 'marketing', label: 'Маркетинг',   emoji: '📊', query: 'μάρκετινγκ' },
-  { id: 'ai',        label: 'ИИ',          emoji: '🤖', query: 'τεχνητή νοημοσύνη' },
-  { id: 'games',     label: 'Игры',        emoji: '🎮', query: 'βιντεοπαίχνια gaming' },
-  { id: 'science',   label: 'Наука',       emoji: '🔬', query: 'επιστήμη' },
-  { id: 'hollywood', label: 'Голливуд',    emoji: '🎬', query: 'χόλιγουντ κινηματογράφος' },
+  { id: 'all',       label: 'Все',        emoji: '🌐' },
+  { id: 'football',  label: 'Фудбал',     emoji: '⚽', query: 'фудбал Србија' },
+  { id: 'politics',  label: 'Политика',   emoji: '🏛️', query: 'политика Србија' },
+  { id: 'belgrade',  label: 'Београд',    emoji: '🏙️', query: 'Београд вести' },
+  { id: 'tech',      label: 'Технологија',emoji: '💻', query: 'технологија Србија' },
+  { id: 'economy',   label: 'Економија',  emoji: '📊', query: 'економија Србија' },
+  { id: 'science',   label: 'Наука',      emoji: '🔬', query: 'наука Србија' },
+  { id: 'culture',   label: 'Култура',    emoji: '🎭', query: 'култура Србија' },
+  { id: 'travel',    label: 'Путовање',   emoji: '✈️', query: 'туризам Балкан' },
 ];
 
 let newsCache = {};
@@ -2097,13 +2098,13 @@ async function fetchRSS(rssUrl) {
 }
 
 async function fetchNewsForQuery(query, topicId) {
-  const rssUrl = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=el&gl=GR&ceid=GR:el`;
+  const rssUrl = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=sr&gl=RS&ceid=RS:sr`;
   const items = await fetchRSS(rssUrl);
   return items.map(item => ({ ...item, _topicId: topicId }));
 }
 
 async function fetchAllNews() {
-  const rssUrl = `https://news.google.com/rss?hl=el&gl=GR&ceid=GR:el`;
+  const rssUrl = `https://news.google.com/rss?hl=sr&gl=RS&ceid=RS:sr`;
   return await fetchRSS(rssUrl);
 }
 
@@ -2111,7 +2112,7 @@ function showNewsLoading() {
   document.getElementById('news-feed').innerHTML = `
     <div class="news-loading">
       <div class="news-spinner"></div>
-      <div>Загружаем новости на сербском...</div>
+      <div>Учитавамо вести на српском...</div>
     </div>`;
 }
 
@@ -2514,7 +2515,12 @@ function showQuiz() {
 }
 
 function startQuiz(type) {
-  const words = shuffle([...WORDS]).slice(0, 10);
+  let words;
+  if (type === 'translation' || type === 'reverse') {
+    words = shuffle([...QUIZ_SENTENCES]);
+  } else {
+    words = shuffle([...WORDS]).slice(0, 15);
+  }
   quizState = { type, words, currentIndex: 0, hearts: 3, xpEarned: 0, correct: 0, answered: false };
   document.getElementById('quiz-menu').style.display = 'none';
   document.getElementById('quiz-body').style.display = '';
@@ -2529,14 +2535,14 @@ function renderQuizQuestion() {
   let label, questionText, correctAnswer, wrongs;
   if (type === 'translation') {
     label = 'Как будет по-сербски?';
-    questionText = word.translation;
-    correctAnswer = word.serbian;
-    wrongs = WORDS.filter(w => w.id !== word.id).sort(() => Math.random() - 0.5).slice(0, 3).map(w => w.serbian);
+    questionText = word.ru;
+    correctAnswer = word.sr;
+    wrongs = shuffle(QUIZ_SENTENCES.filter(w => w.id !== word.id)).slice(0, 3).map(w => w.sr);
   } else if (type === 'reverse') {
-    label = 'Что значит это слово?';
-    questionText = word.serbian;
-    correctAnswer = word.translation;
-    wrongs = WORDS.filter(w => w.id !== word.id).sort(() => Math.random() - 0.5).slice(0, 3).map(w => w.translation);
+    label = 'Что значит эта фраза?';
+    questionText = word.sr;
+    correctAnswer = word.ru;
+    wrongs = shuffle(QUIZ_SENTENCES.filter(w => w.id !== word.id)).slice(0, 3).map(w => w.ru);
   } else { // transcription
     label = 'Выбери транскрипцию:';
     questionText = word.serbian;
@@ -2549,7 +2555,7 @@ function renderQuizQuestion() {
   document.getElementById('quiz-body').innerHTML = `
     <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 16px">
       <div>${'❤️'.repeat(hearts)}${'🖤'.repeat(3 - hearts)}</div>
-      <div style="font-weight:700;color:#1A7FD4">+${xpEarned} XP · ${currentIndex + 1}/10</div>
+      <div style="font-weight:700;color:#1A7FD4">+${xpEarned} XP · ${currentIndex + 1}/${words.length}</div>
     </div>
     <div class="exercise-label">${label}</div>
     <div class="exercise-question">${questionText}</div>
@@ -2727,67 +2733,35 @@ const BLOG_ARTICLES = [
     section: '📚 С чего начать',
     color: 'green',
     items: [
-      { slug: 'grecheskiy-alfavit',               emoji: '🔤', tag: 'Основы',     title: 'Сербский алфавит за 1 час: таблица с русской транскрипцией' },
-      { slug: 'kak-govorit-po-grecheski',          emoji: '📚', tag: 'С нуля',     title: 'Как научиться говорить по-сербски с нуля: пошаговый план' },
-      { slug: 'grecheskiy-za-30-dney',             emoji: '📅', tag: 'Челлендж',   title: 'Сербский за 30 дней: реальный план с нуля до первого разговора' },
-      { slug: 'intervalnoe-povtorenie-grecheskiy', emoji: '🧠', tag: 'Методика',   title: 'Интервальное повторение: как запоминать сербские слова навсегда' },
-      { slug: 'grecheskiye-slova-kotoryye-ty-znaesh', emoji: '💡', tag: 'Мотивация', title: 'Сербеские слова которые ты уже знаешь — и не подозревал' },
-      { slug: 'grecheskiye-filmy-seriali',         emoji: '🎬', tag: 'Погружение', title: 'Сербеские фильмы и сериалы для изучения языка: топ рекомендации' },
+      { slug: 'serbskiy-alfavit',              emoji: '🔤', tag: 'Основы',    title: 'Сербский алфавит: кириллица и латиница за 1 вечер' },
+      { slug: 'kak-govorit-po-serbski',        emoji: '📚', tag: 'С нуля',    title: 'Как научиться говорить по-сербски с нуля: пошаговый план' },
+      { slug: 'slozhno-li-uchit-serbskiy',     emoji: '🤔', tag: 'Мотивация', title: 'Сложно ли выучить сербский? Честный ответ для русскоязычных' },
+      { slug: 'intervalnoe-povtorenie-serbskiy', emoji: '🧠', tag: 'Методика', title: 'Интервальное повторение: как запоминать сербские слова навсегда' },
     ]
   },
   {
-    section: '🇨🇾 Жизнь на Кипре',
+    section: '🇷🇸 Жизнь в Сербии',
     color: 'green',
     items: [
-      { slug: 'grecheskiy-na-kipre',          emoji: '🇨🇾', tag: 'Гид',       title: 'Как выучить сербский на Кипре: реальный опыт русскоязычных' },
-      { slug: 'grecheskiy-frazy-dlya-kipra',  emoji: '💬', tag: 'Фразы',     title: '50 сербских фраз для жизни на Кипре: банк, ΚΕΠ, аптека, ресторан' },
-      { slug: 'grecheskiy-u-vracha',          emoji: '🏥', tag: 'Срочное',   title: 'Сербский у врача: ГЕСЙ, скорая помощь и аптека' },
-      { slug: 'arenda-kvartiry-kipre',        emoji: '🏠', tag: 'Быт',       title: 'Аренда квартиры на Кипре по-сербски: от звонка до договора' },
-      { slug: 'nalog-kommunalnyye-kipre',     emoji: '📋', tag: 'Документы', title: 'Налоговая и коммунальные услуги на Кипре по-сербски' },
-      { slug: 'dorozhnyye-znaki-grecheskiy',  emoji: '🚗', tag: 'Транспорт', title: 'Дорожные знаки на Кипре и сербский для водителей' },
-      { slug: 'grecheskiy-na-rabote',         emoji: '💼', tag: 'Карьера',   title: 'Сербский на работе: фразы для офиса и собеседования' },
-      { slug: 'grecheskiy-dlya-detey',        emoji: '👨‍👩‍👧', tag: 'Семья',    title: 'Сербский для детей на Кипре: как помочь ребёнку освоить язык' },
+      { slug: 'serbskiy-frazy-dlya-serbii', emoji: '💬', tag: 'Фразы',   title: '50 сербских фраз для жизни в Сербии: МУП, банк, аптека, кафе' },
+      { slug: 'serbskiy-u-vracha',          emoji: '🏥', tag: 'Срочное', title: 'Сербский у врача: скорая помощь, больница и аптека' },
+      { slug: 'arenda-kvartiry-serbiya',    emoji: '🏠', tag: 'Быт',     title: 'Аренда квартиры в Сербии по-сербски: от звонка до договора' },
     ]
   },
   {
-    section: '📖 Грамматика и словарь',
+    section: '📖 Грамматика и язык',
     color: 'green',
     items: [
-      { slug: 'grecheskaya-grammatika-dlya-nachinayuschikh', emoji: '📖', tag: 'Грамматика', title: 'Сербеская грамматика для русских: что общего и в чём отличия' },
-      { slug: 'proshedshee-vremya-grecheskiy',               emoji: '⏳', tag: 'Грамматика', title: 'Прошедшее время в сербском: простое объяснение для начинающих' },
-      { slug: 'voprositelnyye-slova-grecheskiy',             emoji: '❓', tag: 'Грамматика', title: 'Вопросительные слова в сербском: как задать любой вопрос' },
-      { slug: 'grecheskiye-prilagatelnye',                   emoji: '✨', tag: 'Словарь',    title: 'Топ-50 сербских прилагательных с примерами и транскрипцией' },
-      { slug: 'grecheskiye-glagoly',                         emoji: '⚡', tag: 'Словарь',    title: '50 самых нужных сербских глаголов с примерами' },
-      { slug: 'grecheskiy-chislitelnyye',                    emoji: '🔢', tag: 'Словарь',    title: 'Числа на сербском: от 1 до 1000 с произношением' },
-      { slug: 'lozhnye-druzya-grecheskiy',                   emoji: '🪤', tag: 'Ошибки',     title: 'Ложные друзья: сербские слова которые обманывают русских' },
+      { slug: 'serbskiy-yazyk-dlya-russkikh', emoji: '📖', tag: 'Грамматика', title: 'Сербский язык для русских: что общего и в чём отличия' },
+      { slug: 'serbskiy-chislitelnyye',       emoji: '🔢', tag: 'Словарь',    title: 'Числа на сербском языке: от 1 до 1000 с произношением' },
+      { slug: 'serbskaya-kukhnya-slovar',     emoji: '🍽️', tag: 'Кухня',     title: 'Сербская кухня: словарь для ресторана и пазара' },
     ]
   },
   {
-    section: '🎭 Культура и жизнь',
-    color: 'green',
-    items: [
-      { slug: 'kiprskoye-narechiye',         emoji: '🗣️', tag: 'Диалект',    title: 'Кипрский диалект vs стандартный сербский: главные отличия' },
-      { slug: 'grecheskiye-prazdniki-frazy', emoji: '🎉', tag: 'Культура',   title: 'Сербеские праздники и традиции: что говорить и как себя вести' },
-      { slug: 'grecheskaya-kukhnya-slovar',  emoji: '🍽️', tag: 'Кухня',      title: 'Сербеская кухня: словарь для ресторана и рынка λαϊκή' },
-      { slug: 'grecheskiye-zhesty',          emoji: '🤙', tag: 'Культура',   title: 'Сербеские жесты и язык тела: что значит кивок вверх' },
-      { slug: 'grecheskiye-poslovitsy',      emoji: '📜', tag: 'Культура',   title: 'Сербеские пословицы с переводом: мудрость тысячелетий' },
-      { slug: 'grecheskiy-sleng',            emoji: '😎', tag: 'Разговорный', title: 'Сербский сленг и неформальная речь: как говорят греки на самом деле' },
-    ]
-  },
-  {
-    section: '🧠 Техники и психология',
+    section: '🧠 Техники изучения',
     color: 'purple',
     items: [
-      { slug: 'metod-kato-lomb',                           emoji: '📗', tag: 'Методика',   title: 'Метод Като Ломб: как выучить язык читая книги' },
-      { slug: 'tehnika-shadowing',                         emoji: '🎙️', tag: 'Методика',   title: 'Техника shadowing: повторяй за носителем и заговоришь быстрее' },
-      { slug: 'metod-krashena-comprehensible-input',       emoji: '🌊', tag: 'Наука',      title: 'Метод Крашена: comprehensible input — самый естественный способ учить язык' },
-      { slug: 'strakh-oshibok-pri-izuchenii-yazyka',       emoji: '💪', tag: 'Психология', title: 'Страх ошибок при изучении языка: как перестать бояться говорить' },
-      { slug: '10-minut-v-den-effektivnost',               emoji: '⏱️', tag: 'Наука',      title: '10 минут в день vs 2 часа в неделю: что работает лучше' },
-      { slug: 'kak-sozdat-privychku-uchit-yazyk',          emoji: '🔄', tag: 'Психология', title: 'Как создать привычку учить язык: нейронаука и практика' },
-      { slug: 'metod-pareto-80-20-yazyk',                  emoji: '📊', tag: 'Стратегия',  title: 'Метод 80/20 в изучении языка: что учить в первую очередь' },
-      { slug: 'poligloty-mira-kak-uchat-yazyki',           emoji: '🌍', tag: 'Полиглоты',  title: 'Полиглоты мира: как Бенни Льюис, Като Ломб и другие учат языки' },
-      { slug: 'metod-pogruzheniya-bez-poyezdki',           emoji: '🏠', tag: 'Immersion',  title: 'Метод погружения в язык без поездки за рубеж: полный гид' },
-      { slug: 'sindrom-samozvantsa-pri-izuchenii-yazyka',  emoji: '🦸', tag: 'Психология', title: 'Синдром самозванца при изучении языка: ты лучше чем думаешь' },
+      { slug: 'intervalnoe-povtorenie-serbskiy', emoji: '🧠', tag: 'Методика', title: 'Интервальное повторение: как запоминать сербские слова навсегда' },
     ]
   },
 ];

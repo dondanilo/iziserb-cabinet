@@ -8,6 +8,8 @@
   <meta name="apple-mobile-web-app-title" content="IziSerb">
   <title>IziSerb — Сербский язык</title>
   <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -206,6 +208,19 @@
         <span class="nav-label">Достижения</span>
         <span class="ach-nav-count" id="ach-nav-count">0/10</span>
       </button>
+      <button class="nav-btn" onclick="showNews()">
+        <span class="nav-icon">📰</span>
+        <span class="nav-label">Новости</span>
+      </button>
+      <button class="nav-btn" onclick="showFeed()" style="position:relative">
+        <span class="nav-icon">👥</span>
+        <span class="nav-label">Лента</span>
+        <span id="feed-nav-badge" class="feed-nav-badge" style="display:none"></span>
+      </button>
+      <button class="nav-btn" onclick="showBlog()">
+        <span class="nav-icon">📝</span>
+        <span class="nav-label">Блог</span>
+      </button>
     </div>
 
     <button class="srs-review-btn" id="srs-review-btn" onclick="startSrsLesson()" style="display:none">
@@ -260,17 +275,36 @@
   <div id="support-modal" class="modal-overlay" onclick="hideSupportForm()" style="display:none">
     <div class="modal-box support-modal-box" onclick="event.stopPropagation()">
       <div class="support-modal-header">
-        <div class="support-modal-title">Написать в поддержку</div>
+        <div class="support-modal-title">💬 Написать в поддержку</div>
         <button class="modal-close-btn" onclick="hideSupportForm()">✕</button>
       </div>
+
       <div id="support-form-wrap">
-        <textarea id="support-text" class="support-textarea" placeholder="Опишите проблему или задайте вопрос..."></textarea>
-        <button class="btn-primary" onclick="submitSupport()">Отправить</button>
+        <p class="support-form-desc">Ответим в течение 24 часов на ваш email.</p>
+
+        <div class="support-field">
+          <label class="support-label" for="support-subject">Тема</label>
+          <select id="support-subject" class="support-input support-select">
+            <option value="Вопрос по курсу">📚 Вопрос по курсу</option>
+            <option value="Технические проблемы">🛠 Технические проблемы</option>
+            <option value="Оплата и подписка">💳 Оплата и подписка</option>
+            <option value="Предложение">💡 Предложение</option>
+            <option value="Другое">✉️ Другое</option>
+          </select>
+        </div>
+
+        <div class="support-field">
+          <label class="support-label" for="support-text">Сообщение</label>
+          <textarea id="support-text" class="support-input support-textarea" placeholder="Опишите проблему или задайте вопрос..."></textarea>
+        </div>
+
+        <button class="btn-primary support-submit-btn" onclick="submitSupport()">Отправить</button>
       </div>
-      <div id="support-success" style="display:none; text-align:center; padding:24px;">
-        <div style="font-size:48px">✅</div>
-        <p style="margin-top:12px; font-weight:700">Сообщение отправлено!</p>
-        <p style="color:#888; margin-top:8px">Ответим в течение 24 часов на ваш email.</p>
+
+      <div id="support-success" class="support-success" style="display:none">
+        <div class="support-success-icon">✅</div>
+        <div class="support-success-title">Сообщение отправлено!</div>
+        <div class="support-success-sub">Ответим в течение 24 часов на ваш email.</div>
       </div>
     </div>
   </div>
@@ -381,17 +415,33 @@
       <h2>Квизы</h2>
     </div>
     <div id="quiz-menu" class="quiz-menu">
-      <button class="quiz-type-btn" onclick="startQuiz('translation')">
-        <span class="quiz-type-icon">🇷🇺→🇷🇸</span>
-        <span class="quiz-type-label">Русский → Сербский</span>
+      <div class="quiz-menu-intro">Выбери тип квиза и проверь свои знания 💪</div>
+
+      <button class="quiz-card" onclick="startQuiz('translation')">
+        <div class="quiz-card-icon">🇷🇺→🇷🇸</div>
+        <div class="quiz-card-body">
+          <div class="quiz-card-title">Русский → Сербский</div>
+          <div class="quiz-card-sub">40 фраз · выбери правильный перевод</div>
+        </div>
+        <div class="quiz-card-arrow">→</div>
       </button>
-      <button class="quiz-type-btn" onclick="startQuiz('reverse')">
-        <span class="quiz-type-icon">🇷🇸→🇷🇺</span>
-        <span class="quiz-type-label">Сербский → Русский</span>
+
+      <button class="quiz-card" onclick="startQuiz('reverse')">
+        <div class="quiz-card-icon">🇷🇸→🇷🇺</div>
+        <div class="quiz-card-body">
+          <div class="quiz-card-title">Сербский → Русский</div>
+          <div class="quiz-card-sub">40 фраз · выбери правильный перевод</div>
+        </div>
+        <div class="quiz-card-arrow">→</div>
       </button>
-      <button class="quiz-type-btn" onclick="startQuiz('transcription')">
-        <span class="quiz-type-icon">🔊</span>
-        <span class="quiz-type-label">Транскрипция</span>
+
+      <button class="quiz-card" onclick="startQuiz('transcription')">
+        <div class="quiz-card-icon">🔤</div>
+        <div class="quiz-card-body">
+          <div class="quiz-card-title">Транскрипция</div>
+          <div class="quiz-card-sub">15 слов · угадай произношение</div>
+        </div>
+        <div class="quiz-card-arrow">→</div>
       </button>
     </div>
     <div id="quiz-body" style="display:none"></div>
@@ -494,6 +544,67 @@
       </div>
       <button class="btn-secondary" style="margin-top:24px; width:100%" onclick="signOut()">Выйти из аккаунта</button>
     </div>
+  </div>
+
+  <!-- ==================== FEED ==================== -->
+  <div id="screen-feed" class="screen">
+    <div class="screen-header">
+      <button class="btn-back" onclick="showHome()">←</button>
+      <h2>Лента</h2>
+      <span class="feed-live-dot" title="В прямом эфире"></span>
+    </div>
+
+    <div class="feed-composer">
+      <div class="feed-composer-row">
+        <div id="composer-avatar-wrap"></div>
+        <textarea id="composer-text" class="feed-composer-textarea" placeholder="Поделись успехом, фразой или вопросом..." maxlength="1000" rows="2"></textarea>
+      </div>
+      <div class="composer-image-preview" id="composer-image-preview" style="display:none">
+        <img id="composer-preview-img" src="" alt="">
+        <button class="composer-remove-img" onclick="removeComposerImage()">✕</button>
+      </div>
+      <div class="feed-composer-footer">
+        <label class="composer-attach-btn" title="Прикрепить фото">
+          📎
+          <input type="file" id="composer-file-input" accept="image/*" style="display:none" onchange="onComposerFile(this)">
+        </label>
+        <span class="composer-char-count" id="composer-char-count"></span>
+        <button class="composer-submit-btn" id="composer-submit" onclick="submitPost()" disabled>Опубликовать</button>
+      </div>
+    </div>
+
+    <div id="feed-container"></div>
+  </div>
+
+  <!-- ==================== NEWS ==================== -->
+  <div id="screen-news" class="screen">
+    <div class="screen-header">
+      <button class="btn-back" onclick="showHome()">←</button>
+      <h2>Новости</h2>
+      <button class="news-refresh-badge" id="news-refresh-btn" onclick="loadNews(activeNewsTopic, true)" title="Обновить">↻</button>
+    </div>
+    <div class="news-tabs-wrap">
+      <div class="news-tabs" id="news-tabs"></div>
+    </div>
+    <div id="news-feed"></div>
+  </div>
+
+  <!-- ==================== BLOG ==================== -->
+  <div id="screen-blog" class="screen">
+    <div class="screen-header">
+      <button class="btn-back" onclick="showHome()">←</button>
+      <h2>Блог</h2>
+    </div>
+    <div id="blog-list"></div>
+  </div>
+
+  <!-- ==================== BLOG ARTICLE ==================== -->
+  <div id="screen-blog-article" class="screen" style="display:flex;flex-direction:column">
+    <div class="screen-header">
+      <button class="btn-back" onclick="showBlog()">←</button>
+      <h2 id="blog-article-title" style="font-size:14px;line-height:1.3;max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></h2>
+    </div>
+    <iframe id="blog-article-frame" src="" style="flex:1;border:none;width:100%;height:100%" loading="lazy"></iframe>
   </div>
 
   <!-- Firebase SDK -->

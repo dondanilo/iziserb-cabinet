@@ -1,4 +1,4 @@
-const CACHE_NAME = 'iziserb-v3';
+const CACHE_NAME = 'iziserb-v4';
 const ASSETS = [
   './',
   './index.html',
@@ -9,6 +9,8 @@ const ASSETS = [
 ];
 
 self.addEventListener('install', event => {
+  // Сразу активируемся, не ждём закрытия вкладок
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
   );
@@ -50,6 +52,7 @@ self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   if (url.origin !== location.origin) return;
 
+  // Network first — всегда тянем свежее, кэш только как запасной
   event.respondWith(
     fetch(event.request)
       .then(response => {

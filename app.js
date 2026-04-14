@@ -3030,11 +3030,11 @@ function startSpeechRecognition() {
 
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-  if (speechSession.micGranted || isMobile) {
-    // Разрешение уже есть (или мобиль) — запускаем сразу
+  if (speechSession.micGranted) {
+    // Разрешение уже получено — запускаем сразу
     runSpeechRecognition(SR);
   } else if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    // Первый раз на десктопе — запрашиваем разрешение
+    // Явно запрашиваем микрофон (нужно и на iOS чтобы не было service-not-allowed)
     navigator.mediaDevices.getUserMedia({ audio: true })
       .then(stream => {
         stream.getTracks().forEach(t => t.stop());
@@ -3043,8 +3043,9 @@ function startSpeechRecognition() {
       })
       .catch(err => {
         setSpeechUIState('idle');
+        const el = document.getElementById('speech-recognized');
         if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
-          alert('Нужен доступ к микрофону. Разреши его в настройках браузера и попробуй снова.');
+          if (el) el.textContent = '🎙️ Разреши доступ к микрофону в настройках Safari';
         }
       });
   } else {
@@ -3104,11 +3105,11 @@ function runSpeechRecognition(SR, langIdx) {
       return;
     }
 
-    if (e.error === 'not-allowed') {
-      alert('Нужен доступ к микрофону. Разреши его в настройках браузера и попробуй снова.');
+    const el = document.getElementById('speech-recognized');
+    if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
+      speechSession.micGranted = false; // сбросить — следующий клик снова запросит
+      if (el) el.textContent = '🎙️ Разреши доступ к микрофону в настройках Safari → cabinet.iziserb.com';
     } else if (e.error !== 'aborted' && e.error !== 'no-speech') {
-      // Показываем код ошибки для диагностики
-      const el = document.getElementById('speech-recognized');
       if (el) el.textContent = '⚠️ ' + e.error;
     }
     if (e.error !== 'aborted') setSpeechUIState('idle');

@@ -151,6 +151,618 @@ const WORDS = [
     id: 30, serbian: 'пронаћи', translation: 'найти',
     transcription: 'ПРО́НАЋИ',
     example: { serbian: 'Где могу да пронађем апотеку?', ru: 'Где я могу найти аптеку?' }
+  },
+
+  // ---- Глаголы 31–50 ----
+  {
+    id: 31, serbian: 'писати', translation: 'писать',
+    transcription: 'ПИ́САТИ',
+    example: { serbian: 'Пишем мејл колеги.', ru: 'Пишу письмо коллеге.' }
+  },
+  {
+    id: 32, serbian: 'читати', translation: 'читать',
+    transcription: 'ЧИ́ТАТИ',
+    example: { serbian: 'Читам вести сваки дан.', ru: 'Читаю новости каждый день.' }
+  },
+  {
+    id: 33, serbian: 'слушати', translation: 'слушать',
+    transcription: 'СЛУ́ШАТИ',
+    example: { serbian: 'Слушам музику на послу.', ru: 'Слушаю музыку на работе.' }
+  },
+  {
+    id: 34, serbian: 'гледати', translation: 'смотреть',
+    transcription: 'ГЛЕ́ДАТИ',
+    example: { serbian: 'Гледам серију увече.', ru: 'Смотрю сериал по вечерам.' }
+  },
+  {
+    id: 35, serbian: 'причати', translation: 'разговаривать / рассказывать',
+    transcription: 'ПРИ́ЧАТИ',
+    example: { serbian: 'Причај ми о Београду.', ru: 'Расскажи мне о Белграде.' }
+  },
+  {
+    id: 36, serbian: 'учити', translation: 'учить / учиться',
+    transcription: 'У́ЧИТИ',
+    example: { serbian: 'Учим српски сваки дан.', ru: 'Учу сербский каждый день.' }
+  },
+  {
+    id: 37, serbian: 'разговарати', translation: 'беседовать / общаться',
+    transcription: 'РАЗГОВАРАТИ',
+    example: { serbian: 'Разговарамо на српском.', ru: 'Общаемся на сербском.' }
+  },
+  {
+    id: 38, serbian: 'путовати', translation: 'путешествовать',
+    transcription: 'ПУТОВАТИ',
+    example: { serbian: 'Путујем по Србији.', ru: 'Путешествую по Сербии.' }
+  },
+  {
+    id: 39, serbian: 'волети', translation: 'любить',
+    transcription: 'ВО́ЛЕТИ',
+    example: { serbian: 'Волим ћевапе и ајвар.', ru: 'Люблю чевапе и айвар.' }
+  },
+  {
+    id: 40, serbian: 'мислити', translation: 'думать / считать',
+    transcription: 'МИ́СЛИТИ',
+    example: { serbian: 'Мислим да је лепо овде.', ru: 'Думаю, что здесь красиво.' }
+  },
+  {
+    id: 41, serbian: 'радовати се', translation: 'радоваться',
+    transcription: 'РАДОВАТИ СЕ',
+    example: { serbian: 'Радујем се викенду.', ru: 'Радуюсь выходным.' }
+  },
+  {
+    id: 42, serbian: 'спавати', translation: 'спать',
+    transcription: 'СПА́ВАТИ',
+    example: { serbian: 'Спавам осам сати.', ru: 'Сплю восемь часов.' }
+  },
+  {
+    id: 43, serbian: 'устати', translation: 'встать',
+    transcription: 'У́СТАТИ',
+    example: { serbian: 'Устајем у седам ујутро.', ru: 'Встаю в семь утра.' }
+  },
+  {
+    id: 44, serbian: 'доручковати', translation: 'завтракать',
+    transcription: 'ДОРУЧКОВАТИ',
+    example: { serbian: 'Доручкујем код куће.', ru: 'Завтракаю дома.' }
+  },
+  {
+    id: 45, serbian: 'вратити се', translation: 'вернуться',
+    transcription: 'ВРА́ТИТИ СЕ',
+    example: { serbian: 'Враћам се кући у шест.', ru: 'Возвращаюсь домой в шесть.' }
+  },
+  {
+    id: 46, serbian: 'поћи', translation: 'уйти / отправиться',
+    transcription: 'ПО́ЋИ',
+    example: { serbian: 'Идемо у биоскоп?', ru: 'Пойдём в кино?' }
+  },
+  {
+    id: 47, serbian: 'продати', translation: 'продать',
+    transcription: 'ПРОДАТИ',
+    example: { serbian: 'Продајем стан.', ru: 'Продаю квартиру.' }
+  },
+  {
+    id: 48, serbian: 'позвати', translation: 'позвонить / пригласить',
+    transcription: 'ПОЗВАТИ',
+    example: { serbian: 'Позваћу те сутра.', ru: 'Позвоню тебе завтра.' }
+  },
+  {
+    id: 49, serbian: 'послати', translation: 'отправить / послать',
+    transcription: 'ПОСЛАТИ',
+    example: { serbian: 'Пошаљи ми адресу.', ru: 'Пришли мне адрес.' }
+  },
+  {
+    id: 50, serbian: 'помислити', translation: 'подумать',
+    transcription: 'ПОМИСЛИТИ',
+    example: { serbian: 'Треба да помислим о томе.', ru: 'Мне нужно подумать об этом.' }
+  },
+
+  // ---- Существительные: город и быт 51–80 ----
+  {
+    id: 51, serbian: 'град', translation: 'город',
+    transcription: 'ГРАД',
+    example: { serbian: 'Београд је диван град.', ru: 'Белград — прекрасный город.' }
+  },
+  {
+    id: 52, serbian: 'улица', translation: 'улица',
+    transcription: 'У́ЛИЦА',
+    example: { serbian: 'Живим у тихој улици.', ru: 'Живу на тихой улице.' }
+  },
+  {
+    id: 53, serbian: 'стан', translation: 'квартира',
+    transcription: 'СТАН',
+    example: { serbian: 'Изнајмљујем стан у центру.', ru: 'Снимаю квартиру в центре.' }
+  },
+  {
+    id: 54, serbian: 'кућа', translation: 'дом',
+    transcription: 'КУ́ЋА',
+    example: { serbian: 'Купили смо кућу на периферији.', ru: 'Купили дом на окраине.' }
+  },
+  {
+    id: 55, serbian: 'продавница', translation: 'магазин',
+    transcription: 'ПРОДАВНИЦА',
+    example: { serbian: 'Продавница је затворена.', ru: 'Магазин закрыт.' }
+  },
+  {
+    id: 56, serbian: 'пијаца', translation: 'рынок / пазар',
+    transcription: 'ПИ́ЈАЦ',
+    example: { serbian: 'Купујем поврће на пијаци.', ru: 'Покупаю овощи на рынке.' }
+  },
+  {
+    id: 57, serbian: 'апотека', translation: 'аптека',
+    transcription: 'АПО́ТЕКА',
+    example: { serbian: 'Где је најближа апотека?', ru: 'Где ближайшая аптека?' }
+  },
+  {
+    id: 58, serbian: 'болница', translation: 'больница',
+    transcription: 'БО́ЛНИЦА',
+    example: { serbian: 'Одвезли су га у болницу.', ru: 'Его отвезли в больницу.' }
+  },
+  {
+    id: 59, serbian: 'аутобус', translation: 'автобус',
+    transcription: 'АУ́ТОБУС',
+    example: { serbian: 'Аутобус долази за пет минута.', ru: 'Автобус приедет через пять минут.' }
+  },
+  {
+    id: 60, serbian: 'такси', translation: 'такси',
+    transcription: 'ТА́КСИ',
+    example: { serbian: 'Наручио сам такси.', ru: 'Я вызвал такси.' }
+  },
+  {
+    id: 61, serbian: 'банка', translation: 'банк',
+    transcription: 'БА́НКА',
+    example: { serbian: 'Идем у банку.', ru: 'Иду в банк.' }
+  },
+  {
+    id: 62, serbian: 'пошта', translation: 'почта',
+    transcription: 'ПО́ШТА',
+    example: { serbian: 'Пошта је на углу.', ru: 'Почта на углу.' }
+  },
+  {
+    id: 63, serbian: 'ресторан', translation: 'ресторан',
+    transcription: 'РЕСТОРАН',
+    example: { serbian: 'Идемо у ресторан вечерас.', ru: 'Идём в ресторан сегодня вечером.' }
+  },
+  {
+    id: 64, serbian: 'кафа', translation: 'кофе',
+    transcription: 'КА́ФА',
+    example: { serbian: 'Попијемо кафу?', ru: 'Выпьем кофе?' }
+  },
+  {
+    id: 65, serbian: 'вода', translation: 'вода',
+    transcription: 'ВО́ДА',
+    example: { serbian: 'Дајте ми чашу воде, молим.', ru: 'Дайте мне стакан воды, пожалуйста.' }
+  },
+  {
+    id: 66, serbian: 'хлеб', translation: 'хлеб',
+    transcription: 'ХЛЕБ',
+    example: { serbian: 'Купи хлеб на повратку.', ru: 'Купи хлеб на обратном пути.' }
+  },
+  {
+    id: 67, serbian: 'новац', translation: 'деньги',
+    transcription: 'НО́ВАЦ',
+    example: { serbian: 'Немам довољно новца.', ru: 'У меня недостаточно денег.' }
+  },
+  {
+    id: 68, serbian: 'картица', translation: 'банковская карта',
+    transcription: 'КА́РТИЦА',
+    example: { serbian: 'Могу да платим картицом?', ru: 'Могу я заплатить картой?' }
+  },
+  {
+    id: 69, serbian: 'телефон', translation: 'телефон',
+    transcription: 'ТЕЛЕФОН',
+    example: { serbian: 'Нема ми сигнал на телефону.', ru: 'У меня нет сигнала на телефоне.' }
+  },
+  {
+    id: 70, serbian: 'адреса', translation: 'адрес',
+    transcription: 'АД́РЕСА',
+    example: { serbian: 'Какva је ваша адреса?', ru: 'Какой ваш адрес?' }
+  },
+  {
+    id: 71, serbian: 'посао', translation: 'работа / дело',
+    transcription: 'ПО́САО',
+    example: { serbian: 'Тражим посао у Београду.', ru: 'Ищу работу в Белграде.' }
+  },
+  {
+    id: 72, serbian: 'колега', translation: 'коллега',
+    transcription: 'КО́ЛЕГА',
+    example: { serbian: 'Мој колега говори руски.', ru: 'Мой коллега говорит по-русски.' }
+  },
+  {
+    id: 73, serbian: 'пријатељ', translation: 'друг',
+    transcription: 'ПРИЈАТЕЉ',
+    example: { serbian: 'Мој пријатељ живи у Новом Саду.', ru: 'Мой друг живёт в Нови-Саду.' }
+  },
+  {
+    id: 74, serbian: 'породица', translation: 'семья',
+    transcription: 'ПОРОДИЦА',
+    example: { serbian: 'Моја породица је из Москве.', ru: 'Моя семья из Москвы.' }
+  },
+  {
+    id: 75, serbian: 'деца', translation: 'дети',
+    transcription: 'ДЕ́ЦА',
+    example: { serbian: 'Имам двоје деце.', ru: 'У меня двое детей.' }
+  },
+  {
+    id: 76, serbian: 'школа', translation: 'школа',
+    transcription: 'ШКО́ЛА',
+    example: { serbian: 'Деца иду у српску школу.', ru: 'Дети ходят в сербскую школу.' }
+  },
+  {
+    id: 77, serbian: 'лекар', translation: 'врач',
+    transcription: 'ЛЕ́КАР',
+    example: { serbian: 'Идем код лекара сутра.', ru: 'Иду к врачу завтра.' }
+  },
+  {
+    id: 78, serbian: 'документ', translation: 'документ',
+    transcription: 'ДОКУМЕНТ',
+    example: { serbian: 'Треба ми потписан документ.', ru: 'Мне нужен подписанный документ.' }
+  },
+  {
+    id: 79, serbian: 'пасош', translation: 'паспорт',
+    transcription: 'ПА́ШОШ',
+    example: { serbian: 'Дајте ми пасош на увид.', ru: 'Предъявите паспорт для проверки.' }
+  },
+  {
+    id: 80, serbian: 'боравак', translation: 'вид на жительство',
+    transcription: 'БО́РАВАК',
+    example: { serbian: 'Продужујем боравак у МУП-у.', ru: 'Продлеваю ВНЖ в МУП.' }
+  },
+
+  // ---- Прилагательные 81–110 ----
+  {
+    id: 81, serbian: 'добар', translation: 'хороший / добрый',
+    transcription: 'ДО́БАР',
+    example: { serbian: 'Добар дан!', ru: 'Добрый день!' }
+  },
+  {
+    id: 82, serbian: 'леп', translation: 'красивый / хороший',
+    transcription: 'ЛЕП',
+    example: { serbian: 'Лепо је овде.', ru: 'Здесь красиво.' }
+  },
+  {
+    id: 83, serbian: 'велик', translation: 'большой',
+    transcription: 'ВЕ́ЛИК',
+    example: { serbian: 'Имамо велик стан.', ru: 'У нас большая квартира.' }
+  },
+  {
+    id: 84, serbian: 'мали', translation: 'маленький',
+    transcription: 'МА́ЛИ',
+    example: { serbian: 'Имамо мали ауто.', ru: 'У нас маленькая машина.' }
+  },
+  {
+    id: 85, serbian: 'нов', translation: 'новый',
+    transcription: 'НОВ',
+    example: { serbian: 'Купио сам нов телефон.', ru: 'Купил новый телефон.' }
+  },
+  {
+    id: 86, serbian: 'стар', translation: 'старый',
+    transcription: 'СТАР',
+    example: { serbian: 'Ово је стар стан, али удобан.', ru: 'Это старая квартира, но уютная.' }
+  },
+  {
+    id: 87, serbian: 'скуп', translation: 'дорогой',
+    transcription: 'СКУП',
+    example: { serbian: 'Ово је превише скупо за мене.', ru: 'Это слишком дорого для меня.' }
+  },
+  {
+    id: 88, serbian: 'јефтин', translation: 'дешёвый',
+    transcription: 'ЈЕ́ФТИН',
+    example: { serbian: 'Има ли нешто јефтиније?', ru: 'Есть ли что-то подешевле?' }
+  },
+  {
+    id: 89, serbian: 'брз', translation: 'быстрый',
+    transcription: 'БРЗ',
+    example: { serbian: 'Брз одговор, хвала!', ru: 'Быстрый ответ, спасибо!' }
+  },
+  {
+    id: 90, serbian: 'спор', translation: 'медленный',
+    transcription: 'СПОР',
+    example: { serbian: 'Говорите ли спорије?', ru: 'Не могли бы вы говорить медленнее?' }
+  },
+  {
+    id: 91, serbian: 'близу', translation: 'близко',
+    transcription: 'БЛИ́ЗУ',
+    example: { serbian: 'Апотека је близу.', ru: 'Аптека рядом.' }
+  },
+  {
+    id: 92, serbian: 'далеко', translation: 'далеко',
+    transcription: 'ДА́ЛЕКО',
+    example: { serbian: 'Аеродром је далеко?', ru: 'Аэропорт далеко?' }
+  },
+  {
+    id: 93, serbian: 'тачно', translation: 'точно / верно',
+    transcription: 'ТА́ЧНО',
+    example: { serbian: 'Тачно тако!', ru: 'Именно так!' }
+  },
+  {
+    id: 94, serbian: 'важно', translation: 'важно',
+    transcription: 'ВА́ЖНО',
+    example: { serbian: 'Ово је веома важно.', ru: 'Это очень важно.' }
+  },
+  {
+    id: 95, serbian: 'пун', translation: 'полный',
+    transcription: 'ПУН',
+    example: { serbian: 'Аутобус је пун.', ru: 'Автобус полный.' }
+  },
+  {
+    id: 96, serbian: 'слободан', translation: 'свободный',
+    transcription: 'СЛО́БОДАН',
+    example: { serbian: 'Јеси ли слободан вечерас?', ru: 'Ты свободен сегодня вечером?' }
+  },
+  {
+    id: 97, serbian: 'сигуран', translation: 'уверенный / безопасный',
+    transcription: 'СИ́ГУРАН',
+    example: { serbian: 'Јеси ли сигуран?', ru: 'Ты уверен?' }
+  },
+  {
+    id: 98, serbian: 'тежак', translation: 'трудный / тяжёлый',
+    transcription: 'ТЕ́ЖАК',
+    example: { serbian: 'Српски није тежак за Руса.', ru: 'Сербский нетрудный для русского.' }
+  },
+  {
+    id: 99, serbian: 'лак', translation: 'лёгкий / простой',
+    transcription: 'ЛАК',
+    example: { serbian: 'Ово је лако.', ru: 'Это легко.' }
+  },
+  {
+    id: 100, serbian: 'топло', translation: 'тепло / жарко',
+    transcription: 'ТО́ПЛО',
+    example: { serbian: 'Данас је веома топло.', ru: 'Сегодня очень жарко.' }
+  },
+  {
+    id: 101, serbian: 'хладно', translation: 'холодно',
+    transcription: 'ХЛА́ДНО',
+    example: { serbian: 'Зими је хладно у Београду.', ru: 'Зимой в Белграде холодно.' }
+  },
+  {
+    id: 102, serbian: 'потребно', translation: 'нужно / необходимо',
+    transcription: 'ПОТРЕБНО',
+    example: { serbian: 'Шта је потребно за боравак?', ru: 'Что нужно для ВНЖ?' }
+  },
+  {
+    id: 103, serbian: 'бесплатно', translation: 'бесплатно',
+    transcription: 'БЕСПЛАТНО',
+    example: { serbian: 'Да ли је ово бесплатно?', ru: 'Это бесплатно?' }
+  },
+  {
+    id: 104, serbian: 'пријатан', translation: 'приятный',
+    transcription: 'ПРИ́ЈАТАН',
+    example: { serbian: 'Пријатно!', ru: 'Приятного!' }
+  },
+  {
+    id: 105, serbian: 'срећан', translation: 'счастливый',
+    transcription: 'СРЕ́ЋАН',
+    example: { serbian: 'Срећан рођендан!', ru: 'С днём рождения!' }
+  },
+  {
+    id: 106, serbian: 'болестан', translation: 'больной / больно',
+    transcription: 'БОЛЕСТАН',
+    example: { serbian: 'Осећам се болесно.', ru: 'Я чувствую себя плохо.' }
+  },
+  {
+    id: 107, serbian: 'уморан', translation: 'усталый',
+    transcription: 'У́МОРАН',
+    example: { serbian: 'Веома сам уморан данас.', ru: 'Я очень устал сегодня.' }
+  },
+  {
+    id: 108, serbian: 'гладан', translation: 'голодный',
+    transcription: 'ГЛА́ДАН',
+    example: { serbian: 'Гладан сам, хајде да ручамо.', ru: 'Я голодный, давай пообедаем.' }
+  },
+  {
+    id: 109, serbian: 'жедан', translation: 'жаждущий / хочу пить',
+    transcription: 'ЖЕ́ДАН',
+    example: { serbian: 'Жедан сам, дај ми воду.', ru: 'Хочу пить, дай мне воды.' }
+  },
+  {
+    id: 110, serbian: 'заузет', translation: 'занятой / занят',
+    transcription: 'ЗА́УЗЕТ',
+    example: { serbian: 'Данас сам заузет.', ru: 'Сегодня я занят.' }
+  },
+
+  // ---- Наречия и частицы 111–130 ----
+  {
+    id: 111, serbian: 'да', translation: 'да',
+    transcription: 'ДА',
+    example: { serbian: 'Да, разумем.', ru: 'Да, понимаю.' }
+  },
+  {
+    id: 112, serbian: 'не', translation: 'нет / не',
+    transcription: 'НЕ',
+    example: { serbian: 'Не, хвала.', ru: 'Нет, спасибо.' }
+  },
+  {
+    id: 113, serbian: 'можда', translation: 'может быть',
+    transcription: 'МО́ЖДА',
+    example: { serbian: 'Можда сутра.', ru: 'Может быть, завтра.' }
+  },
+  {
+    id: 114, serbian: 'сада', translation: 'сейчас / сразу',
+    transcription: 'СА́ДА',
+    example: { serbian: 'Идем сада.', ru: 'Иду сейчас.' }
+  },
+  {
+    id: 115, serbian: 'одмах', translation: 'сразу / немедленно',
+    transcription: 'О́ДМАХ',
+    example: { serbian: 'Долазим одмах.', ru: 'Иду сразу.' }
+  },
+  {
+    id: 116, serbian: 'касније', translation: 'позже',
+    transcription: 'КА́СНИЈЕ',
+    example: { serbian: 'Видимо се касније.', ru: 'Увидимся позже.' }
+  },
+  {
+    id: 117, serbian: 'данас', translation: 'сегодня',
+    transcription: 'ДА́НАС',
+    example: { serbian: 'Шта радиш данас?', ru: 'Что ты делаешь сегодня?' }
+  },
+  {
+    id: 118, serbian: 'сутра', translation: 'завтра',
+    transcription: 'СУ́ТРА',
+    example: { serbian: 'Видимо се сутра.', ru: 'Увидимся завтра.' }
+  },
+  {
+    id: 119, serbian: 'јуче', translation: 'вчера',
+    transcription: 'ЈУ́ЧЕ',
+    example: { serbian: 'Јуче сам ишао у МУП.', ru: 'Вчера ходил в МУП.' }
+  },
+  {
+    id: 120, serbian: 'увек', translation: 'всегда',
+    transcription: 'У́ВЕК',
+    example: { serbian: 'Увек говорим истину.', ru: 'Всегда говорю правду.' }
+  },
+  {
+    id: 121, serbian: 'никад', translation: 'никогда',
+    transcription: 'НИ́КАД',
+    example: { serbian: 'Никад не касним.', ru: 'Никогда не опаздываю.' }
+  },
+  {
+    id: 122, serbian: 'понекад', translation: 'иногда',
+    transcription: 'ПО́НЕКАД',
+    example: { serbian: 'Понекад идем пешке.', ru: 'Иногда хожу пешком.' }
+  },
+  {
+    id: 123, serbian: 'доста', translation: 'достаточно / хватит',
+    transcription: 'ДО́СТА',
+    example: { serbian: 'Доста је, хвала.', ru: 'Достаточно, спасибо.' }
+  },
+  {
+    id: 124, serbian: 'баш', translation: 'как раз / очень (разговорное)',
+    transcription: 'БАШ',
+    note: 'Частица-усилитель. Баш тако = именно так',
+    example: { serbian: 'Баш сам гладан.', ru: 'Я реально голодный.' }
+  },
+  {
+    id: 125, serbian: 'ево', translation: 'вот (смотри)',
+    transcription: 'ЕВО',
+    example: { serbian: 'Ево моје картице.', ru: 'Вот моя карта.' }
+  },
+  {
+    id: 126, serbian: 'ајде', translation: 'давай / пошли',
+    transcription: 'А́ЈДЕ',
+    note: 'Из турецкого. Ајде! = Давай! Пошли!',
+    example: { serbian: 'Ајде, идемо!', ru: 'Давай, идём!' }
+  },
+  {
+    id: 127, serbian: 'молим', translation: 'пожалуйста / прошу',
+    transcription: 'МО́ЛИМ',
+    example: { serbian: 'Молим вас, помозите ми.', ru: 'Пожалуйста, помогите мне.' }
+  },
+  {
+    id: 128, serbian: 'хвала', translation: 'спасибо',
+    transcription: 'ХВА́ЛА',
+    example: { serbian: 'Хвала пуно!', ru: 'Большое спасибо!' }
+  },
+  {
+    id: 129, serbian: 'извините', translation: 'извините',
+    transcription: 'ИЗВИНИТЕ',
+    example: { serbian: 'Извините, нисам разумео.', ru: 'Извините, я не понял.' }
+  },
+  {
+    id: 130, serbian: 'жао ми је', translation: 'мне жаль / извините',
+    transcription: 'ЖАО МИ ЈЕ',
+    example: { serbian: 'Жао ми је за кашњење.', ru: 'Извините за опоздание.' }
+  },
+
+  // ---- Место и количество 131–150 ----
+  {
+    id: 131, serbian: 'где', translation: 'где',
+    transcription: 'ГДЕ',
+    example: { serbian: 'Где је банка?', ru: 'Где банк?' }
+  },
+  {
+    id: 132, serbian: 'овде', translation: 'здесь',
+    transcription: 'О́ВДЕ',
+    example: { serbian: 'Чекај ме овде.', ru: 'Подожди меня здесь.' }
+  },
+  {
+    id: 133, serbian: 'тамо', translation: 'там',
+    transcription: 'ТА́МО',
+    example: { serbian: 'Банка је тамо.', ru: 'Банк вон там.' }
+  },
+  {
+    id: 134, serbian: 'лево', translation: 'налево',
+    transcription: 'ЛЕ́ВО',
+    example: { serbian: 'Скрените лево.', ru: 'Поверните налево.' }
+  },
+  {
+    id: 135, serbian: 'десно', translation: 'направо',
+    transcription: 'ДЕ́СНО',
+    example: { serbian: 'Идите право, па десно.', ru: 'Идите прямо, затем направо.' }
+  },
+  {
+    id: 136, serbian: 'право', translation: 'прямо',
+    transcription: 'ПРА́ВО',
+    example: { serbian: 'Идите право до светла.', ru: 'Идите прямо до светофора.' }
+  },
+  {
+    id: 137, serbian: 'колико', translation: 'сколько',
+    transcription: 'КО́ЛИКО',
+    example: { serbian: 'Колико кошта?', ru: 'Сколько стоит?' }
+  },
+  {
+    id: 138, serbian: 'много', translation: 'много',
+    transcription: 'МНО́ГО',
+    example: { serbian: 'Много хвала!', ru: 'Большое спасибо!' }
+  },
+  {
+    id: 139, serbian: 'мало', translation: 'мало / немного',
+    transcription: 'МА́ЛО',
+    example: { serbian: 'Говорим мало српски.', ru: 'Я немного говорю по-сербски.' }
+  },
+  {
+    id: 140, serbian: 'нешто', translation: 'что-то',
+    transcription: 'НЕ́ШТО',
+    example: { serbian: 'Имате ли нешто јефтиније?', ru: 'Есть ли у вас что-то подешевле?' }
+  },
+  {
+    id: 141, serbian: 'ништа', translation: 'ничего',
+    transcription: 'НИ́ШТА',
+    example: { serbian: 'Нема ништа, не брини.', ru: 'Ничего, не беспокойся.' }
+  },
+  {
+    id: 142, serbian: 'свe', translation: 'всё',
+    transcription: 'СВЕ',
+    example: { serbian: 'Све је у реду.', ru: 'Всё в порядке.' }
+  },
+  {
+    id: 143, serbian: 'неко', translation: 'кто-то',
+    transcription: 'НЕ́КО',
+    example: { serbian: 'Неко ме зове.', ru: 'Кто-то меня зовёт.' }
+  },
+  {
+    id: 144, serbian: 'нико', translation: 'никто',
+    transcription: 'НИ́КО',
+    example: { serbian: 'Нико не одговара.', ru: 'Никто не отвечает.' }
+  },
+  {
+    id: 145, serbian: 'сат', translation: 'час / часы',
+    transcription: 'САТ',
+    example: { serbian: 'Колико је сати?', ru: 'Который час?' }
+  },
+  {
+    id: 146, serbian: 'дан', translation: 'день',
+    transcription: 'ДАН',
+    example: { serbian: 'Добар дан!', ru: 'Добрый день!' }
+  },
+  {
+    id: 147, serbian: 'недеља', translation: 'неделя / воскресенье',
+    transcription: 'НЕ́ДЕЉА',
+    example: { serbian: 'Видимо се следеће недеље.', ru: 'Увидимся на следующей неделе.' }
+  },
+  {
+    id: 148, serbian: 'месец', translation: 'месяц',
+    transcription: 'МЕ́СЕЦ',
+    example: { serbian: 'Живим овде три месеца.', ru: 'Живу здесь три месяца.' }
+  },
+  {
+    id: 149, serbian: 'година', translation: 'год',
+    transcription: 'ГО́ДИНА',
+    example: { serbian: 'Прошле године сам дошао у Србију.', ru: 'В прошлом году приехал в Сербию.' }
+  },
+  {
+    id: 150, serbian: 'живот', translation: 'жизнь',
+    transcription: 'ЖИ́ВОТ',
+    example: { serbian: 'Живот у Србији је добар.', ru: 'Жизнь в Сербии хороша.' }
   }
 ];
 

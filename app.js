@@ -2733,19 +2733,22 @@ const BLOG_ARTICLES = [
     section: '📚 С чего начать',
     color: 'green',
     items: [
-      { slug: 'serbskiy-alfavit',              emoji: '🔤', tag: 'Основы',    title: 'Сербский алфавит: кириллица и латиница за 1 вечер' },
-      { slug: 'kak-govorit-po-serbski',        emoji: '📚', tag: 'С нуля',    title: 'Как научиться говорить по-сербски с нуля: пошаговый план' },
-      { slug: 'slozhno-li-uchit-serbskiy',     emoji: '🤔', tag: 'Мотивация', title: 'Сложно ли выучить сербский? Честный ответ для русскоязычных' },
-      { slug: 'intervalnoe-povtorenie-serbskiy', emoji: '🧠', tag: 'Методика', title: 'Интервальное повторение: как запоминать сербские слова навсегда' },
+      { slug: 'serbskiy-alfavit',                      emoji: '🔤', tag: 'Основы',    title: 'Сербский алфавит: кириллица и латиница за 1 вечер' },
+      { slug: 'kak-govorit-po-serbski',                emoji: '📚', tag: 'С нуля',    title: 'Как научиться говорить по-сербски с нуля: пошаговый план' },
+      { slug: 'slozhno-li-uchit-serbskiy',             emoji: '🤔', tag: 'Мотивация', title: 'Сложно ли выучить сербский? Честный ответ для русскоязычных' },
+      { slug: 'serbskiy-grammatika-nachinayuschikh',   emoji: '📐', tag: 'Грамматика', title: 'Сербская грамматика для начинающих: главное за 10 минут' },
     ]
   },
   {
     section: '🇷🇸 Жизнь в Сербии',
     color: 'green',
     items: [
-      { slug: 'serbskiy-frazy-dlya-serbii', emoji: '💬', tag: 'Фразы',   title: '50 сербских фраз для жизни в Сербии: МУП, банк, аптека, кафе' },
-      { slug: 'serbskiy-u-vracha',          emoji: '🏥', tag: 'Срочное', title: 'Сербский у врача: скорая помощь, больница и аптека' },
-      { slug: 'arenda-kvartiry-serbiya',    emoji: '🏠', tag: 'Быт',     title: 'Аренда квартиры в Сербии по-сербски: от звонка до договора' },
+      { slug: 'serbskiy-frazy-dlya-serbii', emoji: '💬', tag: 'Фразы',     title: '50 сербских фраз для жизни в Сербии: МУП, банк, аптека, кафе' },
+      { slug: 'serbskiy-u-vracha',          emoji: '🏥', tag: 'Срочное',   title: 'Сербский у врача: скорая помощь, больница и аптека' },
+      { slug: 'arenda-kvartiry-serbiya',    emoji: '🏠', tag: 'Быт',       title: 'Аренда квартиры в Сербии по-сербски: от звонка до договора' },
+      { slug: 'serbskiy-bank',              emoji: '🏦', tag: 'Банк',      title: 'Сербский в банке: как открыть счёт и что говорить' },
+      { slug: 'serbskiy-transport',         emoji: '🚌', tag: 'Транспорт', title: 'Транспорт в Сербии: автобус, такси, поезд — словарь и фразы' },
+      { slug: 'serbskiy-dlya-semyi',        emoji: '👨‍👩‍👧‍👦', tag: 'Семья',     title: 'Сербский для семьи: дети, школа и жизнь дома' },
     ]
   },
   {
@@ -2755,6 +2758,18 @@ const BLOG_ARTICLES = [
       { slug: 'serbskiy-yazyk-dlya-russkikh', emoji: '📖', tag: 'Грамматика', title: 'Сербский язык для русских: что общего и в чём отличия' },
       { slug: 'serbskiy-chislitelnyye',       emoji: '🔢', tag: 'Словарь',    title: 'Числа на сербском языке: от 1 до 1000 с произношением' },
       { slug: 'serbskaya-kukhnya-slovar',     emoji: '🍽️', tag: 'Кухня',     title: 'Сербская кухня: словарь для ресторана и пазара' },
+      { slug: 'serbskiy-glagoly',             emoji: '✍️', tag: 'Глаголы',   title: '50 главных сербских глаголов с примерами и спряжением' },
+      { slug: 'serbskiy-vremena-goda',        emoji: '🌤️', tag: 'Словарь',   title: 'Время, погода и сезоны по-сербски: полный словарь' },
+    ]
+  },
+  {
+    section: '🎭 Разговорный и культура',
+    color: 'green',
+    items: [
+      { slug: 'serbskiy-sleng',      emoji: '😎', tag: 'Разговорный', title: 'Сербский сленг: как говорят сербы на самом деле' },
+      { slug: 'serbskiy-na-rabote',  emoji: '💼', tag: 'Работа',      title: 'Сербский на работе: профессии, офис и деловая речь' },
+      { slug: 'serbskiy-prazdniki',  emoji: '🎄', tag: 'Культура',    title: 'Сербские праздники и традиции: Слава, Рождество, Пасха' },
+      { slug: 'serbskie-poslovitsy', emoji: '📜', tag: 'Культура',    title: 'Сербские пословицы и поговорки с переводом' },
     ]
   },
   {

@@ -1878,6 +1878,11 @@ body {
 }
 .blog-card-arrow-purple { color: #7c3aed; }
 
+/* screen-blog-article: нужен flex-direction:column, но display управляется .screen/.screen.active */
+.screen-blog-article { padding: 0; gap: 0; }
+.screen-blog-article.active { flex-direction: column; }
+#blog-article-frame { flex: 1; border: none; width: 100%; min-height: calc(100vh - 60px); }
+
 /* ============================================================
    SPEECH TRAINING
    ============================================================ */

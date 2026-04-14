@@ -532,22 +532,72 @@
       <button class="btn-back" onclick="showScreen('screen-home')">←</button>
       <h2>Настройки</h2>
     </div>
-    <div class="settings-body">
-      <div class="settings-section">
-        <div class="settings-title">Аккаунт</div>
-        <div class="settings-item" id="settings-user-info"></div>
+
+    <!-- Карточка пользователя -->
+    <div id="settings-user-info"></div>
+
+    <!-- Статистика -->
+    <div class="settings-section-title">Мой прогресс</div>
+    <div class="settings-stats-grid">
+      <div class="settings-stat">
+        <div class="settings-stat-value" id="st-lessons">—</div>
+        <div class="settings-stat-label">уроков</div>
       </div>
-      <div class="settings-section">
-        <div class="settings-title">Подписка</div>
-        <div class="settings-item" id="settings-sub-info">Загрузка...</div>
-        <a href="https://app.lemonsqueezy.com/my-orders" target="_blank" class="settings-link">Управление подпиской →</a>
+      <div class="settings-stat">
+        <div class="settings-stat-value" id="st-xp">—</div>
+        <div class="settings-stat-label">всего XP</div>
       </div>
-      <div class="settings-section">
-        <div class="settings-title">Приложение</div>
-        <button class="settings-link" onclick="showPwaGuide()">📲 Установить как приложение</button>
+      <div class="settings-stat">
+        <div class="settings-stat-value" id="st-streak">—</div>
+        <div class="settings-stat-label">дней подряд</div>
       </div>
-      <button class="btn-secondary" style="margin-top:24px; width:100%" onclick="signOut()">Выйти из аккаунта</button>
+      <div class="settings-stat">
+        <div class="settings-stat-value" id="st-level">—</div>
+        <div class="settings-stat-label">уровень</div>
+      </div>
     </div>
+
+    <!-- Подписка -->
+    <div class="settings-section-title" style="margin-top:20px">Подписка</div>
+    <div class="settings-row" style="margin-bottom:8px">
+      <div class="settings-row-icon">💳</div>
+      <div class="settings-row-body">
+        <div class="settings-row-title" id="settings-sub-info">Загрузка...</div>
+        <div class="settings-row-sub">Статус доступа</div>
+      </div>
+    </div>
+    <a href="https://app.lemonsqueezy.com/my-orders" target="_blank" class="settings-row" style="text-decoration:none;margin-bottom:8px">
+      <div class="settings-row-icon">⚙️</div>
+      <div class="settings-row-body">
+        <div class="settings-row-title">Управление подпиской</div>
+        <div class="settings-row-sub">lemonsqueezy.com</div>
+      </div>
+      <div style="color:#bbb;font-size:18px">›</div>
+    </a>
+
+    <!-- Приложение -->
+    <div class="settings-section-title" style="margin-top:20px">Приложение</div>
+    <button class="settings-row" onclick="showPwaGuide()" style="width:100%;text-align:left;margin-bottom:8px">
+      <div class="settings-row-icon">📲</div>
+      <div class="settings-row-body">
+        <div class="settings-row-title">Установить как приложение</div>
+        <div class="settings-row-sub">Добавить на экран телефона</div>
+      </div>
+      <div style="color:#bbb;font-size:18px">›</div>
+    </button>
+    <button class="settings-row" onclick="showSupportForm()" style="width:100%;text-align:left;margin-bottom:8px">
+      <div class="settings-row-icon">💬</div>
+      <div class="settings-row-body">
+        <div class="settings-row-title">Написать в поддержку</div>
+        <div class="settings-row-sub">Ответим в течение 24 часов</div>
+      </div>
+      <div style="color:#bbb;font-size:18px">›</div>
+    </button>
+
+    <!-- Выйти -->
+    <button class="btn-signout-full" style="margin-top:24px" onclick="signOut()">Выйти из аккаунта</button>
+
+    <div class="settings-version">IziSerb v1.0 · iziserb.com</div>
   </div>
 
   <!-- ==================== FEED ==================== -->

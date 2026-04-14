@@ -398,29 +398,38 @@ function pluralDays(n) {
 }
 
 function showSettings() {
+  // Карточка пользователя
   if (currentUser) {
     const name = currentUser.displayName || 'Пользователь';
     const email = currentUser.email || '';
     const initial = name.charAt(0).toUpperCase();
     const avatarHtml = currentUser.photoURL
-      ? `<img src="${currentUser.photoURL}" alt="" style="width:44px;height:44px;border-radius:50%;object-fit:cover">`
-      : `<div style="width:44px;height:44px;border-radius:50%;background:#1A7FD4;color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px">${initial}</div>`;
+      ? `<img class="settings-avatar" src="${currentUser.photoURL}" alt="">`
+      : `<div class="settings-initials">${initial}</div>`;
     document.getElementById('settings-user-info').innerHTML = `
-      <div style="display:flex;align-items:center;gap:12px;padding:8px 0">
+      <div class="settings-user-card">
         ${avatarHtml}
-        <div>
-          <div style="font-weight:700;font-size:15px">${name}</div>
-          <div style="color:#888;font-size:13px">${email}</div>
+        <div class="settings-user-info">
+          <div class="settings-user-name">${name}</div>
+          <div class="settings-user-email">${email}</div>
         </div>
       </div>`;
   }
 
+  // Статистика
+  const setV = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+  setV('st-lessons', state.lessonsCompleted || 0);
+  setV('st-xp',     state.totalXp || 0);
+  setV('st-streak', state.streak || 0);
+  setV('st-level',  state.level || 1);
+
+  // Подписка
   const sub = state.subscription;
   const subEl = document.getElementById('settings-sub-info');
   if (subEl) {
     subEl.textContent = sub
       ? (sub.status === 'active' ? 'Подписка активна ✅' : sub.status === 'trialing' ? 'Пробный период 🎁' : 'Нет активной подписки')
-      : (currentUser?.email === 'dondanilo1994@gmail.com' ? 'Аккаунт разработчика 🛠️' : 'Загрузка...');
+      : (currentUser?.email === 'dondanilo1994@gmail.com' ? 'Аккаунт разработчика 🛠️' : 'Бесплатный доступ');
   }
 
   showScreen('screen-settings');

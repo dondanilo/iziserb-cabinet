@@ -2825,7 +2825,7 @@ function renderBlogList() {
 function openBlogArticle(slug, title) {
   const frame = document.getElementById('blog-article-frame');
   const titleEl = document.getElementById('blog-article-title');
-  if (frame) frame.src = `https://iziserb.com/blog/${slug}.html`;
+  if (frame) frame.src = `https://iziserb.com/blog/${slug}.html?ref=cabinet`;
   if (titleEl) titleEl.textContent = title;
   showScreen('screen-blog-article');
 }

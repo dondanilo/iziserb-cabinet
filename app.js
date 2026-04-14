@@ -463,8 +463,8 @@ async function togglePushSetting() {
 }
 
 function showPaywall() {
-  const monthlyUrl = `https://iziserb.lemonsqueezy.com/checkout/buy/ba321ab1-7852-4b45-8d8b-a39393003582?checkout[custom][user_id]=${currentUser?.uid || ''}`;
-  const annualUrl = `https://iziserb.lemonsqueezy.com/checkout/buy/81d18e92-cb61-46fb-b84c-63b5c903b15d?checkout[custom][user_id]=${currentUser?.uid || ''}`;
+  const monthlyUrl = `https://iziserb.lemonsqueezy.com/checkout/buy/c5b8d47d-dd58-4032-b6b3-fc8d9fb0fb16?checkout[custom][user_id]=${currentUser?.uid || ''}`;
+  const annualUrl = `https://iziserb.lemonsqueezy.com/checkout/buy/2108baf7-b9dd-4fca-b0af-9b320ee12fdc?checkout[custom][user_id]=${currentUser?.uid || ''}`;
 
   document.getElementById('paywall-monthly-btn').href = monthlyUrl;
   document.getElementById('paywall-annual-btn').href = annualUrl;

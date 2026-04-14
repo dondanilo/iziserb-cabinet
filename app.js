@@ -3043,10 +3043,16 @@ function startSpeechRecognition() {
   }
 }
 
-function runSpeechRecognition(SR) {
+// Цепочка языков: sr-RS → sr → ru-RU (на iOS Safari sr-RS часто не поддерживается)
+const SPEECH_LANG_CHAIN = ['sr-RS', 'sr', 'ru-RU'];
+
+function runSpeechRecognition(SR, langIdx) {
+  if (langIdx === undefined) langIdx = 0;
+  const lang = SPEECH_LANG_CHAIN[langIdx] || 'sr-RS';
+
   setSpeechUIState('recording');
   const r = new SR();
-  r.lang = 'sr-RS';
+  r.lang = lang;
   r.continuous = false;
   r.interimResults = false;
   r.maxAlternatives = 6;
@@ -3060,7 +3066,6 @@ function runSpeechRecognition(SR) {
   }, 9000);
 
   r.onspeechend = () => {
-    // Речь закончилась — принудительно останавливаем, чтобы получить результат
     try { r.stop(); } catch(e) {}
   };
 
@@ -3081,8 +3086,21 @@ function runSpeechRecognition(SR) {
 
   r.onerror = (e) => {
     clearTimeout(timeout);
+    speechSession.recognition = null;
+
+    // iOS не поддерживает sr-RS / sr — пробуем следующий язык в цепочке
+    if (e.error === 'language-not-supported' && langIdx < SPEECH_LANG_CHAIN.length - 1) {
+      try { r.abort(); } catch(e2) {}
+      setTimeout(() => runSpeechRecognition(SR, langIdx + 1), 150);
+      return;
+    }
+
     if (e.error === 'not-allowed') {
       alert('Нужен доступ к микрофону. Разреши его в настройках браузера и попробуй снова.');
+    } else if (e.error !== 'aborted' && e.error !== 'no-speech') {
+      // Показываем код ошибки для диагностики
+      const el = document.getElementById('speech-recognized');
+      if (el) el.textContent = '⚠️ ' + e.error;
     }
     if (e.error !== 'aborted') setSpeechUIState('idle');
   };
@@ -3090,10 +3108,17 @@ function runSpeechRecognition(SR) {
   r.onend = () => {
     clearTimeout(timeout);
     if (speechSession.uiState === 'recording') setSpeechUIState('idle');
-    speechSession.recognition = null;
+    if (speechSession.recognition === r) speechSession.recognition = null;
   };
 
-  r.start();
+  try {
+    r.start();
+  } catch(e) {
+    clearTimeout(timeout);
+    setSpeechUIState('idle');
+    const el = document.getElementById('speech-recognized');
+    if (el) el.textContent = '⚠️ ' + (e.message || 'start error');
+  }
 }
 
 function normalizeGreekSpeech(text) {

@@ -2227,7 +2227,7 @@ async function fetchTranslation(text) {
   if (!text) return '';
   if (translationCache[text]) return translationCache[text];
   try {
-    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=el|ru`;
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=sr|ru`;
     const res = await fetch(url);
     const data = await res.json();
     const result = data.responseData && data.responseData.translatedText

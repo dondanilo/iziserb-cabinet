@@ -763,6 +763,756 @@ const WORDS = [
     id: 150, serbian: 'живот', translation: 'жизнь',
     transcription: 'ЖИ́ВОТ',
     example: { serbian: 'Живот у Србији је добар.', ru: 'Жизнь в Сербии хороша.' }
+  },
+  {
+    id: 151, serbian: 'читати', translation: 'читать',
+    transcription: 'ЧИ́ТАТИ',
+    example: { serbian: 'Волим да читам књиге.', ru: 'Я люблю читать книги.' }
+  },
+  {
+    id: 152, serbian: 'писати', translation: 'писать',
+    transcription: 'ПИ́САТИ',
+    example: { serbian: 'Пишем поруку пријатељу.', ru: 'Пишу сообщение другу.' }
+  },
+  {
+    id: 153, serbian: 'слушати', translation: 'слушать',
+    transcription: 'СЛУ́ШАТИ',
+    example: { serbian: 'Слушам музику сваки дан.', ru: 'Каждый день слушаю музыку.' }
+  },
+  {
+    id: 154, serbian: 'гледати', translation: 'смотреть',
+    transcription: 'ГЛЕ́ДАТИ',
+    example: { serbian: 'Гледам серије увече.', ru: 'Вечером смотрю сериалы.' }
+  },
+  {
+    id: 155, serbian: 'чекати', translation: 'ждать',
+    transcription: 'ЧЕ́КАТИ',
+    example: { serbian: 'Чекам аутобус на станици.', ru: 'Жду автобус на остановке.' }
+  },
+  {
+    id: 156, serbian: 'знати', translation: 'знать',
+    transcription: 'ЗНА́ТИ',
+    example: { serbian: 'Знам мало српски.', ru: 'Я немного знаю сербский.' }
+  },
+  {
+    id: 157, serbian: 'мислити', translation: 'думать',
+    transcription: 'МИ́СЛИТИ',
+    example: { serbian: 'Мислим да је то добра идеја.', ru: 'Думаю, что это хорошая идея.' }
+  },
+  {
+    id: 158, serbian: 'разумети', translation: 'понимать',
+    transcription: 'РАЗУМЕ́ТИ',
+    example: { serbian: 'Не разумем шта кажеш.', ru: 'Не понимаю, что ты говоришь.' }
+  },
+  {
+    id: 159, serbian: 'причати', translation: 'рассказывать / говорить',
+    transcription: 'ПРИ́ЧАТИ',
+    example: { serbian: 'Причај ми о свом граду.', ru: 'Расскажи мне о своём городе.' }
+  },
+  {
+    id: 160, serbian: 'питати', translation: 'спрашивать',
+    transcription: 'ПИ́ТАТИ',
+    example: { serbian: 'Могу ли да те питам нешто?', ru: 'Можно тебя спросить кое-что?' }
+  },
+  {
+    id: 161, serbian: 'одговорити', translation: 'ответить',
+    transcription: 'ОДГОВО́РИТИ',
+    example: { serbian: 'Одговори на моје питање.', ru: 'Ответь на мой вопрос.' }
+  },
+  {
+    id: 162, serbian: 'помоћи', translation: 'помочь',
+    transcription: 'ПОМО́ЋИ',
+    example: { serbian: 'Можете ли да ми помогнете?', ru: 'Можете ли мне помочь?' }
+  },
+  {
+    id: 163, serbian: 'почети', translation: 'начать',
+    transcription: 'ПО́ЧЕТИ',
+    example: { serbian: 'Хоћу да почнем учити српски.', ru: 'Хочу начать учить сербский.' }
+  },
+  {
+    id: 164, serbian: 'завршити', translation: 'закончить',
+    transcription: 'ЗАВР́ШИТИ',
+    example: { serbian: 'Завршио сам посао.', ru: 'Я закончил работу.' }
+  },
+  {
+    id: 165, serbian: 'отворити', translation: 'открыть',
+    transcription: 'ОТВО́РИТИ',
+    example: { serbian: 'Молим вас, отворите врата.', ru: 'Пожалуйста, откройте дверь.' }
+  },
+  {
+    id: 166, serbian: 'затворити', translation: 'закрыть',
+    transcription: 'ЗАТВО́РИТИ',
+    example: { serbian: 'Затвори прозор, хладно је.', ru: 'Закрой окно, холодно.' }
+  },
+  {
+    id: 167, serbian: 'купити', translation: 'купить',
+    transcription: 'КУ́ПИТИ',
+    example: { serbian: 'Треба да купим хлеб.', ru: 'Мне нужно купить хлеб.' }
+  },
+  {
+    id: 168, serbian: 'продати', translation: 'продать',
+    transcription: 'ПРО́ДАТИ',
+    example: { serbian: 'Продао сам стари ауто.', ru: 'Я продал старую машину.' }
+  },
+  {
+    id: 169, serbian: 'платити', translation: 'заплатить',
+    transcription: 'ПЛА́ТИТИ',
+    example: { serbian: 'Желим да платим рачун.', ru: 'Хочу заплатить по счёту.' }
+  },
+  {
+    id: 170, serbian: 'вратити', translation: 'вернуть / вернуться',
+    transcription: 'ВРА́ТИТИ',
+    example: { serbian: 'Вратићу ти новац сутра.', ru: 'Верну тебе деньги завтра.' }
+  },
+  {
+    id: 171, serbian: 'донети', translation: 'принести',
+    transcription: 'ДО́НЕТИ',
+    example: { serbian: 'Донеси ми чашу воде.', ru: 'Принеси мне стакан воды.' }
+  },
+  {
+    id: 172, serbian: 'носити', translation: 'нести / носить',
+    transcription: 'НО́СИТИ',
+    example: { serbian: 'Носим торбу на леђима.', ru: 'Ношу сумку на спине.' }
+  },
+  {
+    id: 173, serbian: 'стигнути', translation: 'прибыть / успеть',
+    transcription: 'СТИГНУ́ТИ',
+    example: { serbian: 'Стигли смо на време.', ru: 'Мы прибыли вовремя.' }
+  },
+  {
+    id: 174, serbian: 'изаћи', translation: 'выйти',
+    transcription: 'ИЗА́ЋИ',
+    example: { serbian: 'Изаћи ћу за пет минута.', ru: 'Выйду через пять минут.' }
+  },
+  {
+    id: 175, serbian: 'ући', translation: 'войти',
+    transcription: 'У́ЋИ',
+    example: { serbian: 'Уђи, врата су отворена.', ru: 'Войди, дверь открыта.' }
+  },
+  {
+    id: 176, serbian: 'сести', translation: 'сесть / садиться',
+    transcription: 'СЕ́СТИ',
+    example: { serbian: 'Сиди, молим.', ru: 'Пожалуйста, садись.' }
+  },
+  {
+    id: 177, serbian: 'устати', translation: 'встать / вставать',
+    transcription: 'УСТ́АТИ',
+    example: { serbian: 'Устајем у седам ујутру.', ru: 'Встаю в семь утра.' }
+  },
+  {
+    id: 178, serbian: 'спавати', translation: 'спать',
+    transcription: 'СПА́ВАТИ',
+    example: { serbian: 'Спавам осам сати дневно.', ru: 'Сплю восемь часов в день.' }
+  },
+  {
+    id: 179, serbian: 'јести', translation: 'есть / кушать',
+    transcription: 'ЈЕ́СТИ',
+    example: { serbian: 'Волим да једем ћевапе.', ru: 'Люблю есть чевапе.' }
+  },
+  {
+    id: 180, serbian: 'пити', translation: 'пить',
+    transcription: 'ПИ́ТИ',
+    example: { serbian: 'Пијем кафу свако јутро.', ru: 'Пью кофе каждое утро.' }
+  },
+  {
+    id: 181, serbian: 'кувати', translation: 'готовить / варить',
+    transcription: 'КУ́ВАТИ',
+    example: { serbian: 'Кувам ручак код куће.', ru: 'Готовлю обед дома.' }
+  },
+  {
+    id: 182, serbian: 'прати', translation: 'мыть / стирать',
+    transcription: 'ПРА́ТИ',
+    example: { serbian: 'Перем рубље сваке недеље.', ru: 'Стираю одежду каждую неделю.' }
+  },
+  {
+    id: 183, serbian: 'чистити', translation: 'чистить / убирать',
+    transcription: 'ЧИ́СТИТИ',
+    example: { serbian: 'Чистим стан викендом.', ru: 'Убираю квартиру по выходным.' }
+  },
+  {
+    id: 184, serbian: 'тражити', translation: 'искать / требовать',
+    transcription: 'ТРА́ЖИТИ',
+    example: { serbian: 'Тражим посао у Београду.', ru: 'Ищу работу в Белграде.' }
+  },
+  {
+    id: 185, serbian: 'наћи', translation: 'найти',
+    transcription: 'НА́ЋИ',
+    example: { serbian: 'Нисам могао да нађем кључеве.', ru: 'Не смог найти ключи.' }
+  },
+  {
+    id: 186, serbian: 'изгубити', translation: 'потерять',
+    transcription: 'ИЗГУ́БИТИ',
+    example: { serbian: 'Изгубио сам новчаник.', ru: 'Я потерял кошелёк.' }
+  },
+  {
+    id: 187, serbian: 'заборавити', translation: 'забыть',
+    transcription: 'ЗАБОРА́ВИТИ',
+    example: { serbian: 'Заборавио сам кључеве код куће.', ru: 'Забыл ключи дома.' }
+  },
+  {
+    id: 188, serbian: 'сетити се', translation: 'вспомнить',
+    transcription: 'СЕ́ТИТИ СЕ',
+    example: { serbian: 'Сетио сам се твог броја.', ru: 'Вспомнил твой номер.' }
+  },
+  {
+    id: 189, serbian: 'бројати', translation: 'считать (числа)',
+    transcription: 'БРО́ЈАТИ',
+    example: { serbian: 'Умем да бројим до сто.', ru: 'Умею считать до ста.' }
+  },
+  {
+    id: 190, serbian: 'возити', translation: 'водить машину / везти',
+    transcription: 'ВО́ЗИТИ',
+    example: { serbian: 'Возим ауто сваки дан.', ru: 'Каждый день езжу на машине.' }
+  },
+  {
+    id: 191, serbian: 'летети', translation: 'лететь',
+    transcription: 'ЛЕ́ТЕТИ',
+    example: { serbian: 'Летим за Москву следеће недеље.', ru: 'На следующей неделе лечу в Москву.' }
+  },
+  {
+    id: 192, serbian: 'пливати', translation: 'плавать',
+    transcription: 'ПЛИ́ВАТИ',
+    example: { serbian: 'Пливам у базену три пута недељно.', ru: 'Плаваю в бассейне три раза в неделю.' }
+  },
+  {
+    id: 193, serbian: 'трчати', translation: 'бежать / бегать',
+    transcription: 'ТР́ЧАТИ',
+    example: { serbian: 'Трчим у парку сваког јутра.', ru: 'Бегаю в парке каждое утро.' }
+  },
+  {
+    id: 194, serbian: 'шетати', translation: 'гулять / ходить пешком',
+    transcription: 'ШЕ́ТАТИ',
+    example: { serbian: 'Шетамо по Калемегдану.', ru: 'Гуляем по Калемегдану.' }
+  },
+  {
+    id: 195, serbian: 'певати', translation: 'петь',
+    transcription: 'ПЕ́ВАТИ',
+    example: { serbian: 'Певам под тушем.', ru: 'Пою под душем.' }
+  },
+  {
+    id: 196, serbian: 'играти', translation: 'играть / танцевать',
+    transcription: 'И́ГРАТИ',
+    example: { serbian: 'Играм фудбал са пријатељима.', ru: 'Играю в футбол с друзьями.' }
+  },
+  {
+    id: 197, serbian: 'смијати се', translation: 'смеяться',
+    transcription: 'СМИЈА́ТИ СЕ',
+    example: { serbian: 'Смејемо се на вицеве.', ru: 'Смеёмся над анекдотами.' }
+  },
+  {
+    id: 198, serbian: 'плакати', translation: 'плакать',
+    transcription: 'ПЛА́КАТИ',
+    example: { serbian: 'Не плачи, биће добро.', ru: 'Не плачь, всё будет хорошо.' }
+  },
+  {
+    id: 199, serbian: 'бринути', translation: 'беспокоиться / заботиться',
+    transcription: 'БРИ́НУТИ',
+    example: { serbian: 'Не брини, све ће бити у реду.', ru: 'Не беспокойся, всё будет в порядке.' }
+  },
+  {
+    id: 200, serbian: 'волети', translation: 'любить',
+    transcription: 'ВО́ЛЕТИ',
+    example: { serbian: 'Волим Србију и српску кухињу.', ru: 'Люблю Сербию и сербскую кухню.' }
+  },
+  {
+    id: 201, serbian: 'нов', translation: 'новый',
+    transcription: 'НОВ',
+    example: { serbian: 'Купио сам нов телефон.', ru: 'Купил новый телефон.' }
+  },
+  {
+    id: 202, serbian: 'стар', translation: 'старый',
+    transcription: 'СТАР',
+    example: { serbian: 'Стари град је веома леп.', ru: 'Старый город очень красив.' }
+  },
+  {
+    id: 203, serbian: 'велик', translation: 'большой',
+    transcription: 'ВЕ́ЛИК',
+    example: { serbian: 'Београд је велики град.', ru: 'Белград — большой город.' }
+  },
+  {
+    id: 204, serbian: 'мали', translation: 'маленький',
+    transcription: 'МА́ЛИ',
+    example: { serbian: 'Живим у малом стану.', ru: 'Живу в маленькой квартире.' }
+  },
+  {
+    id: 205, serbian: 'леп', translation: 'красивый',
+    transcription: 'ЛЕП',
+    example: { serbian: 'Какав леп дан!', ru: 'Какой красивый день!' }
+  },
+  {
+    id: 206, serbian: 'брз', translation: 'быстрый',
+    transcription: 'БРЗ',
+    example: { serbian: 'Воз је бржи од аутобуса.', ru: 'Поезд быстрее автобуса.' }
+  },
+  {
+    id: 207, serbian: 'спор', translation: 'медленный',
+    transcription: 'СПОР',
+    example: { serbian: 'Говорите спорије, молим вас.', ru: 'Говорите медленнее, пожалуйста.' }
+  },
+  {
+    id: 208, serbian: 'тежак', translation: 'тяжёлый / трудный',
+    transcription: 'ТЕ́ЖАК',
+    example: { serbian: 'Сербска граматика је тешка.', ru: 'Сербская грамматика трудная.' }
+  },
+  {
+    id: 209, serbian: 'лак', translation: 'лёгкий / простой',
+    transcription: 'ЛАК',
+    example: { serbian: 'Ово питање је лако.', ru: 'Этот вопрос лёгкий.' }
+  },
+  {
+    id: 210, serbian: 'скуп', translation: 'дорогой',
+    transcription: 'СКУП',
+    example: { serbian: 'Ово је превише скупо.', ru: 'Это слишком дорого.' }
+  },
+  {
+    id: 211, serbian: 'јефтин', translation: 'дешёвый',
+    transcription: 'ЈЕ́ФТИН',
+    example: { serbian: 'На пијаци је јефтиније.', ru: 'На рынке дешевле.' }
+  },
+  {
+    id: 212, serbian: 'хладан', translation: 'холодный',
+    transcription: 'ХЛА́ДАН',
+    example: { serbian: 'Зими је веома хладно у Србији.', ru: 'Зимой в Сербии очень холодно.' }
+  },
+  {
+    id: 213, serbian: 'врућ', translation: 'горячий / жаркий',
+    transcription: 'ВРУЋ',
+    example: { serbian: 'Лети је врућина у Београду.', ru: 'Летом в Белграде жара.' }
+  },
+  {
+    id: 214, serbian: 'свеж', translation: 'свежий',
+    transcription: 'СВЕЖ',
+    example: { serbian: 'Хоћу свеж хлеб из пекаре.', ru: 'Хочу свежий хлеб из пекарни.' }
+  },
+  {
+    id: 215, serbian: 'чист', translation: 'чистый',
+    transcription: 'ЧИСТ',
+    example: { serbian: 'Стан је чист и уредан.', ru: 'Квартира чистая и аккуратная.' }
+  },
+  {
+    id: 216, serbian: 'прљав', translation: 'грязный',
+    transcription: 'ПР́ЉАВ',
+    example: { serbian: 'Опери прљаво рубље.', ru: 'Постирай грязное бельё.' }
+  },
+  {
+    id: 217, serbian: 'тих', translation: 'тихий',
+    transcription: 'ТИХ',
+    example: { serbian: 'Станујем у тихом крају.', ru: 'Живу в тихом районе.' }
+  },
+  {
+    id: 218, serbian: 'гласан', translation: 'громкий',
+    transcription: 'ГЛА́САН',
+    example: { serbian: 'Музика је превише гласна.', ru: 'Музыка слишком громкая.' }
+  },
+  {
+    id: 219, serbian: 'паметан', translation: 'умный',
+    transcription: 'ПА́МЕТАН',
+    example: { serbian: 'Он је веома паметан.', ru: 'Он очень умный.' }
+  },
+  {
+    id: 220, serbian: 'срећан', translation: 'счастливый',
+    transcription: 'СРЕ́ЋАН',
+    example: { serbian: 'Срећан сам у Србији.', ru: 'Я счастлив в Сербии.' }
+  },
+  {
+    id: 221, serbian: 'тужан', translation: 'грустный / печальный',
+    transcription: 'ТУ́ЖАН',
+    example: { serbian: 'Зашто си тужан?', ru: 'Почему ты грустный?' }
+  },
+  {
+    id: 222, serbian: 'уморан', translation: 'уставший',
+    transcription: 'У́МОРАН',
+    example: { serbian: 'Уморан сам после посла.', ru: 'Устал после работы.' }
+  },
+  {
+    id: 223, serbian: 'здрав', translation: 'здоровый',
+    transcription: 'ЗДРАВ',
+    example: { serbian: 'Желим да будем здрав.', ru: 'Хочу быть здоровым.' }
+  },
+  {
+    id: 224, serbian: 'болестан', translation: 'больной',
+    transcription: 'БО́ЛЕСТАН',
+    example: { serbian: 'Болестан сам, не могу да дођем.', ru: 'Я болен, не могу прийти.' }
+  },
+  {
+    id: 225, serbian: 'висок', translation: 'высокий',
+    transcription: 'ВИ́СОК',
+    example: { serbian: 'Он је веома висок.', ru: 'Он очень высокий.' }
+  },
+  {
+    id: 226, serbian: 'низак', translation: 'низкий / невысокий',
+    transcription: 'НИ́ЗАК',
+    example: { serbian: 'Плафон је низак у старим зградама.', ru: 'В старых зданиях потолки низкие.' }
+  },
+  {
+    id: 227, serbian: 'млад', translation: 'молодой',
+    transcription: 'МЛАД',
+    example: { serbian: 'Белград привлачи младе људе.', ru: 'Белград привлекает молодых людей.' }
+  },
+  {
+    id: 228, serbian: 'стар', translation: 'пожилой / старый',
+    transcription: 'СТАР',
+    example: { serbian: 'Стари људи памте друге време.', ru: 'Пожилые люди помнят другое время.' }
+  },
+  {
+    id: 229, serbian: 'близу', translation: 'близко / рядом',
+    transcription: 'БЛИ́ЗУ',
+    example: { serbian: 'Станица је близу одавде.', ru: 'Станция близко отсюда.' }
+  },
+  {
+    id: 230, serbian: 'далеко', translation: 'далеко',
+    transcription: 'ДА́ЛЕКО',
+    example: { serbian: 'Аеродром је далеко од центра.', ru: 'Аэропорт далеко от центра.' }
+  },
+  {
+    id: 231, serbian: 'горе', translation: 'вверх / наверху',
+    transcription: 'ГО́РЕ',
+    example: { serbian: 'Идите горе на трећи спрат.', ru: 'Идите наверх на третий этаж.' }
+  },
+  {
+    id: 232, serbian: 'доле', translation: 'вниз / внизу',
+    transcription: 'ДО́ЛЕ',
+    example: { serbian: 'Чекајте ме доле код улаза.', ru: 'Ждите меня внизу у входа.' }
+  },
+  {
+    id: 233, serbian: 'лево', translation: 'налево / слева',
+    transcription: 'ЛЕ́ВО',
+    example: { serbian: 'Скрените лево на семафору.', ru: 'На светофоре поверните налево.' }
+  },
+  {
+    id: 234, serbian: 'десно', translation: 'направо / справа',
+    transcription: 'ДЕ́СНО',
+    example: { serbian: 'Продавница је десно од банке.', ru: 'Магазин справа от банка.' }
+  },
+  {
+    id: 235, serbian: 'право', translation: 'прямо',
+    transcription: 'ПРА́ВО',
+    example: { serbian: 'Идите право до краја улице.', ru: 'Идите прямо до конца улицы.' }
+  },
+  {
+    id: 236, serbian: 'следећи', translation: 'следующий',
+    transcription: 'СЛЕ́ДЕЋИ',
+    example: { serbian: 'Следећа станица је Славија.', ru: 'Следующая станция — Славия.' }
+  },
+  {
+    id: 237, serbian: 'прошли', translation: 'прошлый / прошедший',
+    transcription: 'ПРО́ШЛИ',
+    example: { serbian: 'Прошле недеље смо ишли у планину.', ru: 'На прошлой неделе ходили в горы.' }
+  },
+  {
+    id: 238, serbian: 'сваки', translation: 'каждый',
+    transcription: 'СВА́КИ',
+    example: { serbian: 'Сваки дан учим нове речи.', ru: 'Каждый день учу новые слова.' }
+  },
+  {
+    id: 239, serbian: 'неки', translation: 'некоторый / какой-то',
+    transcription: 'НЕ́КИ',
+    example: { serbian: 'Неки људи не говоре енглески.', ru: 'Некоторые люди не говорят по-английски.' }
+  },
+  {
+    id: 240, serbian: 'сви', translation: 'все',
+    transcription: 'СВИ',
+    example: { serbian: 'Сви смо добро, хвала.', ru: 'Мы все в порядке, спасибо.' }
+  },
+  {
+    id: 241, serbian: 'стан', translation: 'квартира',
+    transcription: 'СТАН',
+    example: { serbian: 'Изнајмљујем стан у Новом Саду.', ru: 'Снимаю квартиру в Нови-Саде.' }
+  },
+  {
+    id: 242, serbian: 'кућа', translation: 'дом / дача',
+    transcription: 'КУ́ЋА',
+    example: { serbian: 'Имају кућу ван Београда.', ru: 'У них есть дом за городом.' }
+  },
+  {
+    id: 243, serbian: 'улица', translation: 'улица',
+    transcription: 'У́ЛИЦА',
+    example: { serbian: 'Живим на тихој улици.', ru: 'Живу на тихой улице.' }
+  },
+  {
+    id: 244, serbian: 'трг', translation: 'площадь',
+    transcription: 'ТРГ',
+    example: { serbian: 'Трг Републике је у центру.', ru: 'Площадь Республики — в центре.' }
+  },
+  {
+    id: 245, serbian: 'мост', translation: 'мост',
+    transcription: 'МОСТ',
+    example: { serbian: 'Газела је највећи мост у Београду.', ru: 'Газела — самый большой мост в Белграде.' }
+  },
+  {
+    id: 246, serbian: 'парк', translation: 'парк',
+    transcription: 'ПАРК',
+    example: { serbian: 'Шетамо у парку са децом.', ru: 'Гуляем в парке с детьми.' }
+  },
+  {
+    id: 247, serbian: 'школа', translation: 'школа',
+    transcription: 'ШКО́ЛА',
+    example: { serbian: 'Дете иде у основну школу.', ru: 'Ребёнок ходит в начальную школу.' }
+  },
+  {
+    id: 248, serbian: 'апотека', translation: 'аптека',
+    transcription: 'АПО́ТЕКА',
+    example: { serbian: 'Где је најближа апотека?', ru: 'Где ближайшая аптека?' }
+  },
+  {
+    id: 249, serbian: 'банка', translation: 'банк',
+    transcription: 'БА́НКА',
+    example: { serbian: 'Морам да идем у банку.', ru: 'Мне нужно в банк.' }
+  },
+  {
+    id: 250, serbian: 'пошта', translation: 'почта',
+    transcription: 'ПО́ШТА',
+    example: { serbian: 'Пошта ради до пет поподне.', ru: 'Почта работает до пяти вечера.' }
+  },
+  {
+    id: 251, serbian: 'хотел', translation: 'отель',
+    transcription: 'ХО́ТЕЛ',
+    example: { serbian: 'Одсједам у хотелу у центру.', ru: 'Останавливаюсь в отеле в центре.' }
+  },
+  {
+    id: 252, serbian: 'продавница', translation: 'магазин',
+    transcription: 'ПРОДА́ВНИЦА',
+    example: { serbian: 'Продавница је затворена недељом.', ru: 'Магазин закрыт по воскресеньям.' }
+  },
+  {
+    id: 253, serbian: 'пијаца', translation: 'рынок / базар',
+    transcription: 'ПИ́ЈАЦА',
+    example: { serbian: 'Куповина на пијаци је јефтинија.', ru: 'Покупки на рынке дешевле.' }
+  },
+  {
+    id: 254, serbian: 'библиотека', translation: 'библиотека',
+    transcription: 'БИБЛИОТЕ́КА',
+    example: { serbian: 'Народна библиотека је у центру.', ru: 'Национальная библиотека в центре.' }
+  },
+  {
+    id: 255, serbian: 'биоскоп', translation: 'кинотеатр',
+    transcription: 'БИЈОСКО́П',
+    example: { serbian: 'Идемо у биоскоп вечерас.', ru: 'Сегодня вечером идём в кино.' }
+  },
+  {
+    id: 256, serbian: 'позориште', translation: 'театр',
+    transcription: 'ПОЗО́РИШТЕ',
+    example: { serbian: 'Народно позориште нуди одличне представе.', ru: 'Национальный театр предлагает отличные спектакли.' }
+  },
+  {
+    id: 257, serbian: 'музеј', translation: 'музей',
+    transcription: 'МУ́ЗЕЈ',
+    example: { serbian: 'Посетили смо Народни музеј.', ru: 'Посетили Национальный музей.' }
+  },
+  {
+    id: 258, serbian: 'плажа', translation: 'пляж',
+    transcription: 'ПЛА́ЖА',
+    example: { serbian: 'Ада Циганлија је најпознатија плажа у Београду.', ru: 'Ада Циганлия — самый известный пляж в Белграде.' }
+  },
+  {
+    id: 259, serbian: 'шума', translation: 'лес',
+    transcription: 'ШУ́МА',
+    example: { serbian: 'Авала је брдо са шумом.', ru: 'Авала — гора с лесом.' }
+  },
+  {
+    id: 260, serbian: 'река', translation: 'река',
+    transcription: 'РЕ́КА',
+    example: { serbian: 'Сава и Дунав теку кроз Београд.', ru: 'Сава и Дунай текут через Белград.' }
+  },
+  {
+    id: 261, serbian: 'киша', translation: 'дождь',
+    transcription: 'КИ́ША',
+    example: { serbian: 'Данас пада киша.', ru: 'Сегодня идёт дождь.' }
+  },
+  {
+    id: 262, serbian: 'снег', translation: 'снег',
+    transcription: 'СНЕГ',
+    example: { serbian: 'У јануару обично пада снег.', ru: 'В январе обычно идёт снег.' }
+  },
+  {
+    id: 263, serbian: 'ветар', translation: 'ветер',
+    transcription: 'ВЕ́ТАР',
+    example: { serbian: 'Данас је јак ветар.', ru: 'Сегодня сильный ветер.' }
+  },
+  {
+    id: 264, serbian: 'сунце', translation: 'солнце',
+    transcription: 'СУ́НЦЕ',
+    example: { serbian: 'Данас сија сунце.', ru: 'Сегодня светит солнце.' }
+  },
+  {
+    id: 265, serbian: 'облак', translation: 'облако',
+    transcription: 'О́БЛАК',
+    example: { serbian: 'На небу је много облака.', ru: 'На небе много облаков.' }
+  },
+  {
+    id: 266, serbian: 'земља', translation: 'страна / земля',
+    transcription: 'ЗЕ́МЉА',
+    example: { serbian: 'Србија је лепа земља.', ru: 'Сербия — красивая страна.' }
+  },
+  {
+    id: 267, serbian: 'небо', translation: 'небо',
+    transcription: 'НЕ́БО',
+    example: { serbian: 'Данас је небо плаво.', ru: 'Сегодня небо голубое.' }
+  },
+  {
+    id: 268, serbian: 'море', translation: 'море',
+    transcription: 'МО́РЕ',
+    example: { serbian: 'Волим да идем на море лети.', ru: 'Люблю ездить на море летом.' }
+  },
+  {
+    id: 269, serbian: 'планинa', translation: 'гора',
+    transcription: 'ПЛА́НИНА',
+    example: { serbian: 'Копаоник је највећа планинa у Србији.', ru: 'Копаоник — самая большая гора в Сербии.' }
+  },
+  {
+    id: 270, serbian: 'поље', translation: 'поле',
+    transcription: 'ПО́ЉЕ',
+    example: { serbian: 'Возили смо кроз зелена поља.', ru: 'Ехали через зелёные поля.' }
+  },
+  {
+    id: 271, serbian: 'рачун', translation: 'счёт / счёт в банке',
+    transcription: 'РА́ЧУН',
+    example: { serbian: 'Донесите рачун, молим.', ru: 'Принесите счёт, пожалуйста.' }
+  },
+  {
+    id: 272, serbian: 'порез', translation: 'налог',
+    transcription: 'ПО́РЕЗ',
+    example: { serbian: 'Плаћам порез на приход.', ru: 'Плачу налог на доход.' }
+  },
+  {
+    id: 273, serbian: 'зарада', translation: 'заработок / зарплата',
+    transcription: 'ЗА́РАДА',
+    example: { serbian: 'Зарада у IT је добра.', ru: 'Заработок в IT хороший.' }
+  },
+  {
+    id: 274, serbian: 'фирма', translation: 'фирма / компания',
+    transcription: 'ФИ́РМА',
+    example: { serbian: 'Радим у страној фирми.', ru: 'Работаю в иностранной компании.' }
+  },
+  {
+    id: 275, serbian: 'уговор', translation: 'договор / контракт',
+    transcription: 'У́ГОВОР',
+    example: { serbian: 'Потписали смо уговор о раду.', ru: 'Подписали трудовой договор.' }
+  },
+  {
+    id: 276, serbian: 'право', translation: 'право / закон',
+    transcription: 'ПРА́ВО',
+    example: { serbian: 'Имам право на боравак.', ru: 'Я имею право на вид на жительство.' }
+  },
+  {
+    id: 277, serbian: 'закон', translation: 'закон',
+    transcription: 'ЗА́КОН',
+    example: { serbian: 'Морамо да поштујемо законе.', ru: 'Мы должны соблюдать законы.' }
+  },
+  {
+    id: 278, serbian: 'влада', translation: 'правительство',
+    transcription: 'ВЛА́ДА',
+    example: { serbian: 'Влада је донела нову одлуку.', ru: 'Правительство приняло новое решение.' }
+  },
+  {
+    id: 279, serbian: 'грађанин', translation: 'гражданин',
+    transcription: 'ГРА́ЂАНИН',
+    example: { serbian: 'Страни грађани морају да имају визу.', ru: 'Иностранные граждане должны иметь визу.' }
+  },
+  {
+    id: 280, serbian: 'странац', translation: 'иностранец',
+    transcription: 'СТРА́НАЦ',
+    example: { serbian: 'Многи странци живе у Београду.', ru: 'Много иностранцев живёт в Белграде.' }
+  },
+  {
+    id: 281, serbian: 'суседи', translation: 'соседи',
+    transcription: 'СУ́СЕДИ',
+    example: { serbian: 'Суседи су веома пријатни.', ru: 'Соседи очень приятные.' }
+  },
+  {
+    id: 282, serbian: 'пријатељство', translation: 'дружба',
+    transcription: 'ПРИЈАТЕЉСТВО',
+    example: { serbian: 'Пријатељство је важно у животу.', ru: 'Дружба важна в жизни.' }
+  },
+  {
+    id: 283, serbian: 'слобода', translation: 'свобода',
+    transcription: 'СЛОБО́ДА',
+    example: { serbian: 'Свобода је највредније.', ru: 'Свобода — самое ценное.' }
+  },
+  {
+    id: 284, serbian: 'срећа', translation: 'счастье / удача',
+    transcription: 'СРЕ́ЋА',
+    example: { serbian: 'Желим ти пуно среће!', ru: 'Желаю тебе много счастья!' }
+  },
+  {
+    id: 285, serbian: 'здравље', translation: 'здоровье',
+    transcription: 'ЗДРА́ВЉЕ',
+    example: { serbian: 'Здравље је најважније.', ru: 'Здоровье — самое главное.' }
+  },
+  {
+    id: 286, serbian: 'памет', translation: 'ум / разум',
+    transcription: 'ПА́МЕТ',
+    example: { serbian: 'Употреби памет!', ru: 'Используй голову!' }
+  },
+  {
+    id: 287, serbian: 'снага', translation: 'сила',
+    transcription: 'СНА́ГА',
+    example: { serbian: 'Треба снага да се промени живот.', ru: 'Нужна сила чтобы изменить жизнь.' }
+  },
+  {
+    id: 288, serbian: 'успех', translation: 'успех',
+    transcription: 'У́СПЕХ',
+    example: { serbian: 'Желим ти успех у учењу.', ru: 'Желаю тебе успеха в учёбе.' }
+  },
+  {
+    id: 289, serbian: 'искуство', translation: 'опыт',
+    transcription: 'ИСЌУСТВО',
+    example: { serbian: 'Живот у Србији је ново искуство.', ru: 'Жизнь в Сербии — новый опыт.' }
+  },
+  {
+    id: 290, serbian: 'сећања', translation: 'воспоминания',
+    transcription: 'СЕ́ЋАЊА',
+    example: { serbian: 'Имам лепа сећања из Сербије.', ru: 'У меня есть прекрасные воспоминания из Сербии.' }
+  },
+  {
+    id: 291, serbian: 'будућност', translation: 'будущее',
+    transcription: 'БУ́ДУЋНОСТ',
+    example: { serbian: 'Планирам будућност у Србији.', ru: 'Планирую будущее в Сербии.' }
+  },
+  {
+    id: 292, serbian: 'прошлост', translation: 'прошлое',
+    transcription: 'ПРО́ШЛОСТ',
+    example: { serbian: 'Не гледам уназад у прошлост.', ru: 'Не смотрю назад в прошлое.' }
+  },
+  {
+    id: 293, serbian: 'садашњост', translation: 'настоящее (время)',
+    transcription: 'САДА́ШЊОСТ',
+    example: { serbian: 'Живим у садашњости.', ru: 'Живу настоящим.' }
+  },
+  {
+    id: 294, serbian: 'промена', translation: 'изменение / перемена',
+    transcription: 'ПРО́МЕНА',
+    example: { serbian: 'Промена је увек добра.', ru: 'Перемены — всегда хорошо.' }
+  },
+  {
+    id: 295, serbian: 'циљ', translation: 'цель',
+    transcription: 'ЦИЉ',
+    example: { serbian: 'Мој циљ је да научим српски.', ru: 'Моя цель — выучить сербский.' }
+  },
+  {
+    id: 296, serbian: 'план', translation: 'план',
+    transcription: 'ПЛАН',
+    example: { serbian: 'Имам план за наредну годину.', ru: 'У меня есть план на следующий год.' }
+  },
+  {
+    id: 297, serbian: 'одлука', translation: 'решение / решение принять',
+    transcription: 'О́ДЛУКА',
+    example: { serbian: 'Донео сам одлуку да останем у Србији.', ru: 'Принял решение остаться в Сербии.' }
+  },
+  {
+    id: 298, serbian: 'прилика', translation: 'возможность / случай',
+    transcription: 'ПРИ́ЛИКА',
+    example: { serbian: 'Ово је добра прилика за мене.', ru: 'Это хорошая возможность для меня.' }
+  },
+  {
+    id: 299, serbian: 'веза', translation: 'связь / отношения',
+    transcription: 'ВЕ́ЗА',
+    example: { serbian: 'Имамо добру везу са комшијама.', ru: 'У нас хорошие отношения с соседями.' }
+  },
+  {
+    id: 300, serbian: 'наде', translation: 'надежда',
+    transcription: 'НА́ДА',
+    example: { serbian: 'Имам наду да ће бити боље.', ru: 'Есть надежда, что будет лучше.' }
   }
 ];
 
@@ -1647,6 +2397,614 @@ const SCENARIOS = [
         ],
         correctFeedback: '«Задржите кусур» = «оставьте сдачу (себе)» — так оставляют чаевые! «Задржати» = удержать, оставить. «Кусур» = сдача. Очень удобная и разговорная фраза!',
         wrongFeedback: 'Скажите «Ево хиљаду и петсто. Задржите кусур» — это «вот 1500, сдачу оставьте себе».'
+      }
+    ]
+  },
+  {
+    id: 'pharmacy',
+    title: '💊 В аптеке',
+    icon: '💊',
+    description: 'Покупаем лекарства в аптеке (апотека)',
+    steps: [
+      {
+        situation: 'Вы пришли в аптеку. Вам нужно обезболивающее.',
+        speaker: 'Фармацеуткиња — Фармацевт (ж)',
+        serbian: 'Добар дан! Чиме могу да вам помогнем?',
+        transcription: 'До́бар дан! Чи́ме мо́гу да вам по́могнем?',
+        translation: 'Добрый день! Чем могу помочь?',
+        question: 'Попросите обезболивающее.',
+        options: [
+          { text: 'Имате ли нешто за бол?', transcription: 'И́мате ли не́што за бо́л?', translation: 'Есть ли у вас что-нибудь от боли?', correct: true },
+          { text: 'Хоћу антибиотик.', transcription: 'Хо́ћу антибио́тик.', translation: 'Хочу антибиотик.', correct: false },
+          { text: 'Где је лекар?', transcription: 'Где је ле́кар?', translation: 'Где врач?', correct: false },
+          { text: 'Колико коштате?', transcription: 'Ко́лико ко́штате?', translation: 'Сколько вы стоите?', correct: false }
+        ],
+        correctFeedback: '«Имате ли нешто за бол?» = «есть ли у вас что-нибудь от боли?» — универсальный вопрос в аптеке. «Нешто за» + симптом — отличный шаблон: «нешто за кашаљ» (от кашля), «нешто за температуру» (от температуры).',
+        wrongFeedback: 'Скажите «Имате ли нешто за бол?» — это «есть ли у вас что-нибудь от боли?»'
+      },
+      {
+        situation: 'Фармацевт спрашивает, есть ли у вас рецепт.',
+        speaker: 'Фармацеуткиња — Фармацевт (ж)',
+        serbian: 'Да ли имате рецепт?',
+        transcription: 'Да ли и́мате ре́цепт?',
+        translation: 'Есть ли у вас рецепт?',
+        question: 'Скажите, что у вас нет рецепта, но болит голова.',
+        options: [
+          { text: 'Немам рецепт, али боли ме глава.', transcription: 'Не́мам ре́цепт, а́ли бо́ли ме гла́ва.', translation: 'У меня нет рецепта, но у меня болит голова.', correct: true },
+          { text: 'Имам рецепт, ево га.', transcription: 'И́мам ре́цепт, е́во га.', translation: 'У меня есть рецепт, вот он.', correct: false },
+          { text: 'Не знам.', transcription: 'Не зна́м.', translation: 'Не знаю.', correct: false },
+          { text: 'Хоћу сируп.', transcription: 'Хо́ћу си́руп.', translation: 'Хочу сироп.', correct: false }
+        ],
+        correctFeedback: '«Боли ме глава» = «у меня болит голова» — важная конструкция! «Боли ме» + часть тела. «Боли ме стомак» (живот), «боли ме грло» (горло), «боле ме леђа» (спина).',
+        wrongFeedback: 'Скажите «Немам рецепт, али боли ме глава» — это «нет рецепта, но у меня болит голова».'
+      },
+      {
+        situation: 'Фармацевт предлагает препарат и спрашивает об аллергиях.',
+        speaker: 'Фармацеуткиња — Фармацевт (ж)',
+        serbian: 'Да ли сте алергични на неке лекове?',
+        transcription: 'Да ли сте алерги́чни на не́ке ле́кове?',
+        translation: 'Есть ли у вас аллергия на какие-то лекарства?',
+        question: 'Скажите, что у вас нет аллергии на лекарства.',
+        options: [
+          { text: 'Немам алергије на лекове.', transcription: 'Не́мам але́ргије на ле́кове.', translation: 'У меня нет аллергии на лекарства.', correct: true },
+          { text: 'Да, алергичан/на сам на пеницилин.', transcription: 'Да, алерги́чан/на сам на пени́цилин.', translation: 'Да, у меня аллергия на пенициллин.', correct: false },
+          { text: 'Не знам шта је пеницилин.', transcription: 'Не зна́м шта је пени́цилин.', translation: 'Не знаю что такое пенициллин.', correct: false },
+          { text: 'Хоћу другог лекара.', transcription: 'Хо́ћу дру́гог ле́кара.', translation: 'Хочу другого врача.', correct: false }
+        ],
+        correctFeedback: '«Немам алергије на лекове» = «нет аллергии на лекарства». «Алергија» = аллергия. Если аллергия есть: «Алергичан/на сам на пеницилин» — обязательно сообщите об этом фармацевту или врачу!',
+        wrongFeedback: 'Правильно: «Немам алергије на лекове» — это «у меня нет аллергии на лекарства».'
+      },
+      {
+        situation: 'Фармацевт объяснил дозировку. Спросите, сколько раз в день принимать.',
+        speaker: 'Вы',
+        serbian: 'Колико пута дневно треба да узмем?',
+        transcription: 'Ко́лико пу́та дне́вно тре́ба да у́змем?',
+        translation: 'Сколько раз в день нужно принимать?',
+        question: 'Фармацевт ответил: «Три пута дневно, после јела». Что это значит?',
+        options: [
+          { text: 'Три раза в день, после еды.', transcription: '', translation: '', correct: true },
+          { text: 'Три таблетки за раз.', transcription: '', translation: '', correct: false },
+          { text: 'Каждые три часа.', transcription: '', translation: '', correct: false },
+          { text: 'Три дня подряд.', transcription: '', translation: '', correct: false }
+        ],
+        correctFeedback: '«Три пута дневно» = «три раза в день», «после јела» = «после еды». Запомните: «пут» = раз (счёт), «пута» = раза. «Два пута» = дважды, «три пута» = трижды. «Јело» = еда/блюдо.',
+        wrongFeedback: '«Три пута дневно, после јела» = «три раза в день, после еды». «Пута» = раза, «дневно» = в день, «после јела» = после еды.'
+      },
+      {
+        situation: 'Платите за лекарства.',
+        speaker: 'Фармацеуткиња — Фармацевт (ж)',
+        serbian: 'То ће бити шестсто динара.',
+        transcription: 'То ће би́ти ше́стсто ди́нара.',
+        translation: 'Это будет 600 динаров.',
+        question: 'Спросите, можно ли заплатить картой.',
+        options: [
+          { text: 'Да ли примате картице?', transcription: 'Да ли при́мате карти́це?', translation: 'Принимаете ли карты?', correct: true },
+          { text: 'Можете ли да снизите цену?', transcription: 'Мо́жете ли да сни́зите це́ну?', translation: 'Можете ли снизить цену?', correct: false },
+          { text: 'Нисам донео новац.', transcription: 'Ни́сам до́нео но́вац.', translation: 'Не взял деньги.', correct: false },
+          { text: 'То је превише скупо.', transcription: 'То је пре́више ску́по.', translation: 'Это слишком дорого.', correct: false }
+        ],
+        correctFeedback: '«Да ли примате картице?» = «принимаете ли карты?» — важный вопрос в Сербии! «Примате» от «примити» = принять. «Картица» = банковская карта. Многие малые аптеки принимают только наличные («готовина»).',
+        wrongFeedback: 'Скажите «Да ли примате картице?» — это «принимаете ли карты?»'
+      }
+    ]
+  },
+  {
+    id: 'market',
+    title: '🛒 На пијаци',
+    icon: '🛒',
+    description: 'Делаем покупки на сербском рынке',
+    steps: [
+      {
+        situation: 'Вы пришли на пијацу (рынок). Хотите купить помидоры.',
+        speaker: 'Продавац — Продавец',
+        serbian: 'Добар дан! Шта желите?',
+        transcription: 'До́бар дан! Шта же́лите?',
+        translation: 'Добрый день! Что желаете?',
+        question: 'Спросите, сколько стоит килограмм помидоров.',
+        options: [
+          { text: 'Колико кошта кило парадајза?', transcription: 'Ко́лико ко́шта ки́ло парада́јза?', translation: 'Сколько стоит кило помидоров?', correct: true },
+          { text: 'Имате ли парадајз?', transcription: 'И́мате ли парада́јз?', translation: 'Есть ли у вас помидоры?', correct: false },
+          { text: 'Хоћу воће.', transcription: 'Хо́ћу во́ће.', translation: 'Хочу фрукты.', correct: false },
+          { text: 'Где је каса?', transcription: 'Где је ка́са?', translation: 'Где касса?', correct: false }
+        ],
+        correctFeedback: '«Колико кошта кило парадајза?» = «сколько стоит кило помидоров?». «Парадајз» = помидор — слово из венгерского через австрийское влияние. «Кошта» = стоит, «кило» = килограмм. Очень практичная фраза на рынке!',
+        wrongFeedback: 'Спросите «Колико кошта кило парадајза?» — это «сколько стоит кило помидоров?»'
+      },
+      {
+        situation: 'Продавец называет цену. Вы хотите 2 кг помидоров и 1 кг яблок.',
+        speaker: 'Продавац — Продавец',
+        serbian: 'Парадајз је сто динара кило, а јабуке осамдесет.',
+        transcription: 'Парада́јз је сто ди́нара ки́ло, а ја́буке осамде́сет.',
+        translation: 'Помидоры 100 динаров за кило, а яблоки — 80.',
+        question: 'Закажите 2 кг помидоров и 1 кг яблок.',
+        options: [
+          { text: 'Дајте ми два кила парадајза и кило јабука.', transcription: 'Да́јте ми два ки́ла парада́јза и ки́ло ја́бука.', translation: 'Дайте мне два кило помидоров и кило яблок.', correct: true },
+          { text: 'Хоћу само парадајз.', transcription: 'Хо́ћу са́мо парада́јз.', translation: 'Хочу только помидоры.', correct: false },
+          { text: 'То је превише.', transcription: 'То је пре́више.', translation: 'Это слишком много.', correct: false },
+          { text: 'Имате ли јефтиније?', transcription: 'И́мате ли јефти́није?', translation: 'Есть ли дешевле?', correct: false }
+        ],
+        correctFeedback: '«Дајте ми два кила парадајза» — отличная разговорная фраза. «Дајте ми» = «дайте мне» (магическое начало для любого заказа). «Два кила» = два кило (генитив мн.ч. «кило»→«кила»). «Јабука» = яблоко, «јабука» (ед.)→«јабука» (мн. генитив).',
+        wrongFeedback: 'Правильно: «Дајте ми два кила парадајза и кило јабука» — два кило помидоров и кило яблок.'
+      },
+      {
+        situation: 'Вы хотите поторговаться. На рынке это нормально!',
+        speaker: 'Продавац — Продавец',
+        serbian: 'Укупно двеста осамдесет динара.',
+        transcription: 'Уку́пно две́ста осамде́сет ди́нара.',
+        translation: 'Итого 280 динаров.',
+        question: 'Попросите скидку или уступку.',
+        options: [
+          { text: 'Можете ли мало да попустите?', transcription: 'Мо́жете ли ма́ло да попу́стите?', translation: 'Можете немного уступить?', correct: true },
+          { text: 'Платићу тачно.', transcription: 'Пла́тићу та́чно.', translation: 'Заплачу точно.', correct: false },
+          { text: 'Нема проблема.', transcription: 'Не́ма про́блема.', translation: 'Нет проблем.', correct: false },
+          { text: 'Где је АТМ?', transcription: 'Где је АТМ?', translation: 'Где банкомат?', correct: false }
+        ],
+        correctFeedback: '«Можете ли мало да попустите?» = «можете немного уступить?». «Попуст» = скидка, «попустити» = уступить/дать скидку. На пијаци торговаться — нормально, особенно если берёте много. Попробуйте!',
+        wrongFeedback: 'Скажите «Можете ли мало да попустите?» — это вежливая просьба о скидке.'
+      }
+    ]
+  },
+  {
+    id: 'bank',
+    title: '🏦 У банци',
+    icon: '🏦',
+    description: 'Открываем счёт и снимаем деньги в банке',
+    steps: [
+      {
+        situation: 'Вы пришли в банк открыть счёт. Сотрудник встречает вас.',
+        speaker: 'Службеник банке — Сотрудник банка',
+        serbian: 'Добро јутро! Чиме могу да вам помогнем?',
+        transcription: 'До́бро ју́тро! Чи́ме мо́гу да вам по́могнем?',
+        translation: 'Доброе утро! Чем могу помочь?',
+        question: 'Скажите, что хотите открыть счёт.',
+        options: [
+          { text: 'Желим да отворим рачун.', transcription: 'Же́лим да отво́рим ра́чун.', translation: 'Хочу открыть счёт.', correct: true },
+          { text: 'Хоћу кредит.', transcription: 'Хо́ћу кре́дит.', translation: 'Хочу кредит.', correct: false },
+          { text: 'Где је шалтер?', transcription: 'Где је ша́лтер?', translation: 'Где касса?', correct: false },
+          { text: 'Желим да затворим рачун.', transcription: 'Же́лим да затво́рим ра́чун.', translation: 'Хочу закрыть счёт.', correct: false }
+        ],
+        correctFeedback: '«Желим да отворим рачун» = «хочу открыть счёт». «Рачун» в Сербии = и «счёт» (банковский), и «счёт» (в ресторане/магазине). «Отворим» = открыть (форма глагола «отворити»).',
+        wrongFeedback: 'Скажите «Желим да отворим рачун» — это «хочу открыть счёт».'
+      },
+      {
+        situation: 'Сотрудник просит документы.',
+        speaker: 'Службеник банке — Сотрудник банка',
+        serbian: 'Потребан нам је ваш пасош и боравак.',
+        transcription: 'Потре́бан нам је ваш па́сош и бо́равак.',
+        translation: 'Нам нужен ваш паспорт и вид на жительство.',
+        question: 'Скажите, что у вас есть оба документа.',
+        options: [
+          { text: 'Да, имам оба документа.', transcription: 'Да, и́мам о́ба до́кумента.', translation: 'Да, у меня оба документа.', correct: true },
+          { text: 'Немам боравак.', transcription: 'Не́мам бо́равак.', translation: 'У меня нет боравака.', correct: false },
+          { text: 'Само пасош.', transcription: 'Са́мо па́сош.', translation: 'Только паспорт.', correct: false },
+          { text: 'Зашто?', transcription: 'За́што?', translation: 'Почему?', correct: false }
+        ],
+        correctFeedback: '«Имам оба документа» = «у меня оба документа». «Оба» = оба (для мужского/среднего рода). Для женского рода — «обе». Банки в Сербии для иностранцев обычно требуют паспорт + действующий боравак.',
+        wrongFeedback: 'Скажите «Да, имам оба документа» — это «да, у меня оба документа».'
+      },
+      {
+        situation: 'Вам нужно снять деньги в банкомате. Экран на сербском.',
+        speaker: 'Банкомат — ATM',
+        serbian: 'Унесите пин код.',
+        transcription: 'У́несите пин код.',
+        translation: 'Введите PIN-код.',
+        question: 'Что написано на следующем экране: «Одаберите износ»?',
+        options: [
+          { text: 'Выберите сумму.', transcription: '', translation: '', correct: true },
+          { text: 'Введите сумму.', transcription: '', translation: '', correct: false },
+          { text: 'Подтвердите операцию.', transcription: '', translation: '', correct: false },
+          { text: 'Снимите карту.', transcription: '', translation: '', correct: false }
+        ],
+        correctFeedback: '«Одаберите» = «выберите» (от «одабрати» = выбрать). «Износ» = сумма (денег). На банкоматах в Сербии часто доступен английский — нажмите «English» если нужно. Динары можно снять в «Банкомат», евро — реже.',
+        wrongFeedback: '«Одаберите» = «выберите», «износ» = «сумма». Вместе: «Выберите сумму».'
+      },
+      {
+        situation: 'Вы хотите оформить дебетовую карту.',
+        speaker: 'Службеник банке — Сотрудник банка',
+        serbian: 'Да ли желите Visa или Mastercard?',
+        transcription: 'Да ли же́лите Visa или Mastercard?',
+        translation: 'Вы хотите Visa или Mastercard?',
+        question: 'Попросите Mastercard и уточните сроки изготовления.',
+        options: [
+          { text: 'Mastercard, молим. Колико дуго траје израда картице?', transcription: 'Mastercard, мо́лим. Ко́лико ду́го тра́је изра́да карти́це?', translation: 'Mastercard, пожалуйста. Сколько длится изготовление карты?', correct: true },
+          { text: 'Visa, хвала.', transcription: 'Visa, хва́ла.', translation: 'Visa, спасибо.', correct: false },
+          { text: 'Не желим картицу.', transcription: 'Не же́лим карти́цу.', translation: 'Не хочу карту.', correct: false },
+          { text: 'Немам новца.', transcription: 'Не́мам но́вца.', translation: 'У меня нет денег.', correct: false }
+        ],
+        correctFeedback: '«Колико дуго траје израда картице?» = «сколько длится изготовление карты?». «Дуго» = долго/долго ли. «Траје» = длится/продолжается. «Израда» = изготовление. Карту обычно выдают через 5–10 рабочих дней.',
+        wrongFeedback: 'Правильно: «Mastercard, молим. Колико дуго траје израда картице?»'
+      }
+    ]
+  },
+  {
+    id: 'doctor',
+    title: '🏥 Код лекара',
+    icon: '🏥',
+    description: 'Визит к врачу в Сербии',
+    steps: [
+      {
+        situation: 'Вы пришли в поликлинику. Регистратор спрашивает цель визита.',
+        speaker: 'Медицинска сестра — Медсестра',
+        serbian: 'Добар дан! Да ли имате заказан термин?',
+        transcription: 'До́бар дан! Да ли и́мате зака́зан те́рмин?',
+        translation: 'Добрый день! Есть ли у вас запись на приём?',
+        question: 'Скажите, что у вас нет записи, но вам очень плохо.',
+        options: [
+          { text: 'Немам термин, али осећам се веома лоше.', transcription: 'Не́мам те́рмин, а́ли осе́ћам се ве́ома ло́ше.', translation: 'У меня нет записи, но мне очень плохо.', correct: true },
+          { text: 'Имам термин у два.', transcription: 'И́мам те́рмин у два.', translation: 'У меня запись в два часа.', correct: false },
+          { text: 'Хоћу лекара хитно.', transcription: 'Хо́ћу ле́кара хи́тно.', translation: 'Хочу врача срочно.', correct: false },
+          { text: 'Да ли примате осигурање?', transcription: 'Да ли при́мате оси́гурање?', translation: 'Принимаете ли страховку?', correct: false }
+        ],
+        correctFeedback: '«Осећам се веома лоше» = «мне очень плохо» (дословно: «чувствую себя очень плохо»). «Осећам се» = «чувствую себя», «лоше» = «плохо», «веома» = «очень». «Термин» = запись/назначение — запомните это слово.',
+        wrongFeedback: 'Скажите «Немам термин, али осећам се веома лоше» — нет записи, но мне очень плохо.'
+      },
+      {
+        situation: 'Врач осматривает вас и спрашивает о симптомах.',
+        speaker: 'Лекар — Врач',
+        serbian: 'Где вас боли? Колико дуго?',
+        transcription: 'Где вас бо́ли? Ко́лико ду́го?',
+        translation: 'Где болит? Как давно?',
+        question: 'Скажите, что болит горло уже два дня.',
+        options: [
+          { text: 'Боли ме грло већ два дана.', transcription: 'Бо́ли ме гр́ло ве́ћ два да́на.', translation: 'У меня болит горло уже два дня.', correct: true },
+          { text: 'Боли ме глава.', transcription: 'Бо́ли ме гла́ва.', translation: 'У меня болит голова.', correct: false },
+          { text: 'Имам температуру.', transcription: 'И́мам темпера́туру.', translation: 'У меня температура.', correct: false },
+          { text: 'Не знам где ме боли.', transcription: 'Не зна́м где ме бо́ли.', translation: 'Не знаю где болит.', correct: false }
+        ],
+        correctFeedback: '«Боли ме грло» = «болит горло». «Грло» = горло. «Већ два дана» = «уже два дня». Шаблон: «Боли ме» + часть тела + «већ» + срок. Запомните: «Боли ме стомак» (живот), «боле ме леђа» (спина — множественное число!).',
+        wrongFeedback: 'Правильно: «Боли ме грло већ два дана» — это «болит горло уже два дня».'
+      },
+      {
+        situation: 'Врач выписывает рецепт и объясняет лечение.',
+        speaker: 'Лекар — Врач',
+        serbian: 'Пишем вам рецепт за антибиотике. Узимајте два пута дневно, уз обрук.',
+        transcription: 'Пи́шем вам ре́цепт за антибио́тике. Узима́јте два пу́та дне́вно, уз о́брок.',
+        translation: 'Выписываю вам рецепт на антибиотики. Принимайте два раза в день, с едой.',
+        question: 'Спросите, нужно ли принимать всё лечение до конца.',
+        options: [
+          { text: 'Да ли морам да попијем сву терапију?', transcription: 'Да ли мо́рам да по́пијем сву тера́пију?', translation: 'Должен ли я выпить весь курс лечения?', correct: true },
+          { text: 'Могу ли да пијем алкохол?', transcription: 'Мо́гу ли да пи́јем алко́хол?', translation: 'Могу ли пить алкоголь?', correct: false },
+          { text: 'Да ли су антибиотици скупи?', transcription: 'Да ли су антибио́тици ску́пи?', translation: 'Дорогие ли антибиотики?', correct: false },
+          { text: 'Када могу да идем на посао?', transcription: 'Ка́да мо́гу да и́дем на по́сао?', translation: 'Когда могу идти на работу?', correct: false }
+        ],
+        correctFeedback: '«Да ли морам да попијем сву терапију?» = «должен ли я выпить весь курс?». «Морам» = должен (мощь), «сву» = всю, «терапију» = терапию/курс. Антибиотики всегда нужно допивать полностью — это важно!',
+        wrongFeedback: 'Правильно: «Да ли морам да попијем сву терапију?» — должен ли я выпить весь курс лечения?'
+      }
+    ]
+  },
+  {
+    id: 'post',
+    title: '📦 На пошти',
+    icon: '📦',
+    description: 'Отправляем посылку на почте',
+    steps: [
+      {
+        situation: 'Вы пришли на почту отправить посылку домой.',
+        speaker: 'Службеник поште — Сотрудник почты',
+        serbian: 'Следећи, молим! Добар дан!',
+        transcription: 'Сле́дећи, мо́лим! До́бар дан!',
+        translation: 'Следующий, пожалуйста! Добрый день!',
+        question: 'Скажите, что хотите отправить посылку в Россию.',
+        options: [
+          { text: 'Желим да пошаљем пакет у Русију.', transcription: 'Же́лим да по́шаљем па́кет у Ру́сију.', translation: 'Хочу отправить посылку в Россию.', correct: true },
+          { text: 'Хоћу марку.', transcription: 'Хо́ћу ма́рку.', translation: 'Хочу марку.', correct: false },
+          { text: 'Где је поштански сандучић?', transcription: 'Где је по́штански санду́чић?', translation: 'Где почтовый ящик?', correct: false },
+          { text: 'Имам писмо за вас.', transcription: 'И́мам пи́смо за вас.', translation: 'У меня есть письмо для вас.', correct: false }
+        ],
+        correctFeedback: '«Желим да пошаљем пакет у Русију» = «хочу отправить посылку в Россию». «Пошаљем» от «послати» = послать/отправить. «Пакет» = посылка/пакет. «У Русију» = в Россию (направление: «у» + Accusative).',
+        wrongFeedback: 'Скажите «Желим да пошаљем пакет у Русију» — это «хочу отправить посылку в Россию».'
+      },
+      {
+        situation: 'Сотрудник взвешивает посылку и спрашивает о содержимом.',
+        speaker: 'Службеник поште — Сотрудник почты',
+        serbian: 'Шта се налази у пакету?',
+        transcription: 'Шта се на́лази у па́кету?',
+        translation: 'Что находится в посылке?',
+        question: 'Скажите, что в посылке одежда и книги.',
+        options: [
+          { text: 'Одећа и књиге.', transcription: 'О́дећа и књи́ге.', translation: 'Одежда и книги.', correct: true },
+          { text: 'Лекови и храна.', transcription: 'Ле́кови и хра́на.', translation: 'Лекарства и еда.', correct: false },
+          { text: 'Електроника.', transcription: 'Електро́ника.', translation: 'Электроника.', correct: false },
+          { text: 'Не знам шта је унутра.', transcription: 'Не зна́м шта је у́нутра.', translation: 'Не знаю что внутри.', correct: false }
+        ],
+        correctFeedback: '«Одећа и књиге» = «одежда и книги». «Одећа» = одежда (важное слово для таможни). «Књиге» = книги. Будьте честны при декларировании — ложь на почте/таможне — правовое нарушение.',
+        wrongFeedback: 'Скажите «Одећа и књиге» — это «одежда и книги».'
+      },
+      {
+        situation: 'Сотрудник предлагает варианты доставки.',
+        speaker: 'Службеник поште — Сотрудник почты',
+        serbian: 'Обична пошта или брза пошта?',
+        transcription: 'О́бична по́шта или бр́за по́шта?',
+        translation: 'Обычная почта или экспресс?',
+        question: 'Выберите экспресс и спросите, сколько дней займёт доставка.',
+        options: [
+          { text: 'Брза пошта. Колико дана траје испорука?', transcription: 'Бр́за по́шта. Ко́лико да́на тра́је испо́рука?', translation: 'Экспресс. Сколько дней займёт доставка?', correct: true },
+          { text: 'Обична, хвала.', transcription: 'О́бична, хва́ла.', translation: 'Обычная, спасибо.', correct: false },
+          { text: 'Немам новца за брзу пошту.', transcription: 'Не́мам но́вца за бр́зу по́шту.', translation: 'Нет денег на экспресс.', correct: false },
+          { text: 'Колико кошта обична?', transcription: 'Ко́лико ко́шта о́бична?', translation: 'Сколько стоит обычная?', correct: false }
+        ],
+        correctFeedback: '«Брза пошта» = «быстрая/экспресс почта». «Колико дана траје испорука?» = «сколько дней займёт доставка?». «Испорука» = доставка. «Траје» = длится. Из Сербии в Россию обычно 7–14 дней «брзом поштом».',
+        wrongFeedback: 'Правильно: «Брза пошта. Колико дана траје испорука?» — экспресс и вопрос о сроках.'
+      }
+    ]
+  },
+  {
+    id: 'taxi',
+    title: '🚕 У таксију',
+    icon: '🚕',
+    description: 'Едем на такси по Белграду',
+    steps: [
+      {
+        situation: 'Вы остановили такси. Нужно доехать до центра.',
+        speaker: 'Таксиста — Таксист',
+        serbian: 'Добар дан! Куда идемо?',
+        transcription: 'До́бар дан! Ку́да и́демо?',
+        translation: 'Добрый день! Куда едем?',
+        question: 'Попросите отвезти вас на площадь Республики.',
+        options: [
+          { text: 'На Трг Републике, молим.', transcription: 'На Трг Репу́блике, мо́лим.', translation: 'На площадь Республики, пожалуйста.', correct: true },
+          { text: 'У центар, хвала.', transcription: 'У це́нтар, хва́ла.', translation: 'В центр, спасибо.', correct: false },
+          { text: 'На аеродром.', transcription: 'На ае́родром.', translation: 'В аэропорт.', correct: false },
+          { text: 'Не знам адресу.', transcription: 'Не зна́м а́дресу.', translation: 'Не знаю адрес.', correct: false }
+        ],
+        correctFeedback: '«На Трг Републике, молим» — отличная фраза! «Трг Републике» = Площадь Республики, центр Белграда. «Молим» здесь = «пожалуйста» (когда что-то просишь). Это самое удобное — говорить название места.',
+        wrongFeedback: 'Скажите «На Трг Републике, молим» — это «на площадь Республики, пожалуйста».'
+      },
+      {
+        situation: 'Вы хотите уточнить примерную стоимость поездки.',
+        speaker: 'Вы',
+        serbian: '',
+        transcription: '',
+        translation: '',
+        question: 'Как спросить о стоимости поездки ДО того, как вы сели?',
+        options: [
+          { text: 'Колико ће коштати вожња до Трга Републике?', transcription: 'Ко́лико ће ко́штати во́жња до Тр́га Репу́блике?', translation: 'Сколько будет стоить поездка до площади Республики?', correct: true },
+          { text: 'Имате ли шофер?', transcription: 'И́мате ли шо́фер?', translation: 'Есть ли у вас шофёр?', correct: false },
+          { text: 'Да ли је блокирано?', transcription: 'Да ли је блоки́рано?', translation: 'Есть ли пробки?', correct: false },
+          { text: 'Колико километара?', transcription: 'Ко́лико километара?', translation: 'Сколько километров?', correct: false }
+        ],
+        correctFeedback: '«Колико ће коштати вожња?» = «сколько будет стоить поездка?». «Вожња» = поездка (в транспорте). «Ће коштати» = будет стоить (будущее время). Всегда спрашивайте ДО посадки — так безопаснее. В Белграде лучше использовать CarGo или Yandex Go.',
+        wrongFeedback: 'Правильно: «Колико ће коштати вожња до Трга Републике?» — сколько будет стоить поездка.'
+      },
+      {
+        situation: 'Вы приехали. Хотите заплатить и попросить квитанцию.',
+        speaker: 'Таксиста — Таксист',
+        serbian: 'Стигли смо. То ће бити осамсто динара.',
+        transcription: 'Сти́гли смо. То ће би́ти оса́мсто ди́нара.',
+        translation: 'Приехали. Это будет 800 динаров.',
+        question: 'Заплатите и попросите чек.',
+        options: [
+          { text: 'Ево хиљаду. Можете ли да дате рачун?', transcription: 'Е́во хи́љаду. Мо́жете ли да да́те ра́чун?', translation: 'Вот тысяча. Можете дать чек?', correct: true },
+          { text: 'Немам ситниш.', transcription: 'Не́мам си́тниш.', translation: 'Нет мелочи.', correct: false },
+          { text: 'Задржите кусур.', transcription: 'Задр́жите ку́сур.', translation: 'Сдачу оставьте себе.', correct: false },
+          { text: 'Да ли примате картицу?', transcription: 'Да ли при́мате карти́цу?', translation: 'Принимаете карту?', correct: false }
+        ],
+        correctFeedback: '«Ево хиљаду. Можете ли да дате рачун?» — отличная фраза! «Ево» = вот (при передаче чего-либо). «Хиљаду» = тысячу (Acc.). «Рачун» = чек/квитанция. В такси «рачун» — это распечатанный чек на счётчике.',
+        wrongFeedback: 'Правильно: «Ево хиљаду. Можете ли да дате рачун?» — вот тысяча и просьба о чеке.'
+      }
+    ]
+  },
+  {
+    id: 'apartment',
+    title: '🏠 Аренда стана',
+    icon: '🏠',
+    description: 'Снимаем квартиру в Сербии',
+    steps: [
+      {
+        situation: 'Вы звоните по объявлению. Хозяин берёт трубку.',
+        speaker: 'Власник — Хозяин',
+        serbian: 'Хало? Изволите!',
+        transcription: 'Ха́ло? Изво́лите!',
+        translation: 'Алло? Слушаю!',
+        question: 'Представьтесь и скажите, что звоните насчёт квартиры.',
+        options: [
+          { text: 'Добар дан, зовем се Алексеј. Зовем у вези стана из огласа.', transcription: 'До́бар дан, зо́вем се А́лексеј. Зо́вем у ве́зи ста́на из о́гласа.', translation: 'Добрый день, меня зовут Алексей. Звоню насчёт квартиры из объявления.', correct: true },
+          { text: 'Да ли је стан слободан?', transcription: 'Да ли је стан сло́бодан?', translation: 'Квартира свободна?', correct: false },
+          { text: 'Колико кошта кирија?', transcription: 'Ко́лико ко́шта кири́ја?', translation: 'Сколько стоит аренда?', correct: false },
+          { text: 'Желим да видим стан.', transcription: 'Же́лим да ви́дим стан.', translation: 'Хочу посмотреть квартиру.', correct: false }
+        ],
+        correctFeedback: '«Зовем у вези стана из огласа» = «звоню насчёт квартиры из объявления». «У вези» = насчёт/в связи с. «Оглас» = объявление. «Кирија» = аренда/квартплата. Представиться всегда вежливо — сербы это ценят.',
+        wrongFeedback: 'Правильно: «Добар дан, зовем се... Зовем у вези стана из огласа».'
+      },
+      {
+        situation: 'Хозяин спрашивает, для кого квартира.',
+        speaker: 'Власник — Хозяин',
+        serbian: 'За кога би стан био? Сами или са породицом?',
+        transcription: 'За ко́га би стан би́о? Са́ми или са поро́дицом?',
+        translation: 'Для кого будет квартира? Один или с семьёй?',
+        question: 'Скажите, что для вас и жены, без детей.',
+        options: [
+          { text: 'За мене и супругу, без деце.', transcription: 'За ме́не и су́пругу, без де́це.', translation: 'Для меня и жены, без детей.', correct: true },
+          { text: 'Само за мене.', transcription: 'Са́мо за ме́не.', translation: 'Только для меня.', correct: false },
+          { text: 'За целу породицу.', transcription: 'За це́лу поро́дицу.', translation: 'Для всей семьи.', correct: false },
+          { text: 'Са пријатељима.', transcription: 'Са прија́тељима.', translation: 'С друзьями.', correct: false }
+        ],
+        correctFeedback: '«За мене и супругу, без деце» — отлично! «Супруга» = жена (официально). В разговоре чаще «жена» (жена) или «другарица» (подруга/девушка). «Деца» = дети, «без деце» = без детей (генитив). Хозяева часто предпочитают пары без детей.',
+        wrongFeedback: 'Скажите «За мене и супругу, без деце» — это «для меня и жены, без детей».'
+      },
+      {
+        situation: 'Вы на осмотре квартиры. Хотите уточнить детали.',
+        speaker: 'Вы',
+        serbian: '',
+        transcription: '',
+        translation: '',
+        question: 'Как спросить, включены ли коммунальные услуги в стоимость?',
+        options: [
+          { text: 'Да ли су рачуни укључени у кирију?', transcription: 'Да ли су ра́чуни укљу́чени у кири́ју?', translation: 'Включены ли счета в аренду?', correct: true },
+          { text: 'Колико је депозит?', transcription: 'Ко́лико је депо́зит?', translation: 'Каков депозит?', correct: false },
+          { text: 'Кад је слободно?', transcription: 'Кад је сло́бодно?', translation: 'Когда свободно?', correct: false },
+          { text: 'Да ли постоји лифт?', transcription: 'Да ли по́стоји ли́фт?', translation: 'Есть ли лифт?', correct: false }
+        ],
+        correctFeedback: '«Да ли су рачуни укључени у кирију?» = «включены ли счета в аренду?». «Рачуни» = счета (за коммунальные услуги — струја/вода/грејање). «Укључени» = включены. «Кирија» = аренда. В Сербии часто коммуналка НЕ включена — всегда уточняйте!',
+        wrongFeedback: 'Правильно: «Да ли су рачуни укључени у кирију?» — включены ли счета в аренду?'
+      }
+    ]
+  },
+  {
+    id: 'station',
+    title: '🚉 На станици',
+    icon: '🚉',
+    description: 'На автобусном вокзале или железнодорожной станции',
+    steps: [
+      {
+        situation: 'Вы на автобусном вокзале. Хотите купить билет до Нови-Сада.',
+        speaker: 'Благајник — Кассир',
+        serbian: 'Добар дан! Желите ли нешто?',
+        transcription: 'До́бар дан! Же́лите ли не́што?',
+        translation: 'Добрый день! Что-нибудь желаете?',
+        question: 'Купите один билет до Нови-Сада на сегодня.',
+        options: [
+          { text: 'Једну карту за Нови Сад за данас, молим.', transcription: 'Је́дну ка́рту за Но́ви Сад за да́нас, мо́лим.', translation: 'Один билет до Нови-Сада на сегодня, пожалуйста.', correct: true },
+          { text: 'Двe карте за Нови Сад.', transcription: 'Две ка́рте за Но́ви Сад.', translation: 'Два билета до Нови-Сада.', correct: false },
+          { text: 'Когда следующий автобус?', transcription: '', translation: '', correct: false },
+          { text: 'Карту у оба правца.', transcription: 'Ка́рту у о́ба пра́вца.', translation: 'Билет туда-обратно.', correct: false }
+        ],
+        correctFeedback: '«Једну карту за Нови Сад за данас» — отлично! «Карту» = билет (accusative от «карта»). «За данас» = на сегодня. «У оба правца» = туда и обратно (в обе стороны). Автобусы Белград–Нови Сад ходят каждый час, дорога ~1,5 часа.',
+        wrongFeedback: 'Правильно: «Једну карту за Нови Сад за данас, молим».'
+      },
+      {
+        situation: 'Кассир спрашивает, хотите ли вы место у окна.',
+        speaker: 'Благајник — Кассир',
+        serbian: 'Желите ли место поред прозора или на ходнику?',
+        transcription: 'Же́лите ли ме́сто по́ред про́зора или на хо́днику?',
+        translation: 'Хотите место у окна или у прохода?',
+        question: 'Выберите место у окна.',
+        options: [
+          { text: 'Поред прозора, молим.', transcription: 'По́ред про́зора, мо́лим.', translation: 'У окна, пожалуйста.', correct: true },
+          { text: 'На ходнику.', transcription: 'На хо́днику.', translation: 'У прохода.', correct: false },
+          { text: 'Свеједно ми је.', transcription: 'Све́једно ми је.', translation: 'Мне всё равно.', correct: false },
+          { text: 'Немам преференцију.', transcription: 'Не́мам преферен́цију.', translation: 'Нет предпочтений.', correct: false }
+        ],
+        correctFeedback: '«Поред прозора» = «у окна» (рядом с окном). «Прозор» = окно. «Ходник» = проход/коридор. «Свеједно ми је» = «мне всё равно» — очень полезная фраза! Запомните её для ситуаций когда нет предпочтений.',
+        wrongFeedback: 'Скажите «Поред прозора, молим» — это «у окна, пожалуйста».'
+      },
+      {
+        situation: 'Вы не знаете с какой платформы отходит автобус.',
+        speaker: 'Вы',
+        serbian: '',
+        transcription: '',
+        translation: '',
+        question: 'Как спросить, с какого перрона отправляется автобус до Нови-Сада?',
+        options: [
+          { text: 'С ког перона полази аутобус за Нови Сад?', transcription: 'С ко́г пе́рона по́лази ауто́бус за Но́ви Сад?', translation: 'С какой платформы отправляется автобус до Нови-Сада?', correct: true },
+          { text: 'Када стиже аутобус?', transcription: 'Ка́да сти́же ауто́бус?', translation: 'Когда прибывает автобус?', correct: false },
+          { text: 'Да ли је аутобус на времену?', transcription: 'Да ли је ауто́бус на вре́мену?', translation: 'Автобус вовремя?', correct: false },
+          { text: 'Где је тоалет?', transcription: 'Где је тоа́лет?', translation: 'Где туалет?', correct: false }
+        ],
+        correctFeedback: '«С ког перона полази аутобус за Нови Сад?» — отлично! «Перон» = перрон/платформа. «Полази» = отправляется (от «поћи» = отправиться). «Стиже» = прибывает. «На времену» = вовремя. Все эти слова пригодятся на вокзале!',
+        wrongFeedback: 'Правильно: «С ког перона полази аутобус за Нови Сад?» — с какого перрона отправляется.'
+      }
+    ]
+  },
+  {
+    id: 'cafe',
+    title: '☕ У кафићу',
+    icon: '☕',
+    description: 'Заказываем кофе и напитки в сербском кафе',
+    steps: [
+      {
+        situation: 'Вы зашли в кафе. Официант подходит к вам.',
+        speaker: 'Конобар — Официант',
+        serbian: 'Добрe дан! Шта ћете попити?',
+        transcription: 'До́бар дан! Шта ће́те по́пити?',
+        translation: 'Добрый день! Что будете пить?',
+        question: 'Закажите маленький чёрный кофе (то, что сербы пьют чаще всего).',
+        options: [
+          { text: 'Домаћу кафу, молим.', transcription: 'До́маћу ка́фу, мо́лим.', translation: 'Домашний кофе (турецкий), пожалуйста.', correct: true },
+          { text: 'Капућино, хвала.', transcription: 'Капу́ћино, хва́ла.', translation: 'Капучино, спасибо.', correct: false },
+          { text: 'Еспресо и млеко.', transcription: 'Еспре́со и мле́ко.', translation: 'Эспрессо и молоко.', correct: false },
+          { text: 'Чај са лимуном.', transcription: 'Ча́ј са ли́муном.', translation: 'Чай с лимоном.', correct: false }
+        ],
+        correctFeedback: '«Домаћа кафа» — то, что пьют сербы! Это крепкий кофе по-турецки, сваренный в маленькой кастрюльке («џезва»). «Домаћа» = домашняя/традиционная. Подаётся с чашкой холодной воды. Если хотите другой кофе — просто скажите «еспресо», «капућино» или «нескафе».',
+        wrongFeedback: 'В сербских кафе обычно заказывают «домаћу кафу» — это традиционный турецкий кофе.'
+      },
+      {
+        situation: 'Вы хотите также заказать сок.',
+        speaker: 'Конобар — Официант',
+        serbian: 'А нешто друго? Јести нешто?',
+        transcription: 'А не́што дру́го? Је́сти не́што?',
+        translation: 'А что-нибудь ещё? Кушать что-нибудь?',
+        question: 'Закажите стакан яблочного сока.',
+        options: [
+          { text: 'Да, чашу јабуковог сока, молим.', transcription: 'Да, ча́шу ја́буковог со́ка, мо́лим.', translation: 'Да, стакан яблочного сока, пожалуйста.', correct: true },
+          { text: 'Само кафу, хвала.', transcription: 'Са́мо ка́фу, хва́ла.', translation: 'Только кофе, спасибо.', correct: false },
+          { text: 'Хоћу пиво.', transcription: 'Хо́ћу пи́во.', translation: 'Хочу пиво.', correct: false },
+          { text: 'Немам глад.', transcription: 'Не́мам гла́д.', translation: 'Не голоден.', correct: false }
+        ],
+        correctFeedback: '«Чашу јабуковог сока» = «стакан яблочного сока». «Чаша» = стакан/чашка. «Јабуков» = яблочный (от «јабука» = яблоко). «Сок» = сок. Другие соки: «наранџин» (апельсиновый), «грожђани» (виноградный), «малинов» (малиновый).',
+        wrongFeedback: 'Правильно: «Да, чашу јабуковог сока, молим» — стакан яблочного сока.'
+      },
+      {
+        situation: 'Принесли счёт. Вы хотите узнать, включены ли чаевые.',
+        speaker: 'Конобар — Официант',
+        serbian: 'Изволите рачун!',
+        transcription: 'Изво́лите ра́чун!',
+        translation: 'Вот счёт!',
+        question: 'Спросите, включены ли чаевые в счёт.',
+        options: [
+          { text: 'Да ли је напојница укључена?', transcription: 'Да ли је напо́јница укљу́чена?', translation: 'Включены ли чаевые?', correct: true },
+          { text: 'Где платим?', transcription: 'Где пла́тим?', translation: 'Где платить?', correct: false },
+          { text: 'Задржите кусур.', transcription: 'Задр́жите ку́сур.', translation: 'Сдачу оставьте себе.', correct: false },
+          { text: 'То је погрешно.', transcription: 'То је по́грешно.', translation: 'Это неправильно.', correct: false }
+        ],
+        correctFeedback: '«Напојница» = чаевые. «Укључена» = включена. В Сербии чаевые обычно НЕ включены в счёт — оставляют по желанию. Принято оставлять 10%. «Задржите кусур» (сдачу оставьте себе) — самый распространённый способ дать чаевые!',
+        wrongFeedback: 'Скажите «Да ли је напојница укључена?» — включены ли чаевые?'
+      }
+    ]
+  },
+  {
+    id: 'hotel',
+    title: '🏨 У хотелу',
+    icon: '🏨',
+    description: 'Заселяемся в гостиницу',
+    steps: [
+      {
+        situation: 'Вы приехали в отель. Подходите к стойке регистрации.',
+        speaker: 'Рецепционар — Ресепшн',
+        serbian: 'Добродошли! Имате ли резервацију?',
+        transcription: 'Добродо́шли! И́мате ли резерва́цију?',
+        translation: 'Добро пожаловать! Есть ли у вас бронь?',
+        question: 'Подтвердите, что у вас есть бронь на три ночи.',
+        options: [
+          { text: 'Да, имам резервацију на три ноћи.', transcription: 'Да, и́мам резерва́цију на три но́ћи.', translation: 'Да, у меня бронь на три ночи.', correct: true },
+          { text: 'Немам резервацију.', transcription: 'Не́мам резерва́цију.', translation: 'У меня нет брони.', correct: false },
+          { text: 'Хоћу собу за двоје.', transcription: 'Хо́ћу со́бу за дво́је.', translation: 'Хочу номер на двоих.', correct: false },
+          { text: 'Колико кошта ноћење?', transcription: 'Ко́лико ко́шта но́ћење?', translation: 'Сколько стоит ночь?', correct: false }
+        ],
+        correctFeedback: '«Имам резервацију на три ноћи» = «у меня бронь на три ночи». «Резервација» = бронирование/резервация. «Ноћи» = ночи (множественное). «Ноћење» = ночёвка (за одну ночь). Если нет брони — скажите «Немам резервацију, да ли имате слободну собу?»',
+        wrongFeedback: 'Правильно: «Да, имам резервацију на три ноћи» — да, бронь на три ночи.'
+      },
+      {
+        situation: 'Вы хотите узнать о завтраке.',
+        speaker: 'Рецепционар — Ресепшн',
+        serbian: 'Доручак је од седам до десет ујутру у ресторану на приземљу.',
+        transcription: 'До́ручак је од се́дам до де́сет ују́тру у ресто́рану на при́земљу.',
+        translation: 'Завтрак с семи до десяти утра в ресторане на первом этаже.',
+        question: 'Уточните, включён ли завтрак в стоимость номера.',
+        options: [
+          { text: 'Да ли је доручак укључен у цену собе?', transcription: 'Да ли је до́ручак укљу́чен у це́ну со́бе?', translation: 'Включён ли завтрак в стоимость номера?', correct: true },
+          { text: 'Колико кошта доручак?', transcription: 'Ко́лико ко́шта до́ручак?', translation: 'Сколько стоит завтрак?', correct: false },
+          { text: 'Не желим доручак.', transcription: 'Не же́лим до́ручак.', translation: 'Не хочу завтрак.', correct: false },
+          { text: 'Где је ресторан?', transcription: 'Где је ресто́ран?', translation: 'Где ресторан?', correct: false }
+        ],
+        correctFeedback: '«Да ли је доручак укључен у цену собе?» = «включён ли завтрак в стоимость номера?». «Доручак» = завтрак. «Укључен» = включён. «Цена собе» = стоимость номера. Завтрак по-сербски «доручак» — от «до ручка» (до обеда)!',
+        wrongFeedback: 'Спросите «Да ли је доручак укључен у цену собе?» — включён ли завтрак.'
+      },
+      {
+        situation: 'В номере не работает кондиционер. Звоните на ресепшн.',
+        speaker: 'Рецепционар — Ресепшн',
+        serbian: 'Добар дан, рецепција!',
+        transcription: 'До́бар дан, реце́пција!',
+        translation: 'Добрый день, ресепшн!',
+        question: 'Сообщите, что не работает кондиционер в номере.',
+        options: [
+          { text: 'Клима уређај у соби не ради. Можете ли да пошаљете некога?', transcription: 'Кли́ма уре́ђај у со́би не ра́ди. Мо́жете ли да по́шаљете не́кога?', translation: 'Кондиционер в номере не работает. Можете прислать кого-нибудь?', correct: true },
+          { text: 'Овде је превише хладно.', transcription: 'О́вде је пре́више хла́дно.', translation: 'Здесь слишком холодно.', correct: false },
+          { text: 'Желим другу собу.', transcription: 'Же́лим дру́гу со́бу.', translation: 'Хочу другой номер.', correct: false },
+          { text: 'Нема топле воде.', transcription: 'Не́ма то́пле во́де.', translation: 'Нет горячей воды.', correct: false }
+        ],
+        correctFeedback: '«Клима уређај не ради» = «кондиционер не работает». «Клима уређај» = кондиционер (дословно «климатическое устройство»). «Не ради» = не работает. «Пошаљете некога» = прислать кого-нибудь. Полезные жалобы: «нема топле воде» (нет горячей воды), «сијалица је перегорела» (лампочка перегорела).',
+        wrongFeedback: 'Правильно: «Клима уређај у соби не ради. Можете ли да пошаљете некога?»'
       }
     ]
   }
@@ -4074,6 +5432,166 @@ const VOCAB_CATEGORIES = [
       { serbian: 'интелигенција', transcription: 'интели́генција', translation: 'интеллект', emoji: '🧠' },
       { serbian: 'радозналост', transcription: 'радозна́лост', translation: 'любознательность', emoji: '🔍' }
     ]
+  },
+  {
+    id: 'sports', title: 'Спорт и игре', icon: '⚽',
+    words: [
+      { serbian: 'фудбал', transcription: 'фу́дбал', translation: 'футбол', emoji: '⚽' },
+      { serbian: 'кошарка', transcription: 'коша́рка', translation: 'баскетбол', emoji: '🏀' },
+      { serbian: 'тенис', transcription: 'те́нис', translation: 'теннис', emoji: '🎾' },
+      { serbian: 'пливање', transcription: 'пли́вање', translation: 'плавание', emoji: '🏊' },
+      { serbian: 'трчање', transcription: 'тр́чање', translation: 'бег', emoji: '🏃' },
+      { serbian: 'бициклизам', transcription: 'бицикли́зам', translation: 'велоспорт', emoji: '🚴' },
+      { serbian: 'скијање', transcription: 'ски́јање', translation: 'лыжный спорт', emoji: '⛷️' },
+      { serbian: 'теретана', transcription: 'тере́тана', translation: 'тренажёрный зал', emoji: '🏋️' },
+      { serbian: 'јога', transcription: 'јо́га', translation: 'йога', emoji: '🧘' },
+      { serbian: 'рукомет', transcription: 'ру́комет', translation: 'гандбол', emoji: '🤾' },
+      { serbian: 'бокс', transcription: 'бокс', translation: 'бокс', emoji: '🥊' },
+      { serbian: 'ватерполо', transcription: 'ватерпо́ло', translation: 'водное поло', emoji: '🤽' },
+      { serbian: 'тим', transcription: 'тим', translation: 'команда', emoji: '👥' },
+      { serbian: 'утакмица', transcription: 'ута́кмица', translation: 'матч / игра', emoji: '🏟️' },
+      { serbian: 'победа', transcription: 'побе́да', translation: 'победа', emoji: '🏆' }
+    ]
+  },
+  {
+    id: 'technology', title: 'Технологије', icon: '💻',
+    words: [
+      { serbian: 'компјутер', transcription: 'компју́тер', translation: 'компьютер', emoji: '💻' },
+      { serbian: 'телефон', transcription: 'теле́фон', translation: 'телефон', emoji: '📱' },
+      { serbian: 'интернет', transcription: 'инте́рнет', translation: 'интернет', emoji: '🌐' },
+      { serbian: 'апликација', transcription: 'апли́кација', translation: 'приложение', emoji: '📲' },
+      { serbian: 'сајт', transcription: 'сајт', translation: 'сайт', emoji: '🌍' },
+      { serbian: 'лозинка', transcription: 'лози́нка', translation: 'пароль', emoji: '🔑' },
+      { serbian: 'профил', transcription: 'про́фил', translation: 'профиль', emoji: '👤' },
+      { serbian: 'преузимање', transcription: 'преузима́ње', translation: 'скачивание', emoji: '⬇️' },
+      { serbian: 'Wi-Fi', transcription: 'вај-фај', translation: 'Wi-Fi', emoji: '📶' },
+      { serbian: 'пуњач', transcription: 'пу́њач', translation: 'зарядное устройство', emoji: '🔌' },
+      { serbian: 'екран', transcription: 'е́кран', translation: 'экран', emoji: '🖥️' },
+      { serbian: 'камера', transcription: 'ка́мера', translation: 'камера', emoji: '📷' },
+      { serbian: 'облак', transcription: 'о́блак', translation: 'облако (в IT)', emoji: '☁️' },
+      { serbian: 'безбедност', transcription: 'безбедност', translation: 'безопасность', emoji: '🔒' },
+      { serbian: 'ажурирање', transcription: 'ажурира́ње', translation: 'обновление', emoji: '🔄' }
+    ]
+  },
+  {
+    id: 'kitchen', title: 'Кухиња', icon: '🍳',
+    words: [
+      { serbian: 'кухиња', transcription: 'ку́хиња', translation: 'кухня', emoji: '🍳' },
+      { serbian: 'фрижидер', transcription: 'фрижи́дер', translation: 'холодильник', emoji: '🧊' },
+      { serbian: 'шпорет', transcription: 'шпо́рет', translation: 'плита', emoji: '🔥' },
+      { serbian: 'рерна', transcription: 'ре́рна', translation: 'духовка', emoji: '🍞' },
+      { serbian: 'микроталасна', transcription: 'микрота́ласна', translation: 'микроволновка', emoji: '📡' },
+      { serbian: 'тигањ', transcription: 'ти́гањ', translation: 'сковорода', emoji: '🥘' },
+      { serbian: 'шерпа', transcription: 'ше́рпа', translation: 'кастрюля', emoji: '🫕' },
+      { serbian: 'нож', transcription: 'нож', translation: 'нож', emoji: '🔪' },
+      { serbian: 'даска', transcription: 'да́ска', translation: 'разделочная доска', emoji: '🪵' },
+      { serbian: 'рецепт', transcription: 'ре́цепт', translation: 'рецепт (кулинарный)', emoji: '📋' },
+      { serbian: 'зачини', transcription: 'за́чини', translation: 'специи', emoji: '🧂' },
+      { serbian: 'уље', transcription: 'у́ље', translation: 'масло (растительное)', emoji: '🫙' },
+      { serbian: 'брашно', transcription: 'бра́шно', translation: 'мука', emoji: '🌾' },
+      { serbian: 'шећер', transcription: 'ше́ћер', translation: 'сахар', emoji: '🍬' },
+      { serbian: 'со', transcription: 'со', translation: 'соль', emoji: '🧂' }
+    ]
+  },
+  {
+    id: 'office', title: 'Канцеларија', icon: '🏢',
+    words: [
+      { serbian: 'канцеларија', transcription: 'канцела́рија', translation: 'офис / кабинет', emoji: '🏢' },
+      { serbian: 'колега', transcription: 'ко́лега', translation: 'коллега', emoji: '🤝' },
+      { serbian: 'шеф', transcription: 'шеф', translation: 'шеф / начальник', emoji: '👔' },
+      { serbian: 'састанак', transcription: 'са́станак', translation: 'встреча / совещание', emoji: '🗓️' },
+      { serbian: 'рок', transcription: 'рок', translation: 'дедлайн / срок', emoji: '⏰' },
+      { serbian: 'пројекат', transcription: 'про́јекат', translation: 'проект', emoji: '📊' },
+      { serbian: 'извештај', transcription: 'извешта́ј', translation: 'отчёт', emoji: '📄' },
+      { serbian: 'задатак', transcription: 'за́датак', translation: 'задача', emoji: '✅' },
+      { serbian: 'преговори', transcription: 'прего́вори', translation: 'переговоры', emoji: '🗣️' },
+      { serbian: 'уговор', transcription: 'у́говор', translation: 'договор', emoji: '📝' },
+      { serbian: 'плата', transcription: 'пла́та', translation: 'зарплата', emoji: '💰' },
+      { serbian: 'одмор', transcription: 'о́дмор', translation: 'отпуск / перерыв', emoji: '🏖️' },
+      { serbian: 'презентација', transcription: 'презента́ција', translation: 'презентация', emoji: '📽️' },
+      { serbian: 'штампач', transcription: 'шта́мпач', translation: 'принтер', emoji: '🖨️' },
+      { serbian: 'папир', transcription: 'па́пир', translation: 'бумага', emoji: '📃' }
+    ]
+  },
+  {
+    id: 'restaurant_menu', title: 'Ресторан и мени', icon: '🍽️',
+    words: [
+      { serbian: 'предјело', transcription: 'пред́јело', translation: 'закуска / стартер', emoji: '🥗' },
+      { serbian: 'главно јело', transcription: 'гла́вно је́ло', translation: 'основное блюдо', emoji: '🍲' },
+      { serbian: 'десерт', transcription: 'де́серт', translation: 'десерт', emoji: '🍰' },
+      { serbian: 'мени дана', transcription: 'ме́ни да́на', translation: 'бизнес-ланч / меню дня', emoji: '🗒️' },
+      { serbian: 'посластица', transcription: 'посла́стица', translation: 'сладость / угощение', emoji: '🍮' },
+      { serbian: 'чорба', transcription: 'чо́рба', translation: 'суп (густой)', emoji: '🍜' },
+      { serbian: 'роштиљ', transcription: 'рошти́љ', translation: 'гриль / мангал', emoji: '🔥' },
+      { serbian: 'пунена паприка', transcription: 'пу́нена па́прика', translation: 'фаршированный перец', emoji: '🫑' },
+      { serbian: 'сарма', transcription: 'са́рма', translation: 'голубцы (сарма)', emoji: '🥬' },
+      { serbian: 'пита', transcription: 'пи́та', translation: 'пирог (пита)', emoji: '🥧' },
+      { serbian: 'кафа', transcription: 'ка́фа', translation: 'кофе', emoji: '☕' },
+      { serbian: 'пиво', transcription: 'пи́во', translation: 'пиво', emoji: '🍺' },
+      { serbian: 'вино', transcription: 'ви́но', translation: 'вино', emoji: '🍷' },
+      { serbian: 'конобар', transcription: 'ко́нобар', translation: 'официант', emoji: '🧑‍🍳' },
+      { serbian: 'рачун', transcription: 'ра́чун', translation: 'счёт', emoji: '🧾' }
+    ]
+  },
+  {
+    id: 'directions', title: 'Правци и оријентација', icon: '🗺️',
+    words: [
+      { serbian: 'лево', transcription: 'ле́во', translation: 'налево / слева', emoji: '⬅️' },
+      { serbian: 'десно', transcription: 'де́сно', translation: 'направо / справа', emoji: '➡️' },
+      { serbian: 'право', transcription: 'пра́во', translation: 'прямо', emoji: '⬆️' },
+      { serbian: 'назад', transcription: 'наза́д', translation: 'назад', emoji: '⬇️' },
+      { serbian: 'скрените', transcription: 'скре́ните', translation: 'поверните', emoji: '↩️' },
+      { serbian: 'крстарица', transcription: 'крста́рица', translation: 'перекрёсток', emoji: '✂️' },
+      { serbian: 'семафор', transcription: 'сема́фор', translation: 'светофор', emoji: '🚦' },
+      { serbian: 'улаз', transcription: 'у́лаз', translation: 'вход', emoji: '🚪' },
+      { serbian: 'излаз', transcription: 'изла́з', translation: 'выход', emoji: '🚪' },
+      { serbian: 'спрат', transcription: 'спрат', translation: 'этаж', emoji: '🏢' },
+      { serbian: 'приземље', transcription: 'при́земље', translation: 'первый этаж (нулевой)', emoji: '🏠' },
+      { serbian: 'лифт', transcription: 'лифт', translation: 'лифт', emoji: '🛗' },
+      { serbian: 'степениште', transcription: 'степени́ште', translation: 'лестница', emoji: '🪜' },
+      { serbian: 'угао', transcription: 'у́гао', translation: 'угол / угловой', emoji: '📐' },
+      { serbian: 'преко пута', transcription: 'пре́ко пу́та', translation: 'напротив', emoji: '🔄' }
+    ]
+  },
+  {
+    id: 'proverbs', title: 'Изреке и пословице', icon: '📜',
+    words: [
+      { serbian: 'Без муке нема науке.', transcription: 'Без му́ке не́ма на́уке.', translation: 'Без труда не вытащишь рыбку из пруда.', emoji: '💪' },
+      { serbian: 'Тиха вода брег рони.', transcription: 'Ти́ха во́да бре́г ро́ни.', translation: 'В тихом омуте черти водятся.', emoji: '🌊' },
+      { serbian: 'Не одлажи за сутра шта данас можеш.', transcription: 'Не одла́жи за су́тра шта да́нас мо́жеш.', translation: 'Не откладывай на завтра то, что можешь сегодня.', emoji: '📅' },
+      { serbian: 'Лаж има кратке ноге.', transcription: 'Лаж и́ма кра́тке но́ге.', translation: 'Ложь имеет короткие ноги.', emoji: '🦵' },
+      { serbian: 'Ко рано рани, срећа га чека.', transcription: 'Ко ра́но ра́ни, сре́ћа га че́ка.', translation: 'Кто рано встаёт, тому Бог подаёт.', emoji: '🌅' },
+      { serbian: 'Свака врана мисли да је сокол.', transcription: 'Сва́ка вра́на ми́сли да је со́кол.', translation: 'Каждая ворона думает, что она сокол (о самоуверенности).', emoji: '🐦' },
+      { serbian: 'Здрав дух у здравом телу.', transcription: 'Здра́в дух у здра́вом те́лу.', translation: 'В здоровом теле здоровый дух.', emoji: '🧘' },
+      { serbian: 'Боље икад него никад.', transcription: 'Бо́ље и́кад не́го ни́кад.', translation: 'Лучше поздно, чем никогда.', emoji: '⏳' },
+      { serbian: 'Не суди књигу по корицама.', transcription: 'Не су́ди књи́гу по ко́рицама.', translation: 'Не суди книгу по обложке.', emoji: '📚' },
+      { serbian: 'Слога мало кућу гради.', transcription: 'Сло́га ма́ло ку́ћу гра́ди.', translation: 'В единстве — сила (маленькая семья дом строит).', emoji: '🏠' },
+      { serbian: 'Ко пита, не скита.', transcription: 'Ко пи́та, не ски́та.', translation: 'Кто спрашивает — не блуждает (не стесняйся спрашивать).', emoji: '❓' },
+      { serbian: 'Пословица је мудрост народа.', transcription: 'Посло́вица је му́дрост на́рода.', translation: 'Пословица — мудрость народа.', emoji: '🌟' },
+      { serbian: 'Говори само кад знаш.', transcription: 'Го́вори са́мо кад зна́ш.', translation: 'Говори только когда знаешь.', emoji: '🤫' },
+      { serbian: 'У слози је снага.', transcription: 'У сло́зи је сна́га.', translation: 'В единстве — сила.', emoji: '🤝' },
+      { serbian: 'Друг у невољи – прави је друг.', transcription: 'Дру́г у нево́љи – пра́ви је дру́г.', translation: 'Друг в беде — настоящий друг (друзья познаются в беде).', emoji: '🫂' }
+    ]
+  },
+  {
+    id: 'advanced_verbs', title: 'Глаголи Б1', icon: '🚀',
+    words: [
+      { serbian: 'остварити', transcription: 'остварити', translation: 'осуществить / достичь', emoji: '🎯' },
+      { serbian: 'развити', transcription: 'разви́ти', translation: 'развить / развивать', emoji: '📈' },
+      { serbian: 'упоредити', transcription: 'упоре́дити', translation: 'сравнить', emoji: '⚖️' },
+      { serbian: 'објаснити', transcription: 'објасни́ти', translation: 'объяснить', emoji: '💡' },
+      { serbian: 'изабрати', transcription: 'изабра́ти', translation: 'выбрать', emoji: '☑️' },
+      { serbian: 'одлучити', transcription: 'одлу́чити', translation: 'решить / принять решение', emoji: '✅' },
+      { serbian: 'предложити', transcription: 'предло́жити', translation: 'предложить', emoji: '💬' },
+      { serbian: 'прихватити', transcription: 'прихва́тити', translation: 'принять / согласиться', emoji: '🤝' },
+      { serbian: 'одбити', transcription: 'одби́ти', translation: 'отказать / отклонить', emoji: '❌' },
+      { serbian: 'успети', transcription: 'успе́ти', translation: 'успеть / достичь успеха', emoji: '🏆' },
+      { serbian: 'зависити', transcription: 'зависи́ти', translation: 'зависеть', emoji: '🔗' },
+      { serbian: 'подсетити', transcription: 'подсети́ти', translation: 'напомнить', emoji: '🔔' },
+      { serbian: 'замислити', transcription: 'замисли́ти', translation: 'представить / придумать', emoji: '💭' },
+      { serbian: 'признати', transcription: 'призна́ти', translation: 'признать', emoji: '🙋' },
+      { serbian: 'замерити', transcription: 'заме́рити', translation: 'упрекнуть / поставить в счёт', emoji: '⚠️' }
+    ]
   }
 ];
 
@@ -4254,7 +5772,240 @@ const PHRASES = [
       { serbian: 'Осећам се лоше.', transcription: 'Осе́ћам се ло́ше.', translation: 'Я плохо себя чувствую.', note: '«Осећам се» = «чувствую себя». «Лоше» = плохо. Используйте когда нужна помощь.' },
       { serbian: 'Да ли је ово опасно?', transcription: 'Да ли је о́во опа́сно?', translation: 'Это опасно?', note: 'Важный вопрос при постановке диагноза. Спрашивайте у врача без стеснения.' },
       { serbian: 'Имам дијабетес.', transcription: 'И́мам дија́бетес.', translation: 'У меня диабет.', note: 'Важно сообщить медицинскому персоналу о хронических заболеваниях.' },
-      { serbian: 'Где је болница?', transcription: 'Где је бо́лница?', translation: 'Где больница?', note: '«Болница» = больница. Крупнейшая в Белграде — Клинический центр Сербии.' }
+      { serbian: 'Где је болница?', transcription: 'Где је бо́лница?', translation: 'Где больница?', note: '«Болница» = больница. Крупнейшая в Белграде — Клинический центр Сербии.' },
+      { serbian: 'Боли ме стомак.', transcription: 'Бо́ли ме сто́мак.', translation: 'У меня болит живот.', note: '«Стомак» = желудок/живот. Один из самых частых поводов для визита в аптеку.' },
+      { serbian: 'Треба ми кисеоник.', transcription: 'Тре́ба ми кисео́ник.', translation: 'Мне нужен кислород.', note: 'В критической ситуации. «Кисеоник» = кислород.' },
+      { serbian: 'Да ли имате лекара за хитне случајеве?', transcription: 'Да ли и́мате ле́кара за хи́тне слу́чајеве?', translation: 'Есть ли у вас врач скорой помощи?', note: '«Хитни случај» = экстренный случай. Спросите в клинике при срочной ситуации.' },
+      { serbian: 'Где је апотека?', transcription: 'Где је апо́тека?', translation: 'Где аптека?', note: 'Аптеки в Сербии — «Апотека». Часто есть в каждом квартале. Работают до 20–21 часа.' },
+      { serbian: 'Имам вртоглавицу.', transcription: 'И́мам вртогла́вицу.', translation: 'У меня кружится голова.', note: '«Вртоглавица» = головокружение. Важный симптом для сообщения врачу.' }
+    ]
+  },
+  {
+    id: 'work',
+    category: 'Посао и бизнис',
+    icon: '💼',
+    color: '#37474F',
+    phrases: [
+      { serbian: 'Радим као програмер.', transcription: 'Ра́дим ка́о програме́р.', translation: 'Я работаю программистом.', note: 'Замените «програмер» на свою профессию: «дизајнер» (дизайнер), «менаџер» (менеджер), «инжењер» (инженер).' },
+      { serbian: 'Радим од куће.', transcription: 'Ра́дим од ку́ће.', translation: 'Я работаю из дома.', note: 'Удалённая работа популярна среди экспатов в Сербии. «Од куће» = из дома.' },
+      { serbian: 'Имам онлајн посао.', transcription: 'И́мам онла́јн по́сао.', translation: 'У меня онлайн-работа.', note: 'Для тех, кто работает удалённо. Объяснит ваш статус хозяевам и властям.' },
+      { serbian: 'Радим за страну компанију.', transcription: 'Ра́дим за стра́ну компа́нију.', translation: 'Работаю на иностранную компанию.', note: 'Важно при объяснении источника дохода. «Страна компанија» = иностранная компания.' },
+      { serbian: 'Тражим посао у Србији.', transcription: 'Тра́жим по́сао у Срби́ји.', translation: 'Ищу работу в Сербии.', note: '«Тражим» = ищу. Если ищете работу — это ключевая фраза для HR-беседы.' },
+      { serbian: 'Имам интервју.', transcription: 'И́мам инте́рвју.', translation: 'У меня собеседование.', note: '«Интервju» = собеседование. Произносится как в английском. «Идем на интервju» = «иду на собеседование».' },
+      { serbian: 'Плата се исплаћује петнаестог.', transcription: 'Пла́та се испла́ћује петна́естог.', translation: 'Зарплата выплачивается пятнадцатого.', note: '«Плата» = зарплата, «исплаћује» = выплачивается. В Сербии зарплаты обычно раз в месяц.' },
+      { serbian: 'Да ли постоји флексибилно радно време?', transcription: 'Да ли по́стоји флекси́билно ра́дно вре́ме?', translation: 'Есть ли гибкий рабочий график?', note: 'Флексибилно = гибкий. «Радно време» = рабочее время. Важный вопрос на собеседовании.' },
+      { serbian: 'Колико траје пробни рад?', transcription: 'Ко́лико тра́је про́бни рад?', translation: 'Сколько длится испытательный срок?', note: '«Пробни рад» = испытательный срок. В Сербии обычно 3–6 месяцев.' },
+      { serbian: 'Желим да отворим своју фирму.', transcription: 'Же́лим да отво́рим сво́ју фи́рму.', translation: 'Хочу открыть свою компанию.', note: 'Регистрация фирмы в Сербии — от 1 рабочего дня. Популярная форма — «доо» (ООО).' },
+      { serbian: 'Шта укључује уговор?', transcription: 'Шта укљу́чује у́говор?', translation: 'Что включает договор?', note: '«Уговор» = договор. Всегда читайте что входит в трудовой договор в Сербии.' },
+      { serbian: 'Радим пуно радно време.', transcription: 'Ра́дим пу́но ра́дно вре́ме.', translation: 'Я работаю полный рабочий день.', note: '«Пуно радно време» = полный рабочий день. «Непуно» = неполный рабочий день.' },
+      { serbian: 'Имамо састанак у подне.', transcription: 'И́мамо са́станак у по́дне.', translation: 'У нас встреча в полдень.', note: '«Састанак» = встреча/совещание. «У подне» = в полдень. «Подне» = полдень.' },
+      { serbian: 'Шаљем вам мејл.', transcription: 'Ша́љем вам ме́јл.', translation: 'Отправляю вам email.', note: 'Стандартная фраза в деловой переписке. «Шаљем» = отправляю, «мејл» = email.' },
+      { serbian: 'Можемо ли да закажемо видео позив?', transcription: 'Мо́жемо ли да зака́жемо ви́део по́зив?', translation: 'Можем ли мы запланировать видеозвонок?', note: '«Закажемо» = запланируем/назначим. «Видео позив» = видеозвонок (Zoom/Teams и т.д.).' },
+      { serbian: 'Позовите ме на посао.', transcription: 'Позо́вите ме на по́сао.', translation: 'Позвоните мне по поводу работы.', note: 'После отправки резюме. Формальный и уверенный способ попросить об обратной связи.' },
+      { serbian: 'Имате ли слободно радно место?', transcription: 'И́мате ли сло́бодно ра́дно ме́сто?', translation: 'Есть ли у вас вакансия?', note: '«Слободно радно место» = вакансия (буквально «свободное рабочее место»). «Огласите» = объявление о вакансии.' },
+      { serbian: 'Радим хонорарно.', transcription: 'Ра́дим хонора́рно.', translation: 'Работаю на фрилансе / по контракту.', note: '«Хонорарно» = по гонорару/на гонораре. Фриланс в Сербии — распространённая форма работы для IT.' },
+      { serbian: 'Потребна ми је потврда о запослењу.', transcription: 'Потре́бна ми је по́тврда о запосле́њу.', translation: 'Мне нужна справка о трудоустройстве.', note: '«Потврда о запослењу» = справка с работы. Нужна для банка, аренды, визы.' },
+      { serbian: 'Узимам годишњи одмор следеће недеље.', transcription: 'У́зимам годи́шњи о́дмор сле́дећи не́деље.', translation: 'Беру отпуск на следующей неделе.', note: '«Годишњи одмор» = ежегодный отпуск. В Сербии 20 рабочих дней в год обязательно.' }
+    ]
+  },
+  {
+    id: 'shopping',
+    category: 'Шопинг и куповина',
+    icon: '🛍️',
+    color: '#AD1457',
+    phrases: [
+      { serbian: 'Само разгледам.', transcription: 'Са́мо разгле́дам.', translation: 'Просто смотрю.', note: 'Когда продавец спрашивает «могу ли помочь?» — «само разгледам» = «просто смотрю». Сербы воспринимают нормально.' },
+      { serbian: 'Можете ли да ми покажете...?', transcription: 'Мо́жете ли да ми пока́жете...?', translation: 'Можете ли вы мне показать...?', note: 'Универсальный запрос помощи продавца. «Покажете» = показать. Добавьте товар: «...ову јакну» (эту куртку).' },
+      { serbian: 'Имате ли ово у другој боји?', transcription: 'И́мате ли о́во у дру́гој бо́ји?', translation: 'Есть ли это в другом цвете?', note: '«Боја» = цвет. «Другој боји» = другом цвете. Цвета: «плавом» (синем), «зеленом» (зелёном), «червеном» (красном, устар.).' },
+      { serbian: 'Имате ли ово у другом броју?', transcription: 'И́мате ли о́во у дру́гом бро́ју?', translation: 'Есть ли это в другом размере?', note: '«Број» = размер (для обуви и одежды). «Трагам за бројем...» = «ищу размер...». Размеры одинаковые с европейскими.' },
+      { serbian: 'Могу ли да пробам?', transcription: 'Мо́гу ли да про́бам?', translation: 'Могу ли примерить?', note: '«Пробати» = примерить/попробовать. Примерочная — «свлачионица» или «кабина за пробу».' },
+      { serbian: 'Где је свлачионица?', transcription: 'Где је свла́чионица?', translation: 'Где примерочная?', note: '«Свлачионица» = примерочная (буквально «раздевалка»). В крупных магазинах обычно указано.' },
+      { serbian: 'Можете ли да запакујете за поклон?', transcription: 'Мо́жете ли да запа́кујете за по́клон?', translation: 'Можете ли упаковать как подарок?', note: '«Паковање за поклон» = подарочная упаковка. Многие магазины это предлагают за небольшую плату.' },
+      { serbian: 'Ово ми не одговара.', transcription: 'О́во ми не одго́вара.', translation: 'Это мне не подходит.', note: '«Не одговара» = не подходит. Если не нравится — честно скажите. «Не пасује» = не сидит (по фигуре).' },
+      { serbian: 'Да ли је ово на акцији?', transcription: 'Да ли је о́во на а́кцији?', translation: 'Это по акции?', note: '«Акција» = акция/распродажа. «Попуст» = скидка. «Распродаја» = распродажа (ликвидация).' },
+      { serbian: 'Када је следећа распродаја?', transcription: 'Ка́да је сле́дећа распрода́ја?', translation: 'Когда следующая распродажа?', note: 'В Сербии большие распродажи в январе (посленовогодние) и июле-августе (летние).' },
+      { serbian: 'Могу ли да вратим ако не одговара?', transcription: 'Мо́гу ли да вра́тим а́ко не одго́вара?', translation: 'Могу ли вернуть, если не подойдёт?', note: 'Возврат в течение 14 дней обязателен по закону при онлайн-покупке. В магазинах — зависит от правил.' },
+      { serbian: 'Чувајте рачун.', transcription: 'Чу́вајте ра́чун.', translation: 'Сохраняйте чек.', note: 'Совет продавца — и верный. Без чека нет возврата. «Чувати» = хранить, «рачун» = чек/счёт.' },
+      { serbian: 'Да ли имате програм лојалности?', transcription: 'Да ли и́мате про́грам лоја́лности?', translation: 'Есть ли программа лояльности?', note: 'У крупных сетей (Maxi, Roda) есть карты постоянного покупателя. Дают дополнительные скидки.' },
+      { serbian: 'Где је одсек за...?', transcription: 'Где је о́дсек за...?', translation: 'Где отдел...?', note: '«Одсек» = отдел. Добавьте нужный: «за електронику» (электроники), «за обућу» (обуви), «за децу» (детский).' },
+      { serbian: 'Радите ли недељом?', transcription: 'Ра́дите ли не́дељом?', translation: 'Работаете ли вы в воскресенье?', note: 'Большинство магазинов в Сербии работают в воскресенье — но часы могут быть сокращены.' },
+      { serbian: 'Имате ли поклон картицу?', transcription: 'И́мате ли по́клон карти́цу?', translation: 'Есть ли у вас подарочная карта?', note: 'В крупных сетях обычно есть подарочные карты («поклон картица»). Удобный подарок.' },
+      { serbian: 'Ово је из прошле колекције.', transcription: 'О́во је из про́шле коле́кције.', translation: 'Это из прошлой коллекции.', note: 'Товары из предыдущих сезонов обычно со скидкой. «Прошла колекција» = прошлая коллекция.' },
+      { serbian: 'Колико дуго траје гаранција?', transcription: 'Ко́лико ду́го тра́је гаранци́ја?', translation: 'Сколько длится гарантия?', note: 'По закону минимальная гарантия 2 года для товаров. «Гаранција» = гарантия, «листић» = гарантийный талон.' },
+      { serbian: 'Да ли је оригинал?', transcription: 'Да ли је ори́гинал?', translation: 'Это оригинал?', note: 'Важно при покупке техники или брендовых вещей. В Сербии есть рынки с подделками.' },
+      { serbian: 'Где се плаћа?', transcription: 'Где се пла́ћа?', translation: 'Где платить?', note: 'В больших торговых центрах кассы могут быть отдельно от отделов. «Каса» = касса.' }
+    ]
+  },
+  {
+    id: 'neighbors',
+    category: 'Стан и комшилук',
+    icon: '🏠',
+    color: '#00695C',
+    phrases: [
+      { serbian: 'Добар дан, комшија!', transcription: 'До́бар дан, ко́мшија!', translation: 'Добрый день, сосед!', note: '«Комшија» = сосед (муж.), «комшиница» = соседка (жен.). Это турецкое слово, вошедшее в сербский. Очень распространено.' },
+      { serbian: 'Можете ли да снизите буку?', transcription: 'Мо́жете ли да сни́зите бу́ку?', translation: 'Можете ли убавить шум?', note: '«Бука» = шум/гам. «Снизити» = убавить. Вежливая просьба к шумному соседу.' },
+      { serbian: 'Тихо, молим!', transcription: 'Ти́хо, мо́лим!', translation: 'Тише, пожалуйста!', note: 'Прямая и вежливая просьба снизить шум. «Тихо» = тихо/тише. Часто используют ночью.' },
+      { serbian: 'У котарица за смеће је пуна.', transcription: 'У кота́рица за сме́ће је пу́на.', translation: 'Мусорное ведро полное.', note: '«Смеће» = мусор, «котарица» = корзина/ведро. В многоквартирных домах мусор выносят в «контејнер».' },
+      { serbian: 'Где се одлаже рециклажа?', transcription: 'Где се о́длаже рецикла́жа?', translation: 'Где оставлять переработку?', note: 'В Белграде жёлтые баки — для пластика, зелёные — для стекла. «Рециклажа» = переработка.' },
+      { serbian: 'Када се плаћа станарина?', transcription: 'Ка́да се пла́ћа стана́рина?', translation: 'Когда платить за аренду?', note: '«Станарина» = квартплата/аренда. Обычно 1–5 числа каждого месяца.' },
+      { serbian: 'Имамо квар у стану.', transcription: 'И́мамо ква́р у ста́ну.', translation: 'У нас поломка в квартире.', note: '«Квар» = поломка/авария. «Имамо квар» = «у нас что-то сломалось». Скажите хозяину сразу.' },
+      { serbian: 'Цури вода из славине.', transcription: 'Цу́ри во́да из сла́вине.', translation: 'Течёт вода из крана.', note: '«Цури» = течёт/капает. «Славина» = кран. Сообщите управляющему или хозяину.' },
+      { serbian: 'Нема топле воде.', transcription: 'Не́ма то́пле во́де.', translation: 'Нет горячей воды.', note: 'Плановые отключения горячей воды — редкость в Белграде, но бывает. «Топла вода» = горячая вода.' },
+      { serbian: 'Не ради лифт.', transcription: 'Не ра́ди ли́фт.', translation: 'Лифт не работает.', note: 'В старых белградских домах лифты ненадёжны. «Не ради» = не работает. «Лифт» = лифт.' },
+      { serbian: 'Где је домар?', transcription: 'Где је до́мар?', translation: 'Где домоуправляющий?', note: '«Домар» = управляющий/дворник (в Сербии отвечает за порядок в доме).' },
+      { serbian: 'Када је скупштина зграде?', transcription: 'Ка́да је ску́пштина згра́де?', translation: 'Когда собрание жильцов?', note: '«Скупштина зграде» = собрание жильцов. Там решают вопросы ремонта и общего имущества.' },
+      { serbian: 'Ко је председник скупштине?', transcription: 'Ко је пред́седник ску́пштине?', translation: 'Кто председатель совета дома?', note: 'Каждый дом имеет «председника» — выбранного жильца, который координирует общие вопросы.' },
+      { serbian: 'Где се паркирати?', transcription: 'Где се парки́рати?', translation: 'Где парковаться?', note: 'В центре Белграда парковка платная (зоны 1–3). «Паркирати» = парковать. «Паркинг» = парковка.' },
+      { serbian: 'Постоји ли подрум?', transcription: 'По́стоји ли по́друм?', translation: 'Есть ли подвал?', note: '«Подрум» = подвал/погреб. В многих сербских домах есть подвальные кладовки для жильцов.' }
+    ]
+  },
+  {
+    id: 'reactions',
+    category: 'Комплименти и реакције',
+    icon: '🌟',
+    color: '#F57F17',
+    phrases: [
+      { serbian: 'Брavo!', transcription: 'Бра́во!', translation: 'Браво! / Молодец!', note: 'Универсальное восклицание одобрения. Сербы используют часто — по-итальянски звучит, но стало сербским.' },
+      { serbian: 'Одлично!', transcription: 'О́длично!', translation: 'Отлично!', note: 'Одно из самых позитивных слов. «Одлично» = превосходно. Говорите когда что-то действительно хорошо.' },
+      { serbian: 'Супер!', transcription: 'Су́пер!', translation: 'Супер! / Здорово!', note: 'Молодёжное и разговорное. «Супер» = круто/здорово. Один из самых частых ответов.' },
+      { serbian: 'Фантастично!', transcription: 'Фанта́стично!', translation: 'Фантастически!', note: 'Для выражения восторга. «Фантастично» = фантастически. Немного пафосно, но уместно.' },
+      { serbian: 'Неверoватно!', transcription: 'Невероватно!', translation: 'Невероятно! / Не может быть!', note: 'Реакция на что-то удивительное. «Неверoватно» = невероятно. Очень выразительное слово.' },
+      { serbian: 'Тако је лепо!', transcription: 'Та́ко је ле́по!', translation: 'Как красиво!', note: '«Тако» = так/очень, «лепо» = красиво. Подходит для пейзажа, блюда, одежды — всего красивого.' },
+      { serbian: 'Баш сте љубазни!', transcription: 'Баш сте љуба́зни!', translation: 'Вы очень любезны!', note: '«Љубазан» = любезный/добрый. «Баш» = очень/совсем. Приятный комплимент в официальной обстановке.' },
+      { serbian: 'Говорите одлично српски!', transcription: 'Го́ворите о́длично ср́пски!', translation: 'Вы отлично говорите по-сербски!', note: 'Это скажут вам сербы когда услышат несколько фраз. Отвечайте: «Хвала, учим!» = «Спасибо, учусь!»' },
+      { serbian: 'Много вам хвала!', transcription: 'Мно́го вам хва́ла!', translation: 'Большое вам спасибо!', note: '«Много» = много (усилитель). «Много хвала» = большое спасибо. Более тёплое чем просто «хвала».' },
+      { serbian: 'Ви сте ми помогли!', transcription: 'Ви сте ми по́могли!', translation: 'Вы мне помогли!', note: 'Выражение искренней благодарности за помощь. Скажите это когда кто-то действительно выручил.' },
+      { serbian: 'Мило ми је!', transcription: 'Ми́ло ми је!', translation: 'Приятно познакомиться! / Мне приятно!', note: 'Используется при знакомстве: «Мило ми је» = «приятно познакомиться». Или как реакция на хорошую новость.' },
+      { serbian: 'То је баш фино!', transcription: 'То је баш фи́но!', translation: 'Это очень мило! / Это замечательно!', note: '«Фино» = приятно/мило/тонко. Выражает тёплое одобрение. «Баш фино» — усиленная форма.' },
+      { serbian: 'Колики успех!', transcription: 'Ко́лики у́спех!', translation: 'Какой успех!', note: 'Восклицание при чужом достижении. «Колики» = какой большой. «Успех» = успех.' },
+      { serbian: 'Баш сте паметни!', transcription: 'Баш сте па́метни!', translation: 'Вы очень умны!', note: '«Паметан» = умный. Комплимент, который приятно слышать. «Баш» усиливает — «очень/совсем умны».' },
+      { serbian: 'Хвала на комплименту!', transcription: 'Хва́ла на компли́менту!', translation: 'Спасибо за комплимент!', note: 'Как ответить на похвалу. Вежливо и искренне. «Комплимент» = комплимент.' },
+      { serbian: 'Завидим вам!', transcription: 'За́видим вам!', translation: 'Завидую вам! (в хорошем смысле)', note: '«Завидити» = завидовать. В сербском культурном контексте это может быть и позитивным комплиментом.' },
+      { serbian: 'Нисам знао/ла да сте тако добри.', transcription: 'Ни́сам зна́о/ла да сте та́ко до́бри.', translation: 'Не знал(а), что вы так хороши.', note: 'Выражение приятного удивления чьими-то способностями. Искренний комплимент.' },
+      { serbian: 'Изгледате сјајно!', transcription: 'Изгле́дате сја́јно!', translation: 'Вы выглядите прекрасно!', note: '«Изгледати» = выглядеть, «сјајно» = прекрасно/блестяще. Комплимент внешнему виду.' },
+      { serbian: 'Ово је мајсторство!', transcription: 'О́во је ма́јсторство!', translation: 'Это мастерство!', note: '«Мајсторство» = мастерство. «Мајстор» = мастер — в Сербии так называют любого умельца с уважением.' },
+      { serbian: 'Право задовољство!', transcription: 'Пра́во задово́љство!', translation: 'Настоящее удовольствие!', note: '«Задовољство» = удовольствие. «Право задовољство» = настоящее удовольствие. Говорят о приятном опыте.' }
+    ]
+  },
+  {
+    id: 'nature_leisure',
+    category: 'Природа и слободно времe',
+    icon: '🌿',
+    color: '#2E7D32',
+    phrases: [
+      { serbian: 'Какво лепо време!', transcription: 'Ка́кво ле́по вре́ме!', translation: 'Какая прекрасная погода!', note: '«Лепо вреeme» = хорошая погода (не путать с «временем»). Разговор о погоде — universal ice-breaker.' },
+      { serbian: 'Пада киша.', transcription: 'Па́да ки́ша.', translation: 'Идёт дождь.', note: '«Пада» = падает/идёт. «Киша» = дождь. «Велика киша» = сильный дождь. «Ситна киша» = морось.' },
+      { serbian: 'Биће сунчано.', transcription: 'Би́ће су́нчано.', translation: 'Будет солнечно.', note: '«Биће» = будет. «Сунчано» = солнечно. Прогнозы часто обсуждают в Сербии — погода изменчива.' },
+      { serbian: 'Идемо у природу.', transcription: 'И́демо у при́роду.', translation: 'Едем на природу.', note: '«У природу» = на природу. Выезды за город по выходным — любимый сербский досуг. «Излет» = вылазка.' },
+      { serbian: 'Волим да планинарим.', transcription: 'Во́лим да плани́наримо.', translation: 'Люблю ходить в горы.', note: '«Планинарити» = ходить в горы/заниматься альпинизмом. «Планинарски клуб» = туристический клуб.' },
+      { serbian: 'Идемо на пикник!', transcription: 'И́демо на пи́кник!', translation: 'Идём на пикник!', note: 'Пикники популярны в Сербии — особенно у рек. «Ада Циганлија» в Белграде — лучшее место.' },
+      { serbian: 'Велики је ветар данас.', transcription: 'Ве́лики је ве́тар да́нас.', translation: 'Сегодня сильный ветер.', note: '«Велики ветар» = сильный ветер. «Кошава» — знаменитый ветер Белграда, дует из Румынии.' },
+      { serbian: 'Где можемо да пешачимо?', transcription: 'Где мо́жемо да пеша́чимо?', translation: 'Где можно прогуляться?', note: '«Пешачити» = ходить пешком. «Пешачка зона» = пешеходная зона. В Белграде — Кнез-Михайлова улица.' },
+      { serbian: 'Авала је леп излет.', transcription: 'А́вала је ле́п и́злет.', translation: 'Авала — хорошая вылазка.', note: '«Авала» — гора в 16 км от Белграда с телебашней. Популярный выезд для местных и туристов.' },
+      { serbian: 'Иде се у Фрушку гору.', transcription: 'И́де се у Фру́шку го́ру.', translation: 'Едем на Фрушка-гору.', note: 'Фрушка-гора — хребет в Воеводине с монастырями и виноградниками. «Иде се» = едут (неопределённо-личная конструкция).' },
+      { serbian: 'Колико траје пут?', transcription: 'Ко́лико тра́је пут?', translation: 'Сколько займёт путь?', note: '«Пут» = путь/дорога. «Траје» = длится. Спросите перед любой поездкой.' },
+      { serbian: 'Лепо је провести вријеме у природи.', transcription: 'Ле́по је про́вести ври́јеме у при́роди.', translation: 'Прекрасно провести время на природе.', note: 'Это стандартный комментарий после вылазки. «Провести вријеме» = провести время.' },
+      { serbian: 'Волим лето у Србији.', transcription: 'Во́лим ле́то у Срби́ји.', translation: 'Люблю лето в Сербии.', note: 'Лето в Сербии — жаркое (35–40°). Многие сербы уезжают на Адриатику или в горы.' },
+      { serbian: 'Купаћу се у Сави.', transcription: 'Купа́ћу се у Са́ви.', translation: 'Буду купаться в Саве.', note: 'Река Сава — популярное место для купания у белградцев. «Купаћу се» = буду купаться.' },
+      { serbian: 'Риболов је популаран у Србији.', transcription: 'Рибо́лов је популаран у Срби́ји.', translation: 'Рыбалка популярна в Сербии.', note: '«Риболов» = рыбалка. На Дунае и Саве рыбачат круглый год. «Риболовачки клуб» = рыболовный клуб.' },
+      { serbian: 'Данас је паклено вруће.', transcription: 'Да́нас је па́клено ву́ће.', translation: 'Сегодня адски жарко.', note: '«Паклено» = адски (усилитель). «Вруће» = жарко. В разговорном стиле так говорят о сильной жаре.' },
+      { serbian: 'Хоћу да видим залазак сунца.', transcription: 'Хо́ћу да ви́дим за́лазак су́нца.', translation: 'Хочу посмотреть закат.', note: '«Залазак сунца» = закат (буквально «спуск солнца»). «Излазак» = восход. Закаты над Дунаем — незабываемы.' },
+      { serbian: 'Каква је прогноза за сутра?', transcription: 'Ка́ква је про́гноза за су́тра?', translation: 'Какой прогноз на завтра?', note: '«Прогноза» = прогноз. «Прогноза времена» = прогноз погоды. Часто смотрят на сайте РХМЗ.' },
+      { serbian: 'Требамо сунчаник и пешкир.', transcription: 'Тре́бамо су́нчаник и пе́шкир.', translation: 'Нам нужен зонт от солнца и полотенце.', note: '«Сунчаник» = пляжный зонтик. «Пешкир» = полотенце. «Требамо» = нам нужно (форма от «требати»).' },
+      { serbian: 'Волим шетњу у парку.', transcription: 'Во́лим ше́тњу у па́рку.', translation: 'Люблю прогулки в парке.', note: '«Шетња» = прогулка. В Белграде есть парки: Ташмајдан, Топчидер, Вождовац, Калемегдан.' }
+    ]
+  },
+  {
+    id: 'education',
+    category: 'Образовање и учење',
+    icon: '📚',
+    color: '#1565C0',
+    phrases: [
+      { serbian: 'Учим српски.', transcription: 'У́чим ср́пски.', translation: 'Учу сербский.', note: 'Простой и честный ответ когда сербы слышат ваш акцент. Реакция всегда тёплая!' },
+      { serbian: 'Где могу да учим српски?', transcription: 'Где мо́гу да у́чим ср́пски?', translation: 'Где я могу учить сербский?', note: 'В Белграде есть школы: «Инфилип», «Архимед». Много онлайн-курсов. Лучший способ — живое общение.' },
+      { serbian: 'Похађам курс српског.', transcription: 'Поха́ђам курс ср́пског.', translation: 'Я посещаю курс сербского.', note: '«Похађати» = посещать (занятия). «Курс» = курс. Объясняет как вы учите язык.' },
+      { serbian: 'На ком нивоу сте?', transcription: 'На ко́м ни́воу сте?', translation: 'На каком уровне вы?', note: '«Ниво» = уровень. Уровни: А1, А2, Б1, Б2, Ц1, Ц2 — по европейской шкале.' },
+      { serbian: 'Почетник/Почетница сам.', transcription: 'По́четник/По́четница сам.', translation: 'Я начинающий/начинающая.', note: '«Почетник» = новичок (муж.), «почетница» = новичок (жен.). Честно признать уровень — правильно.' },
+      { serbian: 'Учим из апликације.', transcription: 'У́чим из апли́кације.', translation: 'Учу из приложения.', note: '«Апликација» = приложение. Популярные для сербского: Duolingo, IziSerbian, языковые подкасты.' },
+      { serbian: 'Тешко ми је ћирилица.', transcription: 'Те́шко ми је ћирили́ца.', translation: 'Мне трудно даётся кириллица.', note: 'Сербская кириллица немного отличается от русской. Слышат это от многих иностранцев — с пониманием.' },
+      { serbian: 'Која је разлика између... и...?', transcription: 'Ко́ја је ра́злика из́међу... и...?', translation: 'В чём разница между... и...?', note: '«Разлика» = разница. «Између» = между. Используйте при изучении синонимов или похожих слов.' },
+      { serbian: 'Можете ли поновити?', transcription: 'Мо́жете ли по́новити?', translation: 'Можете повторить?', note: '«Поновити» = повторить. Просите повторить фразу столько раз сколько нужно — это нормально.' },
+      { serbian: 'Не разумем ову реч.', transcription: 'Не ра́зумем о́ву реч.', translation: 'Не понимаю это слово.', note: '«Реч» = слово. Скажите и покажите на слово — собеседник объяснит.' },
+      { serbian: 'Шта значи ова реч?', transcription: 'Шта зна́чи о́ва реч?', translation: 'Что значит это слово?', note: '«Значи» = значит/означает. Простейший способ узнать значение незнакомого слова.' },
+      { serbian: 'Да ли постоји школа за странце?', transcription: 'Да ли по́стоји шко́ла за стра́нце?', translation: 'Есть ли школа для иностранцев?', note: 'В Белграде есть школы для expatов. ИНФИЛИП при Белградском университете — самая известная.' },
+      { serbian: 'Правим грешке при говору.', transcription: 'Пра́вим гре́шке при го́вору.', translation: 'Делаю ошибки при разговоре.', note: '«Грешка» = ошибка. Это нормально! Сербы терпеливы к иностранцам и помогут исправить.' },
+      { serbian: 'Молим исправите ме.', transcription: 'Мо́лим испра́вите ме.', translation: 'Пожалуйста, исправляйте меня.', note: 'Просьба к собеседнику указывать на ошибки. Бесценно для обучения! «Исправити» = исправить.' },
+      { serbian: 'Читам на српском сваки дан.', transcription: 'Чи́там на ср́пском сва́ки дан.', translation: 'Читаю на сербском каждый день.', note: 'Чтение — лучший способ расширить словарный запас. Попробуйте: Блиц, Политика, детские книги.' },
+      { serbian: 'Гледам сербске серије.', transcription: 'Гле́дам ср́пске сери́је.', translation: 'Смотрю сербские сериалы.', note: 'Сербские сериалы («Равна Гора», «Монтевидео») — отличная языковая практика. С субтитрами ещё лучше.' },
+      { serbian: 'Учим из грешака.', transcription: 'У́чим из гре́шака.', translation: 'Учусь на ошибках.', note: 'Философия учёбы. «Грешака» = ошибок (генитив мн.ч.). Сербы оценят ваше упорство.' },
+      { serbian: 'Напредовао/ла сам много.', transcription: 'Напредова́о/ла сам мно́го.', translation: 'Я сильно продвинулся/продвинулась.', note: '«Напредовати» = продвигаться. Похвалите себя! «Напредовао» (муж.), «напредовала» (жен.).' },
+      { serbian: 'Желим да достигнем ниво Б2.', transcription: 'Же́лим да до́стигнем ни́во Б2.', translation: 'Хочу достичь уровня B2.', note: 'Б2 = уровень B2 по CEFR. Для получения «сертификата о знању српског» нужен минимум Б1.' },
+      { serbian: 'Учење језика је авантура.', transcription: 'У́чење је́зика је аванту́ра.', translation: 'Изучение языка — это приключение.', note: 'Позитивный взгляд на учёбу. «Авантура» = приключение. Говорите это когда сомневаетесь — помогает!' }
+    ]
+  },
+  {
+    id: 'culture',
+    category: 'Српска култура',
+    icon: '🏛️',
+    color: '#880E4F',
+    phrases: [
+      { serbian: 'Слава је важан дан за Сербе.', transcription: 'Сла́ва је ва́жан дан за Ср́бе.', translation: 'Слава — важный день для сербов.', note: '«Слава» = праздник семейного святого. Каждая семья отмечает своего святого-покровителя. Уникальная традиция.' },
+      { serbian: 'Буђење уз кафу је ритуал.', transcription: 'Бу́ђење уз ка́фу је ри́туал.', translation: 'Пробуждение с кофе — ритуал.', note: 'Утренний кофе — священный ритуал для сербов. «Домаћа кафа» (турецкий) пьют неторопливо, часто в кафане.' },
+      { serbian: 'Ћевапи су национално јело.', transcription: 'Ће́вапи су национа́лно је́ло.', translation: 'Чевапи — национальное блюдо.', note: '«Ћевапи» = чевапи — колбаски из фарша, жаренные на гриле. Подают с «лепињом» (хлебом) и луком.' },
+      { serbian: 'Ракија је сербски бренд.', transcription: 'Ра́кија је ср́пски бренд.', translation: 'Ракия — сербский бренд.', note: '«Ракија» = фруктовый самогон. Подают при встрече гостей. «Шљивовица» (сливовица) — самая знаменитая.' },
+      { serbian: 'Прослава траје до ујутру.', transcription: 'Просла́ва тра́је до ују́тру.', translation: 'Праздник длится до утра.', note: 'Сербские праздники — долгие. «Слава», свадьбы и праздники могут идти всю ночь. Будьте готовы!' },
+      { serbian: 'Гостопримство је у крви Срба.', transcription: 'Гостопри́мство је у кр́ви Ср́ба.', translation: 'Гостеприимство у сербов в крови.', note: '«Гостопримство» = гостеприимство. Сербы искренне рады гостям. Отказаться от угощения — неловко.' },
+      { serbian: 'Волите ли српску музику?', transcription: 'Во́лите ли ср́пску му́зику?', translation: 'Любите ли вы сербскую музику?', note: 'Популярная тема для разговора. Жанры: народна, турбо-фолк, поп, рок. «Волим!» = «Люблю!» — безопасный ответ.' },
+      { serbian: 'Ново Београд је модеран.', transcription: 'Но́во Бео́град је мо́деран.', translation: 'Нови-Белград современный.', note: 'Нови Белград — деловой район с высотками. Контраст со старым Белградом. Там много IT-компаний.' },
+      { serbian: 'Калемегдан је срце Београда.', transcription: 'Калемега́н је ср́це Бео́града.', translation: 'Калемегдан — сердце Белграда.', note: 'Калемегдан — крепость и парк над слиянием Савы и Дуная. Символ Белграда. Идеально для прогулки.' },
+      { serbian: 'Све лепе ствари долазе из Сербије.', transcription: 'Све ле́пе ства́ри до́лазе из Срби́је.', translation: 'Все хорошие вещи приходят из Сербии.', note: 'Шутка, которую сербы сами говорят с юмором. Отличный способ показать что вы любите страну.' },
+      { serbian: 'Ко је Тесла?', transcription: 'Ко је Те́сла?', translation: 'Кто такой Тесла?', note: 'Никола Тесла — сербский учёный, гордость нации. Белградский аэропорт назван в его честь. Гордятся очень!' },
+      { serbian: 'Хоћу да пробам сарму.', transcription: 'Хо́ћу да про́бам са́рму.', translation: 'Хочу попробовать сарму.', note: '«Сарма» = голубцы из квашеной капусты с фаршем. Национальное зимнее блюдо. Незаменима на Рождество.' },
+      { serbian: 'Срби воле фудбал.', transcription: 'Ср́би во́ле фу́дбал.', translation: 'Сербы любят футбол.', note: 'Фудбал = футбол. Клубы «Партизан» и «Звезда» — вечные соперники. Разговор о матче — отличная тема.' },
+      { serbian: 'Где је Скупштина?', transcription: 'Где је Ску́пштина?', translation: 'Где парламент?', note: '«Скупштина» = Народная скупщина (парламент). Красивое здание в центре Белграда. Экскурсии бесплатны.' },
+      { serbian: 'Верски живот је важан.', transcription: 'Ве́рски жи́вот је ва́жан.', translation: 'Религиозная жизнь важна.', note: 'Большинство сербов — православные. Православная церковь играет важную роль в обществе и традициях.' }
+    ]
+  },
+  {
+    id: 'technology_media',
+    category: 'Технологија и медији',
+    icon: '📱',
+    color: '#0277BD',
+    phrases: [
+      { serbian: 'Да ли имате WiFi?', transcription: 'Да ли и́мате WiFi?', translation: 'Есть ли у вас Wi-Fi?', note: 'Сербия хорошо покрыта интернетом. WiFi есть в большинстве кафе, ресторанов и отелей.' },
+      { serbian: 'Шифра за WiFi?', transcription: 'Ши́фра за WiFi?', translation: 'Пароль от Wi-Fi?', note: '«Шифра» = шифр/пароль. «Лозинка» тоже = пароль. Оба слова используют для WiFi пароля.' },
+      { serbian: 'Наплата за роминг?', transcription: 'Напла́та за ро́минг?', translation: 'Тарификация за роуминг?', note: '«Наплата» = тарификация/оплата. «Роминг» = роуминг. Уточните у своего оператора перед поездкой.' },
+      { serbian: 'Треба ми нова СИМ картица.', transcription: 'Тре́ба ми но́ва СИМ карти́ца.', translation: 'Мне нужна новая SIM-карта.', note: 'Местная SIM: Теленор, А1, mts, ЈАТ. Продаются везде с паспортом. Интернет пакет от 300 дин/месяц.' },
+      { serbian: 'Где могу да напуним телефон?', transcription: 'Где мо́гу да напу́ним теле́фон?', translation: 'Где я могу зарядить телефон?', note: 'В кафе в Сербии часто можно попросить зарядить телефон. Скажите: «Да ли могу да напуним телефон?»' },
+      { serbian: 'Позвоните ме касније.', transcription: 'Позво́ните ме касни́је.', translation: 'Позвоните мне позже.', note: '«Позвоните» = позвоните (мн.ч./вежливо). «Касније» = позже. Простая фраза для завершения разговора.' },
+      { serbian: 'Оставите поруку.', transcription: 'Оста́вите пору́ку.', translation: 'Оставьте сообщение.', note: '«Порука» = сообщение/записка. «Оставите» = оставьте. Если не можете ответить на звонок.' },
+      { serbian: 'Не чујем вас добро.', transcription: 'Не чу́јем вас до́бро.', translation: 'Я вас плохо слышу.', note: '«Чујем» = слышу. Фраза для плохой связи по телефону. «Не чујем» = не слышу.' },
+      { serbian: 'Упутио/ла сам вам мејл.', transcription: 'Упу́тио/ла сам вам ме́јл.', translation: 'Я отправил(а) вам email.', note: '«Упутити» = направить/отправить. Деловая фраза. «Упутио» — муж., «упутила» — жен.' },
+      { serbian: 'Пошаљите ми линк.', transcription: 'По́шаљите ми линк.', translation: 'Пришлите мне ссылку.', note: '«Пошаљите» = пришлите. «Линк» = ссылка (из английского). Обычное слово в цифровом общении.' },
+      { serbian: 'Проверите мој профил.', transcription: 'Про́верите мој про́фил.', translation: 'Проверьте мой профиль.', note: '«Провери» = проверь. «Профил» = профиль (соцсети). Используют при обмене соцсетями.' },
+      { serbian: 'Пратим вас на Инстаграму.', transcription: 'Пра́тим вас на Инста́граму.', translation: 'Я слежу за вами в Instagram.', note: '«Пратити» = следить/подписаться. «На Инстаграму» = в Instagram. Сербы активны в соцсетях.' },
+      { serbian: 'Батерија је скоро празна.', transcription: 'Бате́рија је ско́ро пра́зна.', translation: 'Батарея почти садится.', note: '«Батерија» = батарея. «Празна» = пустая. Буквально «батарея почти пустая» = садится.' },
+      { serbian: 'Где је најближи сервис?', transcription: 'Где је бли́жји се́рвис?', translation: 'Где ближайший сервисный центр?', note: '«Сервис» = сервисный центр/ремонт. В Белграде много сервисов для телефонов и техники.' },
+      { serbian: 'Имам споро паковање интернета.', transcription: 'И́мам спо́ро пако́вање инте́рнета.', translation: 'У меня медленный интернет-пакет.', note: '«Паковање» = пакет. «Споро» = медленный. Интернет в Сербии качественный — выбирайте больший пакет.' },
+      { serbian: 'Да ли постоји апликација за то?', transcription: 'Да ли по́стоји апли́кација за то?', translation: 'Есть ли для этого приложение?', note: '«Апликација» = приложение. В Сербии популярны: BusPlus (транспорт), Glovo (доставка), CarGo (такси).' },
+      { serbian: 'Ажурирам свој телефон.', transcription: 'Ажури́рам сво́ј теле́фон.', translation: 'Обновляю свой телефон.', note: '«Ажурирати» = обновлять/актуализировать. Слово пришло из IT-сферы.' },
+      { serbian: 'Онлајн плаћање је сигурно?', transcription: 'Онла́јн пла́ћање је си́гурно?', translation: 'Онлайн-оплата безопасна?', note: '«Сигурно» = безопасно/уверенно. В Сербии онлайн-оплата распространена. Ищите HTTPS и знак замка.' },
+      { serbian: 'Доставу имате?', transcription: 'До́ставу и́мате?', translation: 'Есть ли у вас доставка?', note: '«Достава» = доставка. В Белграде развита доставка еды (Glovo, Wolt, NaruciLako). «Тражите» = заказывайте.' },
+      { serbian: 'Да ли могу да плаћам преко телефона?', transcription: 'Да ли мо́гу да пла́ћам пре́ко теле́фона?', translation: 'Могу ли платить через телефон?', note: 'Apple Pay и Google Pay работают в Сербии в большинстве мест. Спросите у продавца.' },
+      { serbian: 'Пао ми је интернет.', transcription: 'Па́о ми је инте́рнет.', translation: 'У меня упал интернет.', note: '«Пао» = упал (от «пасти» = упасть). «Пао ми је интернет» = интернет отвалился. Разговорная фраза.' },
+      { serbian: 'Гледам Нетфликс уз субтитле.', transcription: 'Гле́дам Нетфли́кс уз су́бтитле.', translation: 'Смотрю Netflix с субтитрами.', note: 'Netflix доступен в Сербии. «Субтитли» = субтитры. На сербском — отличная языковая практика!' },
+      { serbian: 'Онлајн образовање је будућност.', transcription: 'Онла́јн образова́ње је буду́ћност.', translation: 'Онлайн-образование — это будущее.', note: '«Образовање» = образование. «Будућност» = будущее. Тема, актуальная для expatов с детьми.' },
+      { serbian: 'Пратим вести на српском.', transcription: 'Пра́тим ве́сти на ср́пском.', translation: 'Слежу за новостями на сербском.', note: '«Вести» = новости. Читайте Blic, N1, Politika. Отличная практика языка и понимание страны.' },
+      { serbian: 'Да ли имате Вибер?', transcription: 'Да ли и́мате Ви́бер?', translation: 'Есть ли у вас Viber?', note: 'Viber очень популярен в Сербии — часто вместо SMS. Многие бизнесы общаются через Viber.' },
+      { serbian: 'Пошаљите ми слику.', transcription: 'По́шаљите ми сли́ку.', translation: 'Пришлите мне фотографию.', note: '«Слика» = картинка/фото. «Пошаљите» = пришлите. Используется в Viber, WhatsApp, Telegram.' },
+      { serbian: 'Немам сигнал.', transcription: 'Не́мам си́гнал.', translation: 'Нет сигнала.', note: '«Сигнал» = сигнал. В метро (в Белграде метро нет, но в подземных переходах) сигнал пропадает.' },
+      { serbian: 'Ресетоваћу телефон.', transcription: 'Ресетова́ћу теле́фон.', translation: 'Сброшу телефон / Перезагружу.', note: '«Ресетовати» = сбросить/перезагрузить. Слово из IT жаргона. «Рестартовати» также используют.' },
+      { serbian: 'Направи снимак екрана.', transcription: 'На́прави сни́мак е́крана.', translation: 'Сделай скриншот.', note: '«Снимак екрана» = скриншот (буквально «снимок экрана»). Иногда говорят просто «скриншот».' },
+      { serbian: 'Меморија је пуна.', transcription: 'Мемо́рија је пу́на.', translation: 'Память заполнена.', note: '«Меморија» = память (в телефоне). «Пуна» = полная. Типичная проблема у путешественников с фото.' },
+      { serbian: 'Да ли имате пуњач за лаптоп?', transcription: 'Да ли и́мате пу́њач за ла́птоп?', translation: 'Есть ли у вас зарядка для ноутбука?', note: '«Пуњач» = зарядное устройство. «Лаптоп» = ноутбук. В кафе часто можно попросить зарядить.' },
+      { serbian: 'Брже пошаљи!', transcription: 'Бр́же по́шаљи!', translation: 'Отправь быстрее!', note: 'Неформальная просьба в чате. «Брже» = быстрее. «Пошаљи» = отправь (глагол «послати»).' },
+      { serbian: 'Имам позив.', transcription: 'И́мам по́зив.', translation: 'У меня звонок.', note: '«Позив» = звонок/вызов. Говорят чтобы объяснить паузу в разговоре. «Добио/добила сам позив» тоже.' },
+      { serbian: 'Могу ли да снимим екран?', transcription: 'Мо́гу ли да сни́мим е́кран?', translation: 'Можно записать экран?', note: '«Снимити екран» = записать экран. Используют при демонстрации или на онлайн-совещаниях.' }
     ]
   }
 ];
@@ -4380,4 +6131,24 @@ const ACHIEVEMENTS = [
   { id: 'xp_500',         icon: '✨', title: '500 XP',             desc: 'Набрал 500 очков опыта' },
   { id: 'xp_2000',        icon: '💎', title: '2000 XP',            desc: 'Набрал 2000 очков опыта' },
   { id: 'level_5',        icon: '🚀', title: 'Уровень 5',          desc: 'Достиг 5 уровня' },
+  { id: 'vocab_master',  icon: '📖', title: 'Словарный мастер',   desc: 'Выучил 100 слов' },
+  { id: 'phrase_hero',   icon: '💬', title: 'Мастер фраз',        desc: 'Выучил 50 фраз' },
+  { id: 'streak_100',    icon: '🌈', title: '100 дней подряд',    desc: 'Стрик 100 дней' },
+  { id: 'perfect_week',  icon: '🏅', title: 'Идеальная неделя',   desc: 'Все уроки без ошибок 7 дней' },
+  { id: 'vocab_300',     icon: '🎓', title: '300 слов',           desc: 'Прошёл весь основной словарь' },
+  { id: 'culture_lover', icon: '🏛️', title: 'Культуролог',        desc: 'Выучил все культурные фразы' },
+  { id: 'scenario_10',   icon: '🎬', title: '10 сценариев',       desc: 'Прошёл 10 сценариев' },
+  { id: 'xp_5000',       icon: '🔮', title: '5000 XP',            desc: 'Набрал 5000 очков опыта' },
+  { id: 'speed_learner', icon: '⚡', title: 'Быстрый ученик',     desc: 'Завершил 5 уроков за день' },
+  { id: 'perfect_score', icon: '💯', title: 'Сто процентов',      desc: 'Набрал 100% в квизе' },
+  { id: 'mup_master',    icon: '📋', title: 'Мастер МУП-а',       desc: 'Прошёл сценарий с документами' },
+  { id: 'daily_7',       icon: '🌅', title: 'Неделя каждый день', desc: 'Занимался 7 дней подряд' },
+  { id: 'communicator',  icon: '🗣️', title: 'Коммуникатор',       desc: 'Изучил все фразы категории разговор' },
+  { id: 'health_wise',   icon: '🏥', title: 'Медицинский',        desc: 'Выучил все медицинские фразы' },
+  { id: 'traveler',      icon: '✈️', title: 'Путешественник',     desc: 'Прошёл сценарии: аэропорт, такси, вокзал' },
+  { id: 'level_10',      icon: '🌟', title: 'Уровень 10',         desc: 'Достиг 10 уровня' },
+  { id: 'finisher',      icon: '🎊', title: 'Финишёр',            desc: 'Завершил 30-дневный план' },
+  { id: 'social_butter', icon: '🤝', title: 'Светский человек',   desc: 'Выучил все фразы для общения' },
+  { id: 'belgradian',    icon: '🇷🇸', title: 'Белградец',          desc: 'Выучил фразы о городе' },
+  { id: 'xp_1000',       icon: '💫', title: '1000 XP',            desc: 'Набрал 1000 очков опыта' },
 ];

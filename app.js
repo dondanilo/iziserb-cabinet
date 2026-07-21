@@ -435,15 +435,6 @@ function showSettings() {
   showScreen('screen-settings');
 }
 
-function setDailyGoal(xp) {
-  state.dailyGoal = xp;
-  saveState();
-  document.querySelectorAll('.settings-goal-btn').forEach(btn => {
-    btn.classList.toggle('active', parseInt(btn.dataset.xp) === xp);
-  });
-  renderHome();
-}
-
 async function togglePushSetting() {
   if (Notification.permission === 'denied') {
     alert('Уведомления заблокированы в настройках браузера. Разрешите их вручную.');
@@ -879,8 +870,6 @@ function speakSerbian(text, event) {
   utterance.pitch = 1;
   speechSynthesis.speak(utterance);
 }
-// Alias for legacy calls
-function speakGreek(text, event) { speakSerbian(text, event); }
 
 // ============================================================
 // SPACED REPETITION (SRS)
@@ -3084,7 +3073,7 @@ function runSpeechRecognition(SR, langIdx) {
     const target = speechSession.words[speechSession.index].greek || speechSession.words[speechSession.index].serbian || '';
     const alts = Array.from(event.results[0]).map(a => a.transcript);
     document.getElementById('speech-recognized').textContent = alts[0] || '';
-    const ok = alts.some(t => normalizeGreekSpeech(t) === normalizeGreekSpeech(target));
+    const ok = alts.some(t => normalizeSpeech(t) === normalizeSpeech(target));
     if (ok) {
       speechSession.correctCount++;
       speechSession.xpEarned += 5;
@@ -3131,7 +3120,7 @@ function runSpeechRecognition(SR, langIdx) {
   }
 }
 
-function normalizeGreekSpeech(text) {
+function normalizeSpeech(text) {
   return text.toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')

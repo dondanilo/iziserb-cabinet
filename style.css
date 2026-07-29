@@ -213,6 +213,32 @@ body {
 .complete-content .btn-primary { width: 100%; max-width: 320px; }
 .scenario-complete-msg { font-size: 15px; color: var(--text-light); font-weight: 600; max-width: 300px; line-height: 1.5; }
 
+/* Экраны завершения (урок / сценарий / словарь) — result-* */
+.result-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 68vh;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  text-align: center;
+}
+.result-icon { font-size: 72px; line-height: 1; animation: pop 0.4s cubic-bezier(.2,1.5,.5,1); }
+.result-title { font-size: 28px; font-weight: 900; color: var(--text); margin: 0; }
+.result-subtitle { font-size: 15px; color: var(--text-light); font-weight: 600; max-width: 320px; line-height: 1.5; margin: 0; }
+.result-stats { display: flex; gap: 10px; width: 100%; justify-content: center; flex-wrap: wrap; }
+.result-stat {
+  background: var(--white); border-radius: var(--radius); padding: 14px 16px;
+  border: 2px solid var(--gray-light); flex: 1; min-width: 80px; max-width: 110px;
+}
+.result-stat-val { font-size: 22px; font-weight: 900; color: var(--blue); line-height: 1.1; }
+.result-stat-lbl { font-size: 11px; color: var(--text-light); font-weight: 700; margin-top: 2px; }
+.result-container .btn-primary,
+.result-container .btn-secondary { width: 100%; }
+
 /* ============================================================ SEARCH */
 .search-wrap {
   padding: 8px 0 4px;

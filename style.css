@@ -2363,3 +2363,21 @@ body {
   cursor: pointer;
 }
 .settings-sub-btn:active { transform: translateY(2px); }
+
+/* Кнопка «Войти» для гостя в шапке (вместо аватара) */
+.btn-guest-login {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 40px; padding: 0 18px; border-radius: 20px; border: none;
+  background: var(--blue); color: #fff; cursor: pointer;
+  font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 800; flex-shrink: 0;
+}
+.btn-guest-login:active { transform: scale(0.97); }
+
+/* Кнопка «Не сейчас» на экране входа (возврат гостя на главную) */
+.btn-login-back {
+  margin-top: 18px; padding: 10px 20px;
+  background: none; border: none; color: var(--text-light);
+  font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 700;
+  cursor: pointer; text-decoration: underline;
+}
+.btn-login-back:active { opacity: .6; }

@@ -165,6 +165,77 @@ function saveState() {
 }
 
 // ============================================================
+// ГОСТЕВОЙ РЕЖИМ + ПРОБНЫЕ УРОКИ (как в IziGreek)
+// ============================================================
+const TRIAL_LESSONS = 2;      // сколько уроков доступно гостю без входа/подписки
+let hasSubscription = false;
+let pendingUpgrade = false;   // гость нажал «оформить» → после входа сразу пейволл
+
+// Пропускать ли в контент. Гостю дан пробник, дальше — окно с объяснением.
+// Прогресс гостя живёт в localStorage и переносится в аккаунт при входе
+// (loadState грузит localStorage, Firestore накрывает только если документ есть).
+function trialGate() {
+  if (hasSubscription) return true;
+  if ((state.lessonsCompleted || 0) < TRIAL_LESSONS) return true;
+  showTrialModal();
+  return false;
+}
+
+function showTrialModal() {
+  const cta = document.getElementById('trial-cta');
+  if (cta) cta.textContent = currentUser ? 'Выбрать план' : 'Войти и открыть доступ';
+  const m = document.getElementById('trial-modal');
+  if (m) m.style.display = 'flex';
+}
+
+function dismissTrialModal() {
+  const m = document.getElementById('trial-modal');
+  if (m) m.style.display = 'none';
+}
+
+function trialUpgrade() {
+  dismissTrialModal();
+  if (currentUser) {
+    showPaywall();          // вошёл — сразу планы
+  } else {
+    pendingUpgrade = true;  // гость — сперва вход, после него откроем пейволл
+    showLoginPromo();
+  }
+}
+
+// Кнопка возврата на главную — только гостю с уже пройденным онбордингом
+// (на самом первом запуске уходить с экрана входа некуда).
+function updateLoginBackBtn() {
+  const back = document.getElementById('login-back-btn');
+  if (back) back.style.display = state.onboardingDone ? 'block' : 'none';
+}
+
+function showLoginPromo() {
+  const sub = document.querySelector('#screen-login .login-subtitle');
+  if (sub) sub.textContent = 'Бесплатные уроки пройдены. Войди, чтобы продолжить и сохранить прогресс.';
+  updateLoginBackBtn();
+  showScreen('screen-login');
+}
+
+// Обычный вход по кнопке «Войти» на главной — ведём на экран входа с обоими
+// провайдерами (Google + Apple), а не сразу в signInWithGoogle.
+function showLogin() {
+  const sub = document.querySelector('#screen-login .login-subtitle');
+  if (sub) sub.textContent = 'Войди — прогресс сохранится на всех устройствах';
+  updateLoginBackBtn();
+  showScreen('screen-login');
+}
+
+// Гостю показываем кнопку «Войти» вместо аватара.
+function updateGuestUi() {
+  const isGuest = !currentUser;
+  const loginBtn = document.getElementById('guest-login-btn');
+  const avatarBtn = document.getElementById('user-avatar-btn');
+  if (loginBtn) loginBtn.style.display = isGuest ? 'inline-flex' : 'none';
+  if (avatarBtn) avatarBtn.style.display = isGuest ? 'none' : 'inline-flex';
+}
+
+// ============================================================
 // SUBSCRIPTION
 // ============================================================
 
@@ -596,24 +667,38 @@ async function init() {
       checkStreak();
       renderUserInfo();
 
-      const hasAccess = await checkSubscription();
-      if (hasAccess) {
-        renderHome();
-        if (!state.onboardingDone) {
-          showScreen('screen-onboarding');
-        } else {
-          showScreen('screen-home');
-          // Silently refresh push subscription for returning users
-          if (pushPermission() === 'granted') {
-            setTimeout(setupPushNotifications, 3000);
-          }
-        }
+      hasSubscription = await checkSubscription();
+      updateGuestUi();
+
+      // Гость нажал «оформить подписку» до входа → после входа сразу ведём на пейволл.
+      if (pendingUpgrade) {
+        pendingUpgrade = false;
+        if (!hasSubscription) { showPaywall(); return; }
+      }
+
+      // Вошедший без подписки НЕ упирается в пейволл сразу — у него остаются
+      // пробные уроки (trialGate), пейволл всплывает по исчерпании. Так ревьюер
+      // и пользователь видят контент, а не глухую стену.
+      renderHome();
+      if (!state.onboardingDone) {
+        showScreen('screen-onboarding');
       } else {
-        showPaywall();
+        showScreen('screen-home');
+        if (pushPermission() === 'granted') {
+          setTimeout(setupPushNotifications, 3000);
+        }
       }
     } else {
+      // Гость: работаем на локальном прогрессе, вход не форсим.
       currentUser = null;
-      showScreen('screen-login');
+      hasSubscription = false;
+      pendingUpgrade = false;
+      await loadState();
+      checkStreak();
+      updateGuestUi();
+      renderHome();
+      if (!state.onboardingDone) showScreen('screen-onboarding');
+      else showScreen('screen-home');
     }
   });
 }
@@ -709,12 +794,14 @@ function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
 // LESSON — FLOW
 // ============================================================
 function startLesson() {
+  if (!trialGate()) return;
   lessonState = { exercises: generateLesson(), currentIndex: 0, hearts: 3, xpEarned: 0, correct: 0, answered: false, isWeakMode: false };
   showScreen('screen-lesson');
   renderExercise();
 }
 
 function startWeakLesson() {
+  if (!trialGate()) return;
   const weakIds = Object.keys(state.errorLog)
     .sort((a, b) => state.errorLog[b] - state.errorLog[a])
     .map(id => parseInt(id));
@@ -1184,6 +1271,7 @@ function showScenarios() {
 }
 
 function startScenario(id) {
+  if (!trialGate()) return;
   const scenario = SCENARIOS.find(s => s.id === id);
   if (!scenario) return;
   scenarioState = { scenarioId: id, currentStep: 0, score: 0, answered: false };
@@ -2435,6 +2523,7 @@ function searchVocab(query) {
 }
 
 function startVocabQuiz(categoryId) {
+  if (!trialGate()) return;
   const category = VOCAB_CATEGORIES.find(c => c.id === categoryId);
   if (!category) return;
   const words = shuffle([...category.words]).slice(0, 10);
@@ -2593,6 +2682,7 @@ function showQuiz() {
 }
 
 function startQuiz(type) {
+  if (!trialGate()) return;
   let words;
   if (type === 'translation' || type === 'reverse') {
     words = shuffle([...QUIZ_SENTENCES]);

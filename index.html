@@ -184,7 +184,10 @@
       </button>
     </div>
 
-    <button class="btn-primary" onclick="startLesson()">Начать урок ▶</button>
+    <button class="btn-primary lesson-start-btn" onclick="startLesson()">
+      <span id="lesson-btn-text">Урок · 10 заданий ▶</span>
+    </button>
+    <div class="lesson-btn-hint">Слова, перевод, ввод и произношение — вперемешку</div>
 
     <div class="nav-grid">
       <button class="nav-btn" onclick="showScenarios()">
@@ -437,7 +440,7 @@
         <div class="quiz-card-icon">🇷🇺→🇷🇸</div>
         <div class="quiz-card-body">
           <div class="quiz-card-title">Русский → Сербский</div>
-          <div class="quiz-card-sub">40 фраз · выбери правильный перевод</div>
+          <div class="quiz-card-sub">Выбери правильный перевод</div>
         </div>
         <div class="quiz-card-arrow">→</div>
       </button>
@@ -446,7 +449,7 @@
         <div class="quiz-card-icon">🇷🇸→🇷🇺</div>
         <div class="quiz-card-body">
           <div class="quiz-card-title">Сербский → Русский</div>
-          <div class="quiz-card-sub">40 фраз · выбери правильный перевод</div>
+          <div class="quiz-card-sub">Выбери правильный перевод</div>
         </div>
         <div class="quiz-card-arrow">→</div>
       </button>
@@ -455,7 +458,7 @@
         <div class="quiz-card-icon">🔤</div>
         <div class="quiz-card-body">
           <div class="quiz-card-title">Транскрипция</div>
-          <div class="quiz-card-sub">15 слов · угадай произношение</div>
+          <div class="quiz-card-sub">Угадай произношение</div>
         </div>
         <div class="quiz-card-arrow">→</div>
       </button>

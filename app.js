@@ -724,6 +724,9 @@ function renderHome() {
   document.getElementById('level-display').textContent = state.level;
   document.getElementById('lessons-done').textContent = state.lessonsCompleted;
 
+  const lessonBtn = document.getElementById('lesson-btn-text');
+  if (lessonBtn) lessonBtn.textContent = `Урок ${(state.lessonsCompleted || 0) + 1} · ${EXERCISES_PER_LESSON} заданий ▶`;
+
   const pct = Math.min(100, (state.dailyXp / state.dailyGoal) * 100);
   document.getElementById('daily-progress').style.width = pct + '%';
   document.getElementById('daily-xp-display').textContent = `${state.dailyXp} / ${state.dailyGoal} XP`;
@@ -761,23 +764,38 @@ function showHome() {
 // ============================================================
 // LESSON — EXERCISE GENERATION
 // ============================================================
+// Урок из РАЗНЫХ типов заданий вперемешку (не только выбор перевода):
+// значение слова, перевод на сербский, выбор транскрипции и ввод с клавиатуры.
+// Так одна большая кнопка «Урок» даёт разнообразие, а не монотонные карточки.
 function generateLesson(wordPool = null) {
   const pool = wordPool || buildSrsPool();
+  const withTranscription = WORDS.filter(w => w.transcription);
   const exercises = [];
+  // Веса: больше выбора, меньше ввода — чтобы было живо, но не утомляло.
+  const bag = [
+    'word_meaning', 'word_meaning', 'word_meaning',
+    'translate_to_serbian', 'translate_to_serbian', 'translate_to_serbian',
+    'transcription', 'transcription', 'typing', 'typing',
+  ];
   for (let i = 0; i < EXERCISES_PER_LESSON; i++) {
     const word = pool[Math.floor(Math.random() * pool.length)];
-    const type = i % 2 === 0 ? 'word_meaning' : 'translate_to_serbian';
+    let type = bag[Math.floor(Math.random() * bag.length)];
+    if (type === 'transcription' && !word.transcription) type = 'word_meaning';
 
     if (type === 'word_meaning') {
       const correct = word.translation;
-      const wrongs = WORDS.filter(w => w.id !== word.id)
-        .sort(() => Math.random() - 0.5).slice(0, 3).map(w => w.translation);
+      const wrongs = shuffle(WORDS.filter(w => w.id !== word.id)).slice(0, 3).map(w => w.translation);
       exercises.push({ type, word, correctAnswer: correct, options: shuffle([correct, ...wrongs]) });
-    } else {
+    } else if (type === 'translate_to_serbian') {
       const correct = word.serbian;
-      const wrongs = WORDS.filter(w => w.id !== word.id)
-        .sort(() => Math.random() - 0.5).slice(0, 3).map(w => w.serbian);
+      const wrongs = shuffle(WORDS.filter(w => w.id !== word.id)).slice(0, 3).map(w => w.serbian);
       exercises.push({ type, word, correctAnswer: correct, options: shuffle([correct, ...wrongs]) });
+    } else if (type === 'transcription') {
+      const correct = word.transcription;
+      const wrongs = shuffle(withTranscription.filter(w => w.id !== word.id)).slice(0, 3).map(w => w.transcription);
+      exercises.push({ type, word, correctAnswer: correct, options: shuffle([correct, ...wrongs]) });
+    } else { // typing — ввести сербское слово по переводу
+      exercises.push({ type, word, correctAnswer: word.serbian });
     }
   }
   return exercises;
@@ -823,15 +841,20 @@ function renderExercise() {
   document.getElementById('lesson-progress-fill').style.width = (lessonState.currentIndex / EXERCISES_PER_LESSON * 100) + '%';
   renderHearts();
 
-  let labelText, questionText, subtitleText;
+  let labelText, questionText, subtitleText = '';
   if (ex.type === 'word_meaning') {
     labelText = 'Что значит это слово?';
     questionText = ex.word.serbian;
     subtitleText = ex.word.transcription ? `[${ex.word.transcription}]` : '';
+  } else if (ex.type === 'transcription') {
+    labelText = 'Выбери транскрипцию:';
+    questionText = ex.word.serbian;
+  } else if (ex.type === 'typing') {
+    labelText = 'Напиши по-сербски:';
+    questionText = ex.word.translation;
   } else {
     labelText = 'Как это по-сербски?';
     questionText = ex.word.translation;
-    subtitleText = '';
   }
 
   document.getElementById('lesson-body').innerHTML = `
@@ -2681,13 +2704,20 @@ function showQuiz() {
   showScreen('screen-quiz');
 }
 
+// Пул перевода = готовые фразы + все слова (маппим в тот же вид {id, ru, sr}),
+// чтобы вопросов было много (300+), а не 40. Про количество нигде не пишем.
+function buildTranslationPool() {
+  const fromWords = WORDS.map(w => ({ id: 'w' + w.id, ru: w.translation, sr: w.serbian }));
+  return [...QUIZ_SENTENCES, ...fromWords];
+}
+
 function startQuiz(type) {
   if (!trialGate()) return;
   let words;
   if (type === 'translation' || type === 'reverse') {
-    words = shuffle([...QUIZ_SENTENCES]);
+    words = shuffle(buildTranslationPool());
   } else {
-    words = shuffle([...WORDS]).slice(0, 15);
+    words = shuffle([...WORDS]);
   }
   quizState = { type, words, currentIndex: 0, hearts: 3, xpEarned: 0, correct: 0, answered: false };
   document.getElementById('quiz-menu').style.display = 'none';
@@ -2705,12 +2735,12 @@ function renderQuizQuestion() {
     label = 'Как будет по-сербски?';
     questionText = word.ru;
     correctAnswer = word.sr;
-    wrongs = shuffle(QUIZ_SENTENCES.filter(w => w.id !== word.id)).slice(0, 3).map(w => w.sr);
+    wrongs = shuffle(quizState.words.filter(w => w.id !== word.id)).slice(0, 3).map(w => w.sr);
   } else if (type === 'reverse') {
     label = 'Что значит эта фраза?';
     questionText = word.sr;
     correctAnswer = word.ru;
-    wrongs = shuffle(QUIZ_SENTENCES.filter(w => w.id !== word.id)).slice(0, 3).map(w => w.ru);
+    wrongs = shuffle(quizState.words.filter(w => w.id !== word.id)).slice(0, 3).map(w => w.ru);
   } else { // transcription
     label = 'Выбери транскрипцию:';
     questionText = word.serbian;

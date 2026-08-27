@@ -429,6 +429,7 @@ function getProgressXPHtml() {
   return `
     <div class="progress-section">
       <div class="progress-big-stat">
+        <div class="progress-hero-icon">⚡</div>
         <div class="progress-big-val">${xp.toLocaleString('ru-RU')}</div>
         <div class="progress-big-lbl">Всего XP · ${days} ${pluralDays(days)} в пути</div>
       </div>
@@ -455,7 +456,8 @@ function getProgressLevelHtml() {
   return `
     <div class="progress-section">
       <div class="progress-big-stat">
-        <div class="progress-big-val">${league.icon} ${level}</div>
+        <div class="progress-hero-icon">${league.icon}</div>
+        <div class="progress-big-val">Уровень ${level}</div>
         <div class="progress-big-lbl">${league.name}</div>
       </div>
       <div class="progress-bar-bg" style="margin:16px 0 4px">
@@ -487,6 +489,7 @@ function getProgressLessonsHtml() {
   return `
     <div class="progress-section">
       <div class="progress-big-stat">
+        <div class="progress-hero-icon">📖</div>
         <div class="progress-big-val">${lessons}</div>
         <div class="progress-big-lbl">Уроков · ≈${Math.round(lessons * 5)} мин практики</div>
       </div>
@@ -1229,9 +1232,16 @@ function showAchievements() {
   const unlocked = state.achievements.length;
   const total = ACHIEVEMENTS.length;
 
+  const pct = total ? Math.round(unlocked / total * 100) : 0;
   const list = document.getElementById('achievements-list');
   list.innerHTML = `
-    <div class="ach-summary" style="text-align:center;padding:12px;color:#666;font-size:14px">${unlocked} из ${total} достижений</div>
+    <div class="ach-hero">
+      <div class="ach-hero-icon">🏅</div>
+      <div class="ach-hero-count">${unlocked} / ${total}</div>
+      <div class="ach-hero-lbl">достижений открыто</div>
+      <div class="progress-bar-bg" style="margin:12px 8px 0"><div class="progress-bar-fill" style="width:${pct}%"></div></div>
+      <div class="ach-hero-sub">Каждый шаг приближает к свободному сербскому 🇷🇸</div>
+    </div>
     ${ACHIEVEMENTS.map(a => {
       const isUnlocked = state.achievements.includes(a.id);
       return `
@@ -3210,7 +3220,45 @@ function onSpeechMicClick() {
   startSpeechRecognition();
 }
 
+// Нативное распознавание (в приложении) — вместо Web Speech API, которого нет в WKWebView.
+function runNativeSpeech() {
+  const ns = window.__iziNativeSpeech;
+  const recognize = () => {
+    setSpeechUIState('recording');
+    ns.recognize('sr-RS').then(alts => {
+      const w = speechSession.words[speechSession.index];
+      const target = w.greek || w.serbian || '';
+      const el = document.getElementById('speech-recognized');
+      if (el) el.textContent = alts[0] || '';
+      const ok = (alts || []).some(t => normalizeSpeech(t) === normalizeSpeech(target));
+      if (ok) {
+        speechSession.correctCount++;
+        speechSession.xpEarned += 5;
+        setSpeechUIState('correct');
+      } else {
+        setSpeechUIState('wrong');
+      }
+    }).catch(() => {
+      setSpeechUIState('idle');
+      const el = document.getElementById('speech-recognized');
+      if (el) el.textContent = '🎙️ Не удалось распознать. Попробуй ещё раз.';
+    });
+  };
+  if (speechSession.micGranted) { recognize(); return; }
+  ns.requestPermission().then(granted => {
+    if (granted) { speechSession.micGranted = true; recognize(); }
+    else {
+      setSpeechUIState('idle');
+      const el = document.getElementById('speech-recognized');
+      if (el) el.textContent = '🎙️ Разреши доступ к микрофону и распознаванию речи в Настройках.';
+    }
+  });
+}
+
 function startSpeechRecognition() {
+  // В приложении идём нативным путём (SFSpeechRecognizer).
+  if (window.__iziNativeSpeech) { runNativeSpeech(); return; }
+
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SR) {
     alert('Ваш браузер не поддерживает распознавание речи. Используйте Chrome или Safari.');

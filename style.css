@@ -1,4 +1,5 @@
 :root {
+  --primary: #1A7FD4;
   --green: #1A7FD4;
   --green-dark: #46a302;
   --green-light: #D7FFB8;
@@ -1411,7 +1412,7 @@ body {
   padding: 20px; position: relative;
 }
 .paywall-plan-popular {
-  border-color: var(--primary); background: #f0fff4;
+  border-color: var(--primary); background: #eef5ff;
 }
 .paywall-plan-badge {
   position: absolute; top: -12px; left: 50%; transform: translateX(-50%);

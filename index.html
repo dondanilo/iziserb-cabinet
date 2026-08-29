@@ -120,7 +120,18 @@
         </div>
       </div>
 
-      <p class="paywall-note">7 дней бесплатно · Отмена в любой момент</p>
+      <p class="paywall-note">7 дней бесплатно · Далее подписка продлевается автоматически, пока её не отменить · Отмена в любой момент</p>
+
+      <!-- Гайдлайн 3.1.2(c): в самом потоке покупки обязаны быть РАБОЧИЕ ссылки на
+           условия использования (EULA) и политику конфиденциальности — за их отсутствие
+           Apple отклоняет билд. В приложении target="_blank" перехватывает Capacitor
+           (открывает Safari), на вебе ссылка работает штатно. -->
+      <p class="paywall-legal">
+        <a href="https://iziserb.com/terms.html" target="_blank" rel="noopener">Условия использования</a>
+        <span class="paywall-legal-sep">·</span>
+        <a href="https://iziserb.com/privacy.html" target="_blank" rel="noopener">Политика конфиденциальности</a>
+      </p>
+
       <button class="paywall-signout" onclick="signOut()">Выйти из аккаунта</button>
     </div>
   </div>

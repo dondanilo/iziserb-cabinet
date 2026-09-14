@@ -171,6 +171,13 @@ const TRIAL_LESSONS = 2;      // сколько уроков доступно г
 let hasSubscription = false;
 let pendingUpgrade = false;   // гость нажал «оформить» → после входа сразу пейволл
 
+// Нативная обёртка (iOS/Android через Capacitor). На нативе подписка идёт через
+// Apple IAP (RevenueCat) и НЕ требует Firebase-логина, поэтому пейволл гостю
+// показываем сразу, без стены входа (это душило конверсию: 0 триалов на 63 установки).
+function isNativeApp() {
+  return !!(window.Capacitor && typeof window.Capacitor.isNativePlatform === 'function' && window.Capacitor.isNativePlatform());
+}
+
 // Пропускать ли в контент. Гостю дан пробник, дальше — окно с объяснением.
 // Прогресс гостя живёт в localStorage и переносится в аккаунт при входе
 // (loadState грузит localStorage, Firestore накрывает только если документ есть).
@@ -183,7 +190,8 @@ function trialGate() {
 
 function showTrialModal() {
   const cta = document.getElementById('trial-cta');
-  if (cta) cta.textContent = currentUser ? 'Выбрать план' : 'Войти и открыть доступ';
+  // На нативе логин для покупки не нужен → «Выбрать план» и гостю.
+  if (cta) cta.textContent = (currentUser || isNativeApp()) ? 'Выбрать план' : 'Войти и открыть доступ';
   const m = document.getElementById('trial-modal');
   if (m) m.style.display = 'flex';
 }
@@ -195,12 +203,22 @@ function dismissTrialModal() {
 
 function trialUpgrade() {
   dismissTrialModal();
-  if (currentUser) {
-    showPaywall();          // вошёл — сразу планы
+  if (currentUser || isNativeApp()) {
+    // Вошёл ИЛИ натив-гость → сразу планы. На нативе RevenueCat покажет цены и
+    // оформит Apple-триал без Firebase-логина (доступ выдаётся на устройстве,
+    // cross-device — через restore по Apple ID).
+    showPaywall();
   } else {
-    pendingUpgrade = true;  // гость — сперва вход, после него откроем пейволл
+    pendingUpgrade = true;  // веб-гость — сперва вход (LemonSqueezy матчит по email)
     showLoginPromo();
   }
+}
+
+// Уйти с пейволла, ничего не купив (кнопка «Не сейчас»/«назад»). Гость на нативе
+// теперь может попасть на пейволл сам — ему нужен выход, а не «Выйти из аккаунта».
+function closePaywall() {
+  if (typeof showHome === 'function') showHome();
+  else showScreen('screen-home');
 }
 
 // Кнопка возврата на главную — только гостю с уже пройденным онбордингом
@@ -233,6 +251,9 @@ function updateGuestUi() {
   const avatarBtn = document.getElementById('user-avatar-btn');
   if (loginBtn) loginBtn.style.display = isGuest ? 'inline-flex' : 'none';
   if (avatarBtn) avatarBtn.style.display = isGuest ? 'none' : 'inline-flex';
+  // «Выйти из аккаунта» на пейволле бессмысленна для гостя (аккаунта нет) — прячем.
+  const pwSignout = document.getElementById('paywall-signout-btn');
+  if (pwSignout) pwSignout.style.display = isGuest ? 'none' : '';
 }
 
 // ============================================================

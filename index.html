@@ -132,7 +132,10 @@
         <a href="https://iziserb.com/privacy.html" target="_blank" rel="noopener">Политика конфиденциальности</a>
       </p>
 
-      <button class="paywall-signout" onclick="signOut()">Выйти из аккаунта</button>
+      <!-- Гость на нативе теперь попадает на пейволл сам — ему нужен выход, а не signOut.
+           Кнопка видна всегда; «Выйти из аккаунта» updateGuestUi прячет гостю. -->
+      <button class="paywall-skip" onclick="closePaywall()">Не сейчас</button>
+      <button id="paywall-signout-btn" class="paywall-signout" onclick="signOut()">Выйти из аккаунта</button>
     </div>
   </div>
 

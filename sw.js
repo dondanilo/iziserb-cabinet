@@ -1,4 +1,4 @@
-const CACHE_NAME = 'iziserb-v21';
+const CACHE_NAME = 'iziserb-v22';
 const ASSETS = [
   './',
   './index.html',

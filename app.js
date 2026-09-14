@@ -372,7 +372,7 @@ function finishOnboarding() {
   setTimeout(setupPushNotifications, 2000);
 }
 
-const VAPID_PUBLIC_KEY = 'BNxge42260O1eI9J5DPz4Wa2O-gKn5d8ScwU2-U1PvmGwtrNMrjxmRn6mIY2Ty4VGhXGsaxg8I7UPMfb5VsrKp4';
+const VAPID_PUBLIC_KEY = 'BIdLzBrGNdVBrBVf_qWxTXuF3Rid734N0vW-0eLEuP0tzncWfH0ekGyNTT6wrwxORW1i3LpUGy4XAdCwragDl10';
 
 function urlBase64ToUint8Array(base64) {
   const padding = '='.repeat((4 - base64.length % 4) % 4);

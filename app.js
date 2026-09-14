@@ -182,7 +182,10 @@ function isNativeApp() {
 // Прогресс гостя живёт в localStorage и переносится в аккаунт при входе
 // (loadState грузит localStorage, Firestore накрывает только если документ есть).
 function trialGate() {
-  if (hasSubscription) return true;
+  // __iziNativeSubscription — подписка Apple: гость без аккаунта тоже может её иметь,
+  // а onAuthStateChanged гостю сбрасывает hasSubscription в false → без этой проверки
+  // оплативший гость после перезапуска упрётся в пробник.
+  if (hasSubscription || window.__iziNativeSubscription === true) return true;
   if ((state.lessonsCompleted || 0) < TRIAL_LESSONS) return true;
   showTrialModal();
   return false;
@@ -336,6 +339,7 @@ async function confirmDeleteAccount() {
     }
     // 2. Подписка на пуши и документ пользователя
     await db.collection('push_subscriptions').doc(uid).delete().catch(() => {});
+    await db.collection('apns_subscriptions').doc(uid).delete().catch(() => {});
     await db.collection('users').doc(uid).delete().catch(() => {});
     // (subscriptions/{email} не трогаем — платёжная запись, правила write:false)
 
@@ -377,7 +381,29 @@ function urlBase64ToUint8Array(base64) {
   return Uint8Array.from([...raw].map(c => c.charCodeAt(0)));
 }
 
+// В iOS-приложении Web Push недоступен (WKWebView) — пуши идут через APNs.
+// native-bridge.js получает device-token и шлёт событие 'apnsToken'; здесь
+// сохраняем его в Firestore-коллекцию apns_subscriptions/{uid}, откуда крон
+// iziserb-webhook рассылает по APNs.
+async function saveApnsToken(token) {
+  if (!token || !currentUser) return;
+  try {
+    await db.collection('apns_subscriptions').doc(currentUser.uid).set({
+      token,
+      uid: currentUser.uid,
+      platform: 'ios',
+      updatedAt: new Date().toISOString()
+    });
+  } catch (e) { console.error('saveApnsToken error:', e); }
+}
+
 async function setupPushNotifications() {
+  // iOS-приложение: Web Push в WKWebView нет — регистрируемся на APNs через натив.
+  if (isNativeApp()) {
+    if (typeof window.__nativeRegisterPush === 'function') window.__nativeRegisterPush();
+    if (window.__APNS_TOKEN) saveApnsToken(window.__APNS_TOKEN); // токен мог прийти до входа
+    return;
+  }
   if (!('Notification' in window) || !('PushManager' in window)) return;
   if (Notification.permission === 'denied') return;
   try {
@@ -400,6 +426,9 @@ async function setupPushNotifications() {
     }
   } catch (e) { console.error('Push setup error:', e); }
 }
+
+// Токен APNs может прийти асинхронно (в т.ч. до входа) — ловим и сохраняем в Firestore.
+window.addEventListener('apnsToken', function (e) { saveApnsToken(e.detail); });
 
 // ============================================================
 // PROGRESS DASHBOARD
@@ -708,7 +737,7 @@ async function init() {
         showScreen('screen-onboarding');
       } else {
         showScreen('screen-home');
-        if (pushPermission() === 'granted') {
+        if (isNativeApp() || pushPermission() === 'granted') {
           setTimeout(setupPushNotifications, 3000);
         }
       }
@@ -1030,6 +1059,8 @@ function completeLesson() {
   state.totalXp += lessonState.xpEarned;
   state.level = Math.floor(state.totalXp / 500) + 1;
   state.lessonsCompleted++;
+  // Запрос нативной оценки в App Store (native-rating.js решает по числу уроков; на вебе no-op).
+  if (typeof window.__iziMaybeReview === 'function') window.__iziMaybeReview(state.lessonsCompleted);
   const isPerfect = lessonState.hearts === 3 && lessonState.correct === EXERCISES_PER_LESSON;
   if (lessonState.isWeakMode) {
     // Clear errors for verbs that were practiced
